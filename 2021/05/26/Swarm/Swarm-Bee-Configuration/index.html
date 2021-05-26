@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Swarm Bee配置 | Moakap&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="每个Bee节点可以在启动的时候添加命令行参数来配置，具体参数可以通过bee start --help查看。 例如下边这个例子，我们打开了Bee的debug API，并且设置debug API的监听端口为6666. 1234bee start \  --api-addr&#x3D;:8888 \  --debug-api-enable&#x3D;true \  --debug-api-addr&#x3D;:6666  配置文件B">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swarm Bee配置">
+<meta property="og:url" content="https://moakap.github.io/2021/05/26/Swarm/Swarm-Bee-Configuration/index.html">
+<meta property="og:site_name" content="Moakap&#39;s Blog">
+<meta property="og:description" content="每个Bee节点可以在启动的时候添加命令行参数来配置，具体参数可以通过bee start --help查看。 例如下边这个例子，我们打开了Bee的debug API，并且设置debug API的监听端口为6666. 1234bee start \  --api-addr&#x3D;:8888 \  --debug-api-enable&#x3D;true \  --debug-api-addr&#x3D;:6666  配置文件B">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-05-26T15:26:30.104Z">
+<meta property="article:modified_time" content="2021-05-26T15:26:30.104Z">
+<meta property="article:author" content="moakap">
+<meta property="article:tag" content="Swarm">
+<meta property="article:tag" content="Bee">
+<meta property="article:tag" content="BZZ">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Moakap's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Moakap&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Keep moving, keep thinking!</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://moakap.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Swarm/Swarm-Bee-Configuration" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/26/Swarm/Swarm-Bee-Configuration/" class="article-date">
+  <time class="dt-published" datetime="2021-05-26T15:26:30.104Z" itemprop="datePublished">2021-05-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Swarm Bee配置
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>每个Bee节点可以在启动的时候添加命令行参数来配置，具体参数可以通过<code>bee start --help</code>查看。</p>
+<p>例如下边这个例子，我们打开了Bee的debug API，并且设置debug API的监听端口为6666.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bee start \</span><br><span class="line">  --api-addr=:8888 \</span><br><span class="line">  --debug-api-enable=true \</span><br><span class="line">  --debug-api-addr=:6666</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>Bee节点也可以通过提供<code>--config</code>加yaml配置文件的方式来配置。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bee start --config /home/&lt;user&gt;/bee-config.yaml </span><br></pre></td></tr></table></figure>
+
+<p>提示： 可以通过命令<code>bee printconfig &amp;&gt; bee-default.yaml</code>导出当前配置文件作为默认修改版本。</p>
+<h2 id="配置通过软件包管理器安装的Bee"><a href="#配置通过软件包管理器安装的Bee" class="headerlink" title="配置通过软件包管理器安装的Bee"></a>配置通过软件包管理器安装的Bee</h2><p>如果你的Bee是通过<code>apt-get</code>或<code>yum</code>这样的软件包管理器安装的，在安装过程中会自动生成一个配置文件，Bee启动的时候默认使用这个配置文件。</p>
+<p>要修改Bee配置，可以直接修改对应的配置文件，然后重启Bee生效。</p>
+<p><strong>Linux</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/bee/bee.yaml</span><br><span class="line">sudo systemctl restart bee</span><br></pre></td></tr></table></figure>
+
+<p><strong>Mac OS</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/local/etc/swarm-bee/bee.yaml</span><br><span class="line">brew services restart swarm-bee</span><br></pre></td></tr></table></figure>
+
+<h2 id="自动产生配置文件"><a href="#自动产生配置文件" class="headerlink" title="自动产生配置文件"></a>自动产生配置文件</h2><p>通过命令行启动Bee时候，用<code>printconfig</code>替换<code>start</code>可以很简单的生成Bee的配置文件。</p>
+<p><strong>例子</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bee printconfig \</span><br><span class="line">  --verbosity=5 \</span><br><span class="line">  &amp;&gt; bee-config.yaml</span><br></pre></td></tr></table></figure>
+
+<p>上述命令会生成类似下边的文件内容，其中包含了Bee的默认配置。</p>
+<h2 id="配置选项"><a href="#配置选项" class="headerlink" title="配置选项"></a>配置选项</h2><h3 id="全局选项"><a href="#全局选项" class="headerlink" title="全局选项"></a>全局选项</h3><h4 id="–config"><a href="#–config" class="headerlink" title="–config"></a>–config</h4><p>设置Bee配置文件，默认为<code>/home/&lt;user&gt;/.bee.yaml</code>.</p>
+<h3 id="启动选项"><a href="#启动选项" class="headerlink" title="启动选项"></a>启动选项</h3><h4 id="–api-addr"><a href="#–api-addr" class="headerlink" title="–api-addr"></a>–api-addr</h4><p>默认 <code>:1633</code>.</p>
+<p>Bee API地址和端口。忽略IP地址，会监听所有地址的对应端口。</p>
+<h4 id="–bootnode"><a href="#–bootnode" class="headerlink" title="–bootnode"></a>–bootnode</h4><p>默认<code>/dnsaddr/bootnode.ethswarm.org</code>.</p>
+<p>设置Bee启动节点的地址（要启动或加入的网络），可以是多个地址。</p>
+<p>默认情况下节点会连接到Swarm主网。如果要使用私有或者测试网络，必须配置启动节点。</p>
+<h4 id="–clef-signer-enable"><a href="#–clef-signer-enable" class="headerlink" title="–clef-signer-enable"></a>–clef-signer-enable</h4><p>默认<code>false</code>.</p>
+<p>如果要使用以太坊的<code>Clef</code>作为独立的交易签名器，设置为<code>true</code>。 Clef是以太坊的新功能，需要相应的规则文件或者运行在高级模式下，用来实现对交易和支票的自动签名。</p>
+<h4 id="–clef-signer-endpoint"><a href="#–clef-signer-endpoint" class="headerlink" title="–clef-signer-endpoint"></a>–clef-signer-endpoint</h4><p>默认为当前操作系统下clef的默认路径。</p>
+<p>你也可以为你的Clef签名器指定自定义ipc文件。</p>
+<h4 id="–clef-signer-ethernum-address"><a href="#–clef-signer-ethernum-address" class="headerlink" title="–clef-signer-ethernum-address"></a>–clef-signer-ethernum-address</h4><p>默认会选择clef下的第一个地址（index 0）。</p>
+<p>如果你在Bee Clef中导入了多个key，可以使用这个参数来指定要使用的地址。</p>
+<p><strong>注意</strong>：如果在Bee Clef中导入了多个地址，必须为每个Bee节点指定对应的签名器地址，第一个地址也需要配置，因为这些地址在导入的时候可能会重新排序。</p>
+<h4 id="–cors-allowed-origins"><a href="#–cors-allowed-origins" class="headerlink" title="–cors-allowed-origins"></a>–cors-allowed-origins</h4><p>默认为<code>[]</code>.</p>
+<p>允许的Http/WS API响应地址域。API只会接受对应地址域的请求，例如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bee start --cors-allowed-origins=&quot;*&quot;</span><br><span class="line">bee start --cors-allowed-origins=&quot;https://website.ethswarm.org&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="–data-dir"><a href="#–data-dir" class="headerlink" title="–data-dir"></a>–data-dir</h4><p>默认<code>/home/&lt;user&gt;/.bee</code>. </p>
+<p>Bee数据存储路径。包含以下三种类型的数据。</p>
+<ol>
+<li><p>区块数据</p>
+<p>具体会包含本地pin过的区块数据和文件、缓存的区块数据、或当前节点职责范围内需要提供给对端节点的区块数据。</p>
+</li>
+<li><p>状态数据</p>
+<p>本地Bee节点的状态数据，需要备份。</p>
+</li>
+<li><p>密钥库（keystore）数据</p>
+<p>包含加密过的私钥，需要备份并且保证私密性。</p>
+</li>
+</ol>
+<p><strong>注意：</strong>在秘钥库(keystore)中的文件要保证绝对的安全！它们是你的网络身份的加密标记，一旦丢失无法恢复。</p>
+<h4 id="–db-capacity"><a href="#–db-capacity" class="headerlink" title="–db-capacity"></a>–db-capacity</h4><p>默认<code>5000000</code>.</p>
+<p>区块数据容量。区块数据已4086byte作为基础单位，所以总的数据库容量（kb）大概为<code>db-capacity * 4096</code>. 默认值5,000,000个区块大概有20.5gb。为了能够在网络中有效工作，我们建议一个Bee节点的容量至少要2.5gb。一些不参与数据存储的节点可以设置更小的容量。</p>
+<p>下边4个参数对应更低层级的配置，是针对LevelDB的Openfile函数的配置。</p>
+<h5 id="–db-block-cache-capacity"><a href="#–db-block-cache-capacity" class="headerlink" title="–db-block-cache-capacity"></a>–db-block-cache-capacity</h5><p>默认<code>33554432</code>。</p>
+<p>对应LevelDB的<code>BlcokCacheCapacity</code>.</p>
+<h5 id="–db-disable-seeks-compaction"><a href="#–db-disable-seeks-compaction" class="headerlink" title="–db-disable-seeks-compaction"></a>–db-disable-seeks-compaction</h5><p>默认<code>false</code>. </p>
+<p>对应LevelDB的<code>DisableSeeksCompaction</code>.</p>
+<h5 id="–db-open-files-limit"><a href="#–db-open-files-limit" class="headerlink" title="–db-open-files-limit"></a>–db-open-files-limit</h5><p>默认<code>200</code>.</p>
+<p><strong>注意：</strong>为了兼容低性能的硬件和操作系统，<code>--db-open-files-limit</code>的默认值设置的比较低。建议如果可能的话，增大到接近<code>10000</code>或者更多。</p>
+<p>对应LevelDB的<code>OpenFileCacheCapacity</code>.</p>
+<h5 id="–db-write-buffer-size"><a href="#–db-write-buffer-size" class="headerlink" title="–db-write-buffer-size"></a>–db-write-buffer-size</h5><p>默认<code>33554432</code>.</p>
+<p>对应LevelDB的<code>WriteBuffer</code>. </p>
+<h4 id="–debug-api-addr"><a href="#–debug-api-addr" class="headerlink" title="–debug-api-addr"></a>–debug-api-addr</h4><p>默认<code>:1635</code>.</p>
+<p>Debug API的地址和端口。忽略地址会监听主机的所有接口。</p>
+<p><code>--debug-api-enable</code>必须设置才会生效。</p>
+<h4 id="–debug-api-enable"><a href="#–debug-api-enable" class="headerlink" title="–debug-api-enable"></a>–debug-api-enable</h4><p>默认<code>false</code>. </p>
+<p>设置为<code>true</code>来打开debug api。</p>
+<h4 id="–gateway-mode"><a href="#–gateway-mode" class="headerlink" title="–gateway-mode"></a>–gateway-mode</h4><p>默认<code>false</code>.</p>
+<p>设置为<code>true</code>会关闭API中的一些敏感功能，可以使api地址在公共网络中更安全。</p>
+<h4 id="–global-pinning-enable"><a href="#–global-pinning-enable" class="headerlink" title="–global-pinning-enable"></a>–global-pinning-enable</h4><p>默认<code>false</code>.</p>
+<p>设置为<code>true</code>来打开全局pin功能。</p>
+<h4 id="–nat-addr"><a href="#–nat-addr" class="headerlink" title="–nat-addr"></a>–nat-addr</h4><p>默认<code>&quot;&quot;</code>.</p>
+<p>设置对应的NAT公网IP。一般情况下会自动生成，一些特殊情况可能需要手工设置。</p>
+<h4 id="–network-id"><a href="#–network-id" class="headerlink" title="–network-id"></a>–network-id</h4><p>默认<code>1</code>.</p>
+<p>接受新连接的网络ID。主网设置<code>1</code>, 测试网<code>2</code>.</p>
+<h4 id="–p2p-addr"><a href="#–p2p-addr" class="headerlink" title="–p2p-addr"></a>–p2p-addr</h4><p>默认<code>:1634</code>.</p>
+<p>p2p协议消息的IP地址和端口。</p>
+<h4 id="–p2p-quic-enable"><a href="#–p2p-quic-enable" class="headerlink" title="–p2p-quic-enable"></a>–p2p-quic-enable</h4><p>默认<code>false</code>.</p>
+<h4 id="–p2p-ws-enable"><a href="#–p2p-ws-enable" class="headerlink" title="–p2p-ws-enable"></a>–p2p-ws-enable</h4><p>默认<code>false</code>.</p>
+<p>配置是否打开p2p通信的web-socket传输。</p>
+<h4 id="–password"><a href="#–password" class="headerlink" title="–password"></a>–password</h4><p>默认<code>&quot;&quot;</code>.</p>
+<p>解密Swarm标识密钥的密码。</p>
+<p><strong>注意：</strong>在命令行中设置密码是不安全的。在生成环境中请使用密码文件或环境变量。</p>
+<h4 id="–password-file"><a href="#–password-file" class="headerlink" title="–password-file"></a>–password-file</h4><p>默认<code>&quot;&quot;</code>.</p>
+<p>指向解密用的密码文件路径。空字符串密码不需要设置。</p>
+<h4 id="–payment-early"><a href="#–payment-early" class="headerlink" title="–payment-early"></a>–payment-early</h4><p><em>默认</em> <code>1000000000000</code>.</p>
+<p>触发Bee结算的最低结算限制。</p>
+<h4 id="–payment-threshold"><a href="#–payment-threshold" class="headerlink" title="–payment-threshold"></a>–payment-threshold</h4><p><em>默认</em> <code>10000000000000</code>.</p>
+<p>从对等节点获得付款的最低支付门限，超过这个值才会触发支付。</p>
+<h4 id="–payment-tolerance"><a href="#–payment-tolerance" class="headerlink" title="–payment-tolerance"></a>–payment-tolerance</h4><p><em>默认</em> <code>50000000000000</code></p>
+<p>可容忍的最大欠债，超过这个门限后Bee会从这个节点断开。</p>
+<h4 id="–resolver-options"><a href="#–resolver-options" class="headerlink" title="–resolver-options"></a>–resolver-options</h4><p><em>默认</em> <code>eth:0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e@localhost:8545</code>.</p>
+<h4 id="–standalone"><a href="#–standalone" class="headerlink" title="–standalone"></a>–standalone</h4><p><em>默认</em> <code>false</code></p>
+<p>如果不想让Bee节点连接网络，设置<code>true</code>. 开发模式下使用。</p>
+<h4 id="–swap-enable"><a href="#–swap-enable" class="headerlink" title="–swap-enable"></a>–swap-enable</h4><p><em>默认</em> <code>true</code></p>
+<h4 id="–swap-endpoint"><a href="#–swap-endpoint" class="headerlink" title="–swap-endpoint"></a>–swap-endpoint</h4><p><em>默认</em> <code>http://localhost:8545</code></p>
+<p>以太坊区块链交换节点。</p>
+<h4 id="–swap-factory-address"><a href="#–swap-factory-address" class="headerlink" title="–swap-factory-address"></a>–swap-factory-address</h4><p><em>默认</em> <code>anointed contract for the current blockchain id</code></p>
+<h4 id="–swap-initial-deposit"><a href="#–swap-initial-deposit" class="headerlink" title="–swap-initial-deposit"></a>–swap-initial-deposit</h4><p><em>默认</em> <code>100000000000000000</code></p>
+<h4 id="–tracing-enable"><a href="#–tracing-enable" class="headerlink" title="–tracing-enable"></a>–tracing-enable</h4><p><em>默认</em> <code>false</code></p>
+<h4 id="–tracing-endpoint"><a href="#–tracing-endpoint" class="headerlink" title="–tracing-endpoint"></a>–tracing-endpoint</h4><p><em>默认</em> <code>127.0.0.1:6831</code></p>
+<h4 id="–tracing-service-name"><a href="#–tracing-service-name" class="headerlink" title="–tracing-service-name"></a>–tracing-service-name</h4><p><em>默认</em> <code>bee</code></p>
+<h4 id="–verbosity"><a href="#–verbosity" class="headerlink" title="–verbosity"></a>–verbosity</h4><p><em>默认</em> <code>info</code></p>
+<p>Bee日志等级：0=silent, 1=error, 2=warn, 3=info, 4=debug, 5=trace</p>
+<h4 id="–welcome-message"><a href="#–welcome-message" class="headerlink" title="–welcome-message"></a>–welcome-message</h4><p><em>默认</em> <code>&quot;&quot;</code></p>
+<p>连接到对端节点时显示的欢迎信息。</p>
+<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p>可以使用环境变量定义Bee的配置。</p>
+<p>在环境变量中定义好对应的值以后，直接在命令行参数中使用。</p>
+<p>例如：<code>bee start --api-addr $VARIABLE_NAME</code>。</p>
+<h3 id="配置优先级"><a href="#配置优先级" class="headerlink" title="配置优先级"></a>配置优先级</h3><p>Bee配置按照以下优先级（从高到低）加载处理，高优先级中的配置会覆盖低优先级中的值。</p>
+<ol>
+<li>命令行参数</li>
+<li>环境变量</li>
+<li>配置文件</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://moakap.github.io/2021/05/26/Swarm/Swarm-Bee-Configuration/" data-id="ckp5mees7000695ne49wsgfxb" data-title="Swarm Bee配置" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BZZ/" rel="tag">BZZ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bee/" rel="tag">Bee</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swarm/" rel="tag">Swarm</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/05/26/Swarm/Install-Bee-under-Ubuntu/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Ubuntu下运行Swarm Bee节点
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BZZ/" rel="tag">BZZ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bee/" rel="tag">Bee</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Context/" rel="tag">Context</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swarm/" rel="tag">Swarm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/assets/" rel="tag">assets</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/expo/" rel="tag">expo</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/BZZ/" style="font-size: 10px;">BZZ</a> <a href="/tags/Bee/" style="font-size: 20px;">Bee</a> <a href="/tags/Context/" style="font-size: 10px;">Context</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/Swarm/" style="font-size: 20px;">Swarm</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/assets/" style="font-size: 10px;">assets</a> <a href="/tags/expo/" style="font-size: 10px;">expo</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/05/26/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/26/the-1st-post/">The 1st blog.</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/26/Expo/Assets-in-Expo/">Expo中的Assets资源使用</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/26/React/Context-in-React/">React中的Context</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/26/Swarm/Install-Bee-under-Ubuntu/">Ubuntu下运行Swarm Bee节点</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 moakap<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
