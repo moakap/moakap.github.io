@@ -1,7 +1,10 @@
 ---
 title: Ubuntu下运行Swarm Bee节点
 default_category: Swarm
-tags: Swarm
+tags: 
+  - Swarm
+  - Bee
+  - Ubuntu
 ---
 
 ## 1. 安装
