@@ -1,126 +1,114 @@
 <!DOCTYPE html>
-<html>
+<html class="has-navbar-fixed-top">
 <head>
-  <meta charset="utf-8">
-  
-  
-  <title>Swarm Bee配置 | Moakap&#39;s Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="每个Bee节点可以在启动的时候添加命令行参数来配置，具体参数可以通过bee start --help查看。 例如下边这个例子，我们打开了Bee的debug API，并且设置debug API的监听端口为6666. 1234bee start \  --api-addr&#x3D;:8888 \  --debug-api-enable&#x3D;true \  --debug-api-addr&#x3D;:6666  配置文件B">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Swarm Bee配置">
-<meta property="og:url" content="https://moakap.github.io/2021/05/26/Swarm/Swarm-Bee-Configuration/index.html">
-<meta property="og:site_name" content="Moakap&#39;s Blog">
-<meta property="og:description" content="每个Bee节点可以在启动的时候添加命令行参数来配置，具体参数可以通过bee start --help查看。 例如下边这个例子，我们打开了Bee的debug API，并且设置debug API的监听端口为6666. 1234bee start \  --api-addr&#x3D;:8888 \  --debug-api-enable&#x3D;true \  --debug-api-addr&#x3D;:6666  配置文件B">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-05-26T15:38:14.017Z">
-<meta property="article:modified_time" content="2021-05-26T15:38:14.021Z">
-<meta property="article:author" content="moakap">
-<meta property="article:tag" content="Swarm">
-<meta property="article:tag" content="Bee">
-<meta property="article:tag" content="BZZ">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Moakap's Blog" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+    <meta charset="utf-8">
+<title>Swarm Bee配置 - Moakap&#39;s Blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
-  
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="">
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
 <link rel="stylesheet" href="/css/style.css">
 
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
-  
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+
 <meta name="generator" content="Hexo 5.4.0"></head>
-
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Moakap&#39;s Blog</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">Keep moving, keep thinking!</a>
-        </h2>
-      
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                <img src="/images/logo.png" alt="" height="28">
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            
+            
+        </div>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://moakap.github.io"></form>
-      </div>
-    </div>
-  </div>
-</header>
+</nav>
 
-      <div class="outer">
-        <section id="main"><article id="post-Swarm/Swarm-Bee-Configuration" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/05/26/Swarm/Swarm-Bee-Configuration/" class="article-date">
-  <time class="dt-published" datetime="2021-05-26T15:38:14.017Z" itemprop="datePublished">2021-05-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      Swarm Bee配置
+            Swarm Bee配置
+        
     </h1>
-  
-
-      </header>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            
+                <time datetime="2021-05-26T23:45:37.429Z" itemprop="datePublished">May 26 2021</time>
+            
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            12 minutes read (About 1816 words)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>每个Bee节点可以在启动的时候添加命令行参数来配置，具体参数可以通过<code>bee start --help</code>查看。</p>
+        <html><head></head><body><p>每个Bee节点可以在启动的时候添加命令行参数来配置，具体参数可以通过<code>bee start --help</code>查看。</p>
 <p>例如下边这个例子，我们打开了Bee的debug API，并且设置debug API的监听端口为6666.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bee start \</span><br><span class="line">  --api-addr=:8888 \</span><br><span class="line">  --debug-api-enable=true \</span><br><span class="line">  --debug-api-addr=:6666</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bee start \</span><br><span class="line">  --api-addr=:8888 \</span><br><span class="line">  --debug-api-enable=true \</span><br><span class="line">  --debug-api-addr=:6666</span><br></pre></td></tr></tbody></table></figure>
 
 <h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>Bee节点也可以通过提供<code>--config</code>加yaml配置文件的方式来配置。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bee start --config /home/&lt;user&gt;/bee-config.yaml </span><br></pre></td></tr></table></figure>
+<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bee start --config /home/&lt;user&gt;/bee-config.yaml </span><br></pre></td></tr></tbody></table></figure>
 
 <p>提示： 可以通过命令<code>bee printconfig &amp;&gt; bee-default.yaml</code>导出当前配置文件作为默认修改版本。</p>
 <h2 id="配置通过软件包管理器安装的Bee"><a href="#配置通过软件包管理器安装的Bee" class="headerlink" title="配置通过软件包管理器安装的Bee"></a>配置通过软件包管理器安装的Bee</h2><p>如果你的Bee是通过<code>apt-get</code>或<code>yum</code>这样的软件包管理器安装的，在安装过程中会自动生成一个配置文件，Bee启动的时候默认使用这个配置文件。</p>
 <p>要修改Bee配置，可以直接修改对应的配置文件，然后重启Bee生效。</p>
 <p><strong>Linux</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/bee/bee.yaml</span><br><span class="line">sudo systemctl restart bee</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/bee/bee.yaml</span><br><span class="line">sudo systemctl restart bee</span><br></pre></td></tr></tbody></table></figure>
 
 <p><strong>Mac OS</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/local/etc/swarm-bee/bee.yaml</span><br><span class="line">brew services restart swarm-bee</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/local/etc/swarm-bee/bee.yaml</span><br><span class="line">brew services restart swarm-bee</span><br></pre></td></tr></tbody></table></figure>
 
 <h2 id="自动产生配置文件"><a href="#自动产生配置文件" class="headerlink" title="自动产生配置文件"></a>自动产生配置文件</h2><p>通过命令行启动Bee时候，用<code>printconfig</code>替换<code>start</code>可以很简单的生成Bee的配置文件。</p>
 <p><strong>例子</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bee printconfig \</span><br><span class="line">  --verbosity=5 \</span><br><span class="line">  &amp;&gt; bee-config.yaml</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bee printconfig \</span><br><span class="line">  --verbosity=5 \</span><br><span class="line">  &amp;&gt; bee-config.yaml</span><br></pre></td></tr></tbody></table></figure>
 
 <p>上述命令会生成类似下边的文件内容，其中包含了Bee的默认配置。</p>
 <h2 id="配置选项"><a href="#配置选项" class="headerlink" title="配置选项"></a>配置选项</h2><h3 id="全局选项"><a href="#全局选项" class="headerlink" title="全局选项"></a>全局选项</h3><h4 id="–config"><a href="#–config" class="headerlink" title="–config"></a>–config</h4><p>设置Bee配置文件，默认为<code>/home/&lt;user&gt;/.bee.yaml</code>.</p>
@@ -138,7 +126,7 @@
 <p><strong>注意</strong>：如果在Bee Clef中导入了多个地址，必须为每个Bee节点指定对应的签名器地址，第一个地址也需要配置，因为这些地址在导入的时候可能会重新排序。</p>
 <h4 id="–cors-allowed-origins"><a href="#–cors-allowed-origins" class="headerlink" title="–cors-allowed-origins"></a>–cors-allowed-origins</h4><p>默认为<code>[]</code>.</p>
 <p>允许的Http/WS API响应地址域。API只会接受对应地址域的请求，例如：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bee start --cors-allowed-origins=&quot;*&quot;</span><br><span class="line">bee start --cors-allowed-origins=&quot;https://website.ethswarm.org&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bee start --cors-allowed-origins="*"</span><br><span class="line">bee start --cors-allowed-origins="https://website.ethswarm.org"</span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="–data-dir"><a href="#–data-dir" class="headerlink" title="–data-dir"></a>–data-dir</h4><p>默认<code>/home/&lt;user&gt;/.bee</code>. </p>
 <p>Bee数据存储路径。包含以下三种类型的数据。</p>
@@ -175,7 +163,7 @@
 <p>设置为<code>true</code>会关闭API中的一些敏感功能，可以使api地址在公共网络中更安全。</p>
 <h4 id="–global-pinning-enable"><a href="#–global-pinning-enable" class="headerlink" title="–global-pinning-enable"></a>–global-pinning-enable</h4><p>默认<code>false</code>.</p>
 <p>设置为<code>true</code>来打开全局pin功能。</p>
-<h4 id="–nat-addr"><a href="#–nat-addr" class="headerlink" title="–nat-addr"></a>–nat-addr</h4><p>默认<code>&quot;&quot;</code>.</p>
+<h4 id="–nat-addr"><a href="#–nat-addr" class="headerlink" title="–nat-addr"></a>–nat-addr</h4><p>默认<code>""</code>.</p>
 <p>设置对应的NAT公网IP。一般情况下会自动生成，一些特殊情况可能需要手工设置。</p>
 <h4 id="–network-id"><a href="#–network-id" class="headerlink" title="–network-id"></a>–network-id</h4><p>默认<code>1</code>.</p>
 <p>接受新连接的网络ID。主网设置<code>1</code>, 测试网<code>2</code>.</p>
@@ -184,10 +172,10 @@
 <h4 id="–p2p-quic-enable"><a href="#–p2p-quic-enable" class="headerlink" title="–p2p-quic-enable"></a>–p2p-quic-enable</h4><p>默认<code>false</code>.</p>
 <h4 id="–p2p-ws-enable"><a href="#–p2p-ws-enable" class="headerlink" title="–p2p-ws-enable"></a>–p2p-ws-enable</h4><p>默认<code>false</code>.</p>
 <p>配置是否打开p2p通信的web-socket传输。</p>
-<h4 id="–password"><a href="#–password" class="headerlink" title="–password"></a>–password</h4><p>默认<code>&quot;&quot;</code>.</p>
+<h4 id="–password"><a href="#–password" class="headerlink" title="–password"></a>–password</h4><p>默认<code>""</code>.</p>
 <p>解密Swarm标识密钥的密码。</p>
 <p><strong>注意：</strong>在命令行中设置密码是不安全的。在生成环境中请使用密码文件或环境变量。</p>
-<h4 id="–password-file"><a href="#–password-file" class="headerlink" title="–password-file"></a>–password-file</h4><p>默认<code>&quot;&quot;</code>.</p>
+<h4 id="–password-file"><a href="#–password-file" class="headerlink" title="–password-file"></a>–password-file</h4><p>默认<code>""</code>.</p>
 <p>指向解密用的密码文件路径。空字符串密码不需要设置。</p>
 <h4 id="–payment-early"><a href="#–payment-early" class="headerlink" title="–payment-early"></a>–payment-early</h4><p><em>默认</em> <code>1000000000000</code>.</p>
 <p>触发Bee结算的最低结算限制。</p>
@@ -208,7 +196,7 @@
 <h4 id="–tracing-service-name"><a href="#–tracing-service-name" class="headerlink" title="–tracing-service-name"></a>–tracing-service-name</h4><p><em>默认</em> <code>bee</code></p>
 <h4 id="–verbosity"><a href="#–verbosity" class="headerlink" title="–verbosity"></a>–verbosity</h4><p><em>默认</em> <code>info</code></p>
 <p>Bee日志等级：0=silent, 1=error, 2=warn, 3=info, 4=debug, 5=trace</p>
-<h4 id="–welcome-message"><a href="#–welcome-message" class="headerlink" title="–welcome-message"></a>–welcome-message</h4><p><em>默认</em> <code>&quot;&quot;</code></p>
+<h4 id="–welcome-message"><a href="#–welcome-message" class="headerlink" title="–welcome-message"></a>–welcome-message</h4><p><em>默认</em> <code>""</code></p>
 <p>连接到对端节点时显示的欢迎信息。</p>
 <h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p>可以使用环境变量定义Bee的配置。</p>
 <p>在环境变量中定义好对应的值以后，直接在命令行参数中使用。</p>
@@ -219,136 +207,81 @@
 <li>环境变量</li>
 <li>配置文件</li>
 </ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://moakap.github.io/2021/05/26/Swarm/Swarm-Bee-Configuration/" data-id="ckp5mth9i00068gnehuh52tz6" data-title="Swarm Bee配置" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BZZ/" rel="tag">BZZ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bee/" rel="tag">Bee</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swarm/" rel="tag">Swarm</a></li></ul>
-
-    </footer>
-  </div>
-  
+</body></html>
     
-<nav id="article-nav">
-  
-    <a href="/2021/05/26/Swarm/Install-Bee-under-Ubuntu/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Ubuntu下运行Swarm Bee节点
-        
-      </div>
-    </a>
-  
-  
-</nav>
-
-  
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Swarm/">#Swarm</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Bee/">#Bee</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/BZZ/">#BZZ</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2021/05/26/Swarm/Install-Bee-under-Ubuntu/">Ubuntu下运行Swarm Bee节点</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-next">
+            
+        </span>
+    </div>
+    
 </article>
 
 
+
+
+    </div>
 </section>
-        
-          <aside id="sidebar">
-  
-    
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2021 moakap&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BZZ/" rel="tag">BZZ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bee/" rel="tag">Bee</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Context/" rel="tag">Context</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swarm/" rel="tag">Swarm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/assets/" rel="tag">assets</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/expo/" rel="tag">expo</a></li></ul>
+            
+            
+        </div>
     </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/BZZ/" style="font-size: 10px;">BZZ</a> <a href="/tags/Bee/" style="font-size: 20px;">Bee</a> <a href="/tags/Context/" style="font-size: 10px;">Context</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/Swarm/" style="font-size: 20px;">Swarm</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/assets/" style="font-size: 10px;">assets</a> <a href="/tags/expo/" style="font-size: 10px;">expo</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2021/05/26/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2021/05/26/the-1st-post/">The 1st blog.</a>
-          </li>
-        
-          <li>
-            <a href="/2021/05/26/Expo/Assets-in-Expo/">Expo中的Assets资源使用</a>
-          </li>
-        
-          <li>
-            <a href="/2021/05/26/React/Context-in-React/">React中的Context</a>
-          </li>
-        
-          <li>
-            <a href="/2021/05/26/Swarm/Install-Bee-under-Ubuntu/">Ubuntu下运行Swarm Bee节点</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2021 moakap<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
 </footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
 
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
 
-
-<script src="/js/jquery-3.4.1.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("en-AU");
+</script>
 
 
 
@@ -356,9 +289,6 @@
 <script src="/js/script.js"></script>
 
 
-
-
-
-  </div>
+    
 </body>
 </html>
