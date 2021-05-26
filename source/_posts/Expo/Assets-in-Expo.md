@@ -1,5 +1,5 @@
 ---
-title: Hello World
+title: Expo中的Assets资源使用
 tags:
   - expo
   - assets
