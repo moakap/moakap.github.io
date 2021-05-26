@@ -1,5 +1,6 @@
 ---
 title: Ubuntu下运行Swarm Bee节点
+default_category: Swarm
 ---
 # Ubuntu下运行Swarm Bee节点
 
