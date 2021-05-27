@@ -1,4 +1,4 @@
 ---
-title: Moakap's blog
+title: about
 ---
 
