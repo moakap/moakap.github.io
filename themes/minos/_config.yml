@@ -26,8 +26,10 @@ article:
 # Navigation bar menu links.
 menu:
   Archives: /archives
-  Lifestyle: /categories/Lifestyle
-  Technology: /categories/Technology
+  Lifestyle: /categories/lifestyle
+  Technology: /categories/technology
+    Swarm: /categories/technology/swarm
+    React: /categories/technology/react
   About: /about
 
 # Search plugin settings.
