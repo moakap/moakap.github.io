@@ -40,7 +40,7 @@ toc: true
 # Share plugin settings.
 share:
   type: sharethis
-  install_url:
+  install_url: https://moakap.github.io
 
 # Comment plugin settings.
 comment:
