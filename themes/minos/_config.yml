@@ -28,8 +28,6 @@ menu:
   Archives: /archives
   Lifestyle: /categories/lifestyle
   Technology: /categories/technology
-    Swarm: /categories/technology/swarm
-    React: /categories/technology/react
   About: /about
 
 # Search plugin settings.
