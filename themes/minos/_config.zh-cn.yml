@@ -26,8 +26,8 @@ article:
 # Navigation bar menu links.
 menu:
   归档: /archives
-  记录: /categories/Lifestyle
-  技术: /categories/Technology
+  记录: /categories/lifestyle
+  技术: /categories/technology
   关于: /about
 
 # Search plugin settings.
