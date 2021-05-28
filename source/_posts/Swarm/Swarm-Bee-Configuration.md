@@ -1,6 +1,8 @@
 ---
 title: Swarm Bee配置
-default_category: Swarm
+categories: 
+  - Technology
+  - Swarm
 tags: 
   - Swarm
   - Bee
