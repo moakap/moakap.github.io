@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"moakap.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1. 安装基本安装步骤比较简单，可以直接[Swarm Bee参考官方文档](Quick Start | Swarm Bee Client (ethswarm.org))。 1.1 Bee Clef安装在安装Bee之前，建议首先[安装Bee Clef软件包](Clef External Signer | Swarm Bee Client (ethswarm.org))。[Clef](go-ether">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu下运行Swarm Bee节点">
+<meta property="og:url" content="https://moakap.github.io/2021/05/26/Swarm/Install-Bee-under-Ubuntu/index.html">
+<meta property="og:site_name" content="Moakap&#39;s Blog">
+<meta property="og:description" content="1. 安装基本安装步骤比较简单，可以直接[Swarm Bee参考官方文档](Quick Start | Swarm Bee Client (ethswarm.org))。 1.1 Bee Clef安装在安装Bee之前，建议首先[安装Bee Clef软件包](Clef External Signer | Swarm Bee Client (ethswarm.org))。[Clef](go-ether">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-05-26T10:52:51.000Z">
+<meta property="article:modified_time" content="2021-05-28T01:46:38.937Z">
+<meta property="article:author" content="moakap">
+<meta property="article:tag" content="Swarm">
+<meta property="article:tag" content="Bee">
+<meta property="article:tag" content="Ubuntu">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://moakap.github.io/2021/05/26/Swarm/Install-Bee-under-Ubuntu/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh'
+  };
+</script>
+
+  <title>Ubuntu下运行Swarm Bee节点 | Moakap's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Moakap's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Keep moving, keep thinking!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">0</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">7</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh">
+    <link itemprop="mainEntityOfPage" href="https://moakap.github.io/2021/05/26/Swarm/Install-Bee-under-Ubuntu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="moakap">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Moakap's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Ubuntu下运行Swarm Bee节点
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-05-26 10:52:51" itemprop="dateCreated datePublished" datetime="2021-05-26T10:52:51+00:00">2021-05-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-05-28 01:46:38" itemprop="dateModified" datetime="2021-05-28T01:46:38+00:00">2021-05-28</time>
+              </span>
+
+          
+            <span id="/2021/05/26/Swarm/Install-Bee-under-Ubuntu/" class="post-meta-item leancloud_visitors" data-flag-title="Ubuntu下运行Swarm Bee节点" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/05/26/Swarm/Install-Bee-under-Ubuntu/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/26/Swarm/Install-Bee-under-Ubuntu/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h2><p>基本安装步骤比较简单，可以直接[Swarm Bee参考官方文档](<a target="_blank" rel="noopener" href="https://docs.ethswarm.org/docs/installation/quick-start">Quick Start | Swarm Bee Client (ethswarm.org)</a>)。</p>
+<h3 id="1-1-Bee-Clef安装"><a href="#1-1-Bee-Clef安装" class="headerlink" title="1.1 Bee Clef安装"></a>1.1 Bee Clef安装</h3><p>在安装Bee之前，建议首先[安装Bee Clef软件包](<a target="_blank" rel="noopener" href="https://docs.ethswarm.org/docs/installation/bee-clef/">Clef External Signer | Swarm Bee Client (ethswarm.org)</a>)。[Clef](<a target="_blank" rel="noopener" href="https://github.com/ethereum/go-ethereum/tree/master/cmd/clef">go-ethereum/cmd/clef at master · ethereum/go-ethereum (github.com)</a>)是Go以太坊客户端使用的独立签名器（单独的一个对以太坊交易进行签名认证的服务），能够管理基于key-file的账户和硬钱包账户。[Bee-Clef](<a target="_blank" rel="noopener" href="https://github.com/ethersphere/bee-clef">ethersphere/bee-clef: bee-clef is official ethereum clef binary wrapped and preconfigured for bee as a service (github.com)</a>)则在clef基础上针对bee做了定制化配置。Bee节点可以通过bee-clef来访问Swarm测试网或以太坊主网。当然，你也可以直接在本地运行原生的[clef](<a target="_blank" rel="noopener" href="https://github.com/ethereum/go-ethereum/tree/master/cmd/clef">go-ethereum/cmd/clef at master · ethereum/go-ethereum (github.com)</a>)，然后增加自己的配置在运行Bee。<strong>如果确定要使用Bee-clef，必须在Bee之前先安装Bee Clef。</strong></p>
+<h4 id="选择最新版本"><a href="#选择最新版本" class="headerlink" title="选择最新版本"></a>选择最新版本</h4><ul>
+<li>打开[Bee-clef下载页面](<a target="_blank" rel="noopener" href="https://github.com/ethersphere/bee-clef/releases/">Releases · ethersphere/bee-clef (github.com)</a>)，查看最新版本。写当前文档时的最新版本为v0.4.12。 </li>
+</ul>
+<h4 id="安装Bee-Clef"><a href="#安装Bee-Clef" class="headerlink" title="安装Bee-Clef"></a>安装Bee-Clef</h4><ul>
+<li><p>下载Bee-clef</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/ethersphere/bee-clef/releases/download/v0.4.12/bee-clef_0.4.12_arm64.deb</span><br><span class="line">sudo dpkg -i bee-clef_0.4.12_arm64.deb</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="配置Bee-clef"><a href="#配置Bee-clef" class="headerlink" title="配置Bee-clef"></a>配置Bee-clef</h4><p>安装以后的默认配置文件在<code>/etc/bee-clef</code>目录下，包含<code>4byte.json</code>和<code>rules.s</code>两个文件，已经针对Bee做了基本配置，这里不需要特别修改。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ll /etc/bee-clef/</span></span><br><span class="line">-rw-r--r--  1 root root  163 Feb 25 01:48 4byte.json</span><br><span class="line">-rw-r--r--  1 root root  249 Feb 25 01:48 rules.js</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="启动Bee-Clef"><a href="#启动Bee-Clef" class="headerlink" title="启动Bee-Clef"></a>启动Bee-Clef</h4><p>在使用后台启动之前，建议先通过手工启动查看bee-clef是否正确安装。正常启动后会有一下的日志打印，其中会出现三个文件路径</p>
+<ul>
+<li><p><code>/etc/bee-clef/4byte.json</code></p>
+<p>4byte数据库文件，包含了默认的Bee需要的一些方法。</p>
+</li>
+<li><p><code>/etc/bee-clef/rules.js</code> </p>
+<p>签名器规则文件，定义了最基本的签名规则。比如一般来说，我们的很多交易或操作需要用户手工确认才能进行。但是也有一些操作，可以在不提示用户的情况下直接允许，比如规则文件里提到的启动、列出账户等。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function OnSignerStartup() &#123;</span><br><span class="line">    return &quot;Approve&quot;</span><br><span class="line">&#125;</span><br><span class="line">function OnApprovedTx() &#123;</span><br><span class="line">    return &quot;Approve&quot;</span><br><span class="line">&#125;</span><br><span class="line">function ApproveListing() &#123;</span><br><span class="line">    return &quot;Approve&quot;</span><br><span class="line">&#125;</span><br><span class="line">function ApproveTx() &#123;</span><br><span class="line">    return &quot;Approve&quot;</span><br><span class="line">&#125;</span><br><span class="line">function ApproveSignData() &#123;</span><br><span class="line">    return &quot;Approve&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p><code>/var/lib/bee-clef/clef.ipc</code> </p>
+<p>这个是bee-clef签名器与Bee节点之间进行通信的IPC通信管道，bee的所有请求都是通过这个管道发送到bee-clef。在接下来Bee的配置文件中也会用到。</p>
+<p>bee-clef正常启动后，一旦<code>bee</code>节点开始跟<code>bee-clef</code>交互，日志中每隔几秒或几分钟就会打印<code>INFO [05-11|23:41:53.365] Op approved</code>. </p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> bee-clef-service start</span></span><br><span class="line">bee-clef-service /var/lib/bee-clef /var/lib/bee-clef/password /etc/bee-clef</span><br><span class="line">Waiting for the clef.ipc file to show up at /var/lib/bee-clef/clef.ipc</span><br><span class="line"></span><br><span class="line">WARNING!</span><br><span class="line"></span><br><span class="line">Clef is an account management tool. It may, like any software, contain bugs.</span><br><span class="line"></span><br><span class="line">Please take care to</span><br><span class="line">- backup your keystore files,</span><br><span class="line">- verify that the keystore(s) can be opened with your password.</span><br><span class="line"></span><br><span class="line">Clef is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;</span><br><span class="line">without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR</span><br><span class="line">PURPOSE. See the GNU General Public License for more details.</span><br><span class="line">INFO [05-11|23:35:49.197] Using stdin/stdout as UI-channel</span><br><span class="line">INFO [05-11|23:35:49.925] Loaded 4byte database                    embeds=146841 locals=4 local=/etc/bee-clef/4byte.json</span><br><span class="line">&#123;&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;id&quot;:1,&quot;method&quot;:&quot;ui_onInputRequired&quot;,&quot;params&quot;:[&#123;&quot;title&quot;:&quot;Master Password&quot;,&quot;prompt&quot;:&quot;Please enter the password to decrypt the master seed&quot;,&quot;isPassword&quot;:true&#125;]&#125;</span><br><span class="line">Waiting for the clef.ipc file to show up at /var/lib/bee-clef/clef.ipc</span><br><span class="line">INFO [05-11|23:35:51.134] Rule engine configured                   file=/etc/bee-clef/rules.js</span><br><span class="line">INFO [05-11|23:35:51.134] Starting signer                          chainid=5 keystore=/var/lib/bee-clef/keystore light-kdf=true advanced=false</span><br><span class="line">INFO [05-11|23:35:51.135] IPC endpoint opened                      url=/var/lib/bee-clef/clef.ipc</span><br><span class="line">&#123;&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;ui_onSignerStartup&quot;,&quot;params&quot;:[&#123;&quot;info&quot;:&#123;&quot;extapi_http&quot;:&quot;n/a&quot;,&quot;extapi_ipc&quot;:&quot;/var/lib/bee-clef/clef.ipc&quot;,&quot;extapi_version&quot;:&quot;6.1.0&quot;,&quot;intapi_version&quot;:&quot;7.0.1&quot;&#125;&#125;]&#125;</span><br><span class="line">INFO [05-11|23:36:12.193] Op approved</span><br><span class="line">INFO [05-11|23:36:12.203] Op approved</span><br><span class="line">INFO [05-11|23:41:53.365] Op approved</span><br><span class="line">INFO [05-11|23:45:04.948] Op approved</span><br><span class="line">INFO [05-11|23:45:08.734] Op approved</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Bee-Clef数据存储"><a href="#Bee-Clef数据存储" class="headerlink" title="Bee-Clef数据存储"></a>Bee-Clef数据存储</h4><p>bee-clef的密钥及其它数据默认存储在<code>/var/lib/bee-clef/</code>. </p>
+<ul>
+<li><code>1e4b791d7af0cf7a42a8/ </code> - bee-clef账户保险库，里边的config.json文件中会保存加密过的key/value配置文件。</li>
+<li><code>clef.ipc</code> - 刚才提到的IPC通信管道。</li>
+<li><code>keystore/</code> - bee-clef的账户地址。bee通过这个地址接入测试网或主网。</li>
+<li><code>masterseed.json</code> - 存放bee-clef密码</li>
+<li><code>password</code>账户的密钥文件 </li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ll /var/lib/bee-clef/</span></span><br><span class="line">total 24</span><br><span class="line">drwxr-x---  4 bee-clef bee-clef 4096 May 11 19:07 ./</span><br><span class="line">drwxr-xr-x 50 root     root     4096 May 11 00:26 ../</span><br><span class="line">drwx------  2 bee-clef bee-clef 4096 May 11 00:24 1e4b791d7af0cf7a42a8/</span><br><span class="line">srw-rw----  1 root     root        0 May 11 19:07 clef.ipc=</span><br><span class="line">drwx------  2 bee-clef bee-clef 4096 May 11 00:24 keystore/</span><br><span class="line">-r--------  1 bee-clef bee-clef  868 May 11 00:24 masterseed.json</span><br><span class="line">-rw-------  1 bee-clef bee-clef   32 May 11 00:24 password</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="1-2-Bee安装"><a href="#1-2-Bee安装" class="headerlink" title="1.2 Bee安装"></a>1.2 Bee安装</h3><p>安装完bee-clef并确保其正常启动后，我们来安装Bee。</p>
+<h4 id="查看最新版本"><a href="#查看最新版本" class="headerlink" title="查看最新版本"></a>查看最新版本</h4><p>先到[Bee版本下载](<a target="_blank" rel="noopener" href="https://github.com/ethersphere/bee/releases/">Releases · ethersphere/bee (github.com)</a>)查看最新版本，当前最新版本为v0.5.3. </p>
+<h4 id="下载并安装Bee"><a href="#下载并安装Bee" class="headerlink" title="下载并安装Bee"></a>下载并安装Bee</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/ethersphere/bee/releases/download/v0.5.3/bee_0.5.3_amd64.deb</span><br><span class="line">sudo dpkg -i bee_0.5.3_amd64.deb</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="配置Bee"><a href="#配置Bee" class="headerlink" title="配置Bee"></a>配置Bee</h4><p>安装完毕以后默认配置文件在<code>/etc/bee/bee.yaml</code>。也可以运行<code>bee printconfig &amp;&gt; bee-default.yaml</code>打印当前的Bee配置作为模板来自己修改。其中几个地方需要注意。</p>
+<ul>
+<li><p>clef配置 - 需要根据Bee-Clef的配置设置对应的IPC路径。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">## enable clef signer</span><br><span class="line">clef-signer-enable: true</span><br><span class="line">## clef signer endpoint</span><br><span class="line">clef-signer-endpoint: /var/lib/bee-clef/clef.ipc</span><br></pre></td></tr></table></figure></li>
+<li><p>debug API地址 - 如果需要运行bee-dashboard，必须设置。默认为本机的1635端口，也可以自己修改。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">## debug HTTP API listen address (default &quot;:1635&quot;)</span><br><span class="line">debug-api-addr: 127.0.0.1:1635</span><br><span class="line">## enable debug HTTP API</span><br><span class="line">debug-api-enable: true</span><br></pre></td></tr></table></figure></li>
+<li><p>Swap节点 - 以太坊交换节点，也就是接入以太坊的入口节点。必须设置，默认为本机的:8545端口，如果你在本机运行geth （go的以太坊客户端）。否则，推荐使用Warm官方公共节点<code>https://rpc.slock.it/goerli</code>。也可以自己到<a target="_blank" rel="noopener" href="https://infura.io/">Ethereum API | IPFS API &amp; Gateway | ETH Nodes as a Service | Infura</a> 注册一个，使用自己注册的节点来减少拥堵。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## enable swap (default true)swap-enable: true## swap ethereum blockchain endpoint (default &quot;http://localhost:8545&quot;)swap-endpoint: https://rpc.slock.it/goerli</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>其它配置请参考<a target="_blank" rel="noopener" href="https://www.lovpia.com/Swarm/BeeConfiguration">配置文件 – MoDocs (lovpia.com)</a>。</p>
+<h4 id="启动运行Bee"><a href="#启动运行Bee" class="headerlink" title="启动运行Bee"></a>启动运行Bee</h4><p>更新完配置文件以后，可以直接通过命令行启动来检测配置是否正确。第一次启动会需要输入密码，同时需要账户有至少10gBZZ作为启动资金。</p>
+<h5 id="领取启动资金"><a href="#领取启动资金" class="headerlink" title="领取启动资金"></a>领取启动资金</h5><p>先通过<code>bee-clef-keys</code>命令获取节点的ethernum地址（在产生的<code>bee-clef-jey-xxxx.json</code>文件中<code>address</code>字段）。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://discord.com/channels/799027393297514537/813744618776428594">faucet-request (discord.com)</a> - 通过faucet机器人领取，是好是坏，碰运气。</li>
+<li><a target="_blank" rel="noopener" href="https://faucet.goerli.mudit.blog/">Goerli: Authenticated Faucet (mudit.blog)</a> 需要先在Twitter上发布条信息，然后把twitter链接粘贴到页面里领取，可以一次领取37.5gETH，然后到<a target="_blank" rel="noopener" href="https://bzz.ethswarm.org/">Bzzaar (ethswarm.org)</a>兑换即可，成功率很高，而且可以兑换不止10个gBZZ. </li>
+</ul>
+<h5 id="运行Bee"><a href="#运行Bee" class="headerlink" title="运行Bee"></a>运行Bee</h5><p>可以直接执行<code>bee start</code>来启动，然后查看运行日志是否正常。如果使用自定义配置文件，就加上<code>--config &lt;path to bee.yaml&gt;</code>。</p>
+<p>Bee正常启动以后，会默认监听:1633端口，当日志中出现<code>api address: xxxx</code>时，Bee已经启动。如果打开了debug api，也会在日志中看到<code>debug api address: xxx:1633</code>. </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> bee start --config bee.yaml Welcome to the Swarm.... Bzzz Bzzzz Bzzzz                \     /            \    o ^ o    /              \ (     ) /   ____________(%%%%%%%)____________  (     /   /  )%%%%%%%(  \   \     )  (___/___/__/           \__\___\___)     (     /  /(%%%%%%%)\  \     )      (__/___/ (%%%%%%%) \___\__)              /(       )\            /   (%%%%%)   \                 (%%%)                   !                   INFO[2021-05-18T13:55:09+08:00] version: 0.5.3-acbd0e2                       INFO[2021-05-18T13:55:09+08:00] using swarm network address through clef: &lt;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&gt; INFO[2021-05-18T13:55:09+08:00] swarm public key &lt;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&gt;  INFO[2021-05-18T13:55:09+08:00] pss public key &lt;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&gt; INFO[2021-05-18T13:55:09+08:00] using ethereum address &lt;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&gt;INFO[2021-05-18T13:55:09+08:00] debug api address: 127.0.0.1:1635            INFO[2021-05-18T13:55:11+08:00] using default factory address <span class="keyword">for</span> chain id 5: &lt;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&gt; INFO[2021-05-18T13:55:12+08:00] using existing chequebook &lt;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&gt; INFO[2021-05-18T13:55:25+08:00] database capacity: 2000000 chunks (approximately 7.8GB) INFO[2021-05-18T13:55:33+08:00] name resolver: no name resolution service provided INFO[2021-05-18T13:55:33+08:00] api address: [::]:1633...<span class="comment"># 注意：其中的xxx为你的Bee节点对应的key和地址信息.</span></span></span><br></pre></td></tr></table></figure>
+
+<p>确保Bee可以正常启动并运行以后，就可以把Bee加入到系统服务后台运行就可以了。</p>
+<h4 id="查看Bee基本信息"><a href="#查看Bee基本信息" class="headerlink" title="查看Bee基本信息"></a>查看Bee基本信息</h4><p>最基本的就是在浏览器直接查看<code>localhost:1633</code>, 也可以在命令行用curl命令查看，如果显示<code>Ethereum Swarm Bee</code>就说明已经在运行了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># curl -s localhost:1633Ethereum Swarm Bee</span><br></pre></td></tr></table></figure>
+
+<p>其它信息可以通过[bee debug api](<a target="_blank" rel="noopener" href="https://docs.ethswarm.org/debug-api/">Bee Debug API (ethswarm.org)</a>)查看。</p>
+<p>比如自己做一个简单的bee_health_check.sh脚本，可以快速输出当前Bee节点的基本信息。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/usr/bin/env bash<span class="comment"># get addresses of current nodeecho &#x27;====&gt; 获取Bee节点地址...&#x27;echo &#x27;&gt; curl -s localhost:1635/addresses&#x27;curl -s localhost:1635/addresses | jq# check connected peersecho &#x27;====&gt; 获取已经建立连接的节点列表...&#x27;echo &#x27;&gt; curl -s localhost:1635/peers&#x27;curl -s localhost:1635/peers | jq# check balance# echo &#x27;====&gt; 获取账户基本信息...&#x27;# echo &#x27;curl -s localhost:1635/balances&#x27;# curl -s localhost:1635/balances | jq# get chequebook balanceecho &#x27;====&gt; 获取支票账户信息...&#x27;echo &#x27;&gt; curl -s localhost:1635/chequebook/balance&#x27;curl -s localhost:1635/chequebook/balance | jqecho &#x27;====&gt; 获取支票信息...&#x27;echo &#x27;&gt; curl -s localhost:1635/chequebook/cheque&#x27;curl -s localhost:1635/chequebook/cheque | jq</span></span>                             </span><br></pre></td></tr></table></figure>
+
+<p>另外一种方式是直接使用bee-dashboard查看，就是把bee debug api获取的状态通过图形界面可视化。需要提前打开debug api，具体参考[bee-dashboard教程](<a target="_blank" rel="noopener" href="https://github.com/ethersphere/bee-dashboard">ethersphere/bee-dashboard: An app which helps users to setup their Bee node and do actions like cash out cheques (github.com)</a>)。</p>
+<h2 id="2-其它注意事项"><a href="#2-其它注意事项" class="headerlink" title="2. 其它注意事项"></a>2. 其它注意事项</h2><h3 id="问题1：could-not-connect-to-backend-at-xxx"><a href="#问题1：could-not-connect-to-backend-at-xxx" class="headerlink" title="问题1：could not connect to backend at xxx"></a>问题1：<code>could not connect to backend at xxx</code></h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">could not connect to backend at https://rpc.slock.it/goerli. In a swap-enabled network a working blockchain node (for goerli network in production) is required. Check your node or specify another node using --swap-endpoint. Error: get chain id: Post &quot;https://rpc.slock.it/goerli&quot;: dial tcp 185.20.210.132:443: i/o timeout</span><br></pre></td></tr></table></figure>
+
+<p>因为Swap节点不可用，或者节点拥堵，建议到<a target="_blank" rel="noopener" href="https://infura.io/">Ethereum API | IPFS API &amp; Gateway | ETH Nodes as a Service | Infura</a> 注册一个自己的节点，避免官方节点拥堵。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Swarm/" rel="tag"><i class="fa fa-tag"></i> Swarm</a>
+              <a href="/tags/Bee/" rel="tag"><i class="fa fa-tag"></i> Bee</a>
+              <a href="/tags/Ubuntu/" rel="tag"><i class="fa fa-tag"></i> Ubuntu</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/25/hello-world/" rel="prev" title="Hello World">
+      <i class="fa fa-chevron-left"></i> Hello World
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/05/26/Swarm/Swarm-Bee-Configuration/" rel="next" title="Swarm Bee配置">
+      Swarm Bee配置 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">1. 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-Bee-Clef%E5%AE%89%E8%A3%85"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 Bee Clef安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC"><span class="nav-number">1.1.1.</span> <span class="nav-text">选择最新版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Bee-Clef"><span class="nav-number">1.1.2.</span> <span class="nav-text">安装Bee-Clef</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEBee-clef"><span class="nav-number">1.1.3.</span> <span class="nav-text">配置Bee-clef</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8Bee-Clef"><span class="nav-number">1.1.4.</span> <span class="nav-text">启动Bee-Clef</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Bee-Clef%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8"><span class="nav-number">1.1.5.</span> <span class="nav-text">Bee-Clef数据存储</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Bee%E5%AE%89%E8%A3%85"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Bee安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC"><span class="nav-number">1.2.1.</span> <span class="nav-text">查看最新版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%B9%B6%E5%AE%89%E8%A3%85Bee"><span class="nav-number">1.2.2.</span> <span class="nav-text">下载并安装Bee</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEBee"><span class="nav-number">1.2.3.</span> <span class="nav-text">配置Bee</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E8%BF%90%E8%A1%8CBee"><span class="nav-number">1.2.4.</span> <span class="nav-text">启动运行Bee</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%A2%86%E5%8F%96%E5%90%AF%E5%8A%A8%E8%B5%84%E9%87%91"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">领取启动资金</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BF%90%E8%A1%8CBee"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">运行Bee</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BBee%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="nav-number">1.2.5.</span> <span class="nav-text">查看Bee基本信息</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%85%B6%E5%AE%83%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">2.</span> <span class="nav-text">2. 其它注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%981%EF%BC%9Acould-not-connect-to-backend-at-xxx"><span class="nav-number">2.1.</span> <span class="nav-text">问题1：could not connect to backend at xxx</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">moakap</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/moakap" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;moakap" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">moakap</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'AjpQWK4TAFokhRL5FftLIpHr-gzGzoHsz',
+      appKey     : 'Lt5JkPmORcKiBCx0RvGPVcNP',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
