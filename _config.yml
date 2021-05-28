@@ -8,7 +8,9 @@ subtitle: 'Keep moving, keep thinking!'
 description: ''
 keywords:
 author: moakap
-language: zh
+language: 
+  - zh-CN
+  - en
 timezone: 
 
 # URL
