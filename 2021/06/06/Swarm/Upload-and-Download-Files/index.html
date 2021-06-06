@@ -20,21 +20,19 @@
     var CONFIG = {"hostname":"moakap.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="图片、字体、视频、音频和其它你的App里用到的不是JavaScript的文件都被认为是资源(asset). 就比如说在在互联网上， 所有你通过http传输获取的东西叫资源。这一点跟移动app不同，在app里资源一般跟app本身的二进制文件打包在一起。 然而，在Expo中通过require引用的资源（例如&lt;Image source&#x3D;&amp;#123;require(&#39;.&#x2F;assets&#x2F;ima">
+  <meta name="description" content="12345678title: 上传和下载文件categories:   - Technology  - Swarmtags:   - Swarm上传  - Swarm下载date: 2021-06-06 12:02:45  上传和下载文件当我们把文件上传到Swarm，这些文件会被分解成大小为4kb的数据块，然后分布存储到网络中负责存储和分发节点。每个数据块上粘贴了一个特定面值的邮票（单位为gBZZ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Expo中的Assets资源使用">
-<meta property="og:url" content="https://moakap.github.io/2021/05/24/Expo/Assets-in-Expo/index.html">
+<meta property="og:title" content="Moakap&#39;s Blog">
+<meta property="og:url" content="https://moakap.github.io/2021/06/06/Swarm/Upload-and-Download-Files/index.html">
 <meta property="og:site_name" content="Moakap&#39;s Blog">
-<meta property="og:description" content="图片、字体、视频、音频和其它你的App里用到的不是JavaScript的文件都被认为是资源(asset). 就比如说在在互联网上， 所有你通过http传输获取的东西叫资源。这一点跟移动app不同，在app里资源一般跟app本身的二进制文件打包在一起。 然而，在Expo中通过require引用的资源（例如&lt;Image source&#x3D;&amp;#123;require(&#39;.&#x2F;assets&#x2F;ima">
+<meta property="og:description" content="12345678title: 上传和下载文件categories:   - Technology  - Swarmtags:   - Swarm上传  - Swarm下载date: 2021-06-06 12:02:45  上传和下载文件当我们把文件上传到Swarm，这些文件会被分解成大小为4kb的数据块，然后分布存储到网络中负责存储和分发节点。每个数据块上粘贴了一个特定面值的邮票（单位为gBZZ">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-05-24T11:52:51.000Z">
+<meta property="article:published_time" content="2021-06-06T04:02:31.807Z">
 <meta property="article:modified_time" content="2021-06-06T04:02:31.807Z">
 <meta property="article:author" content="moakap">
-<meta property="article:tag" content="expo">
-<meta property="article:tag" content="assets">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://moakap.github.io/2021/05/24/Expo/Assets-in-Expo/">
+<link rel="canonical" href="https://moakap.github.io/2021/06/06/Swarm/Upload-and-Download-Files/">
 
 
 <script id="page-configurations">
@@ -47,7 +45,7 @@
   };
 </script>
 
-  <title>Expo中的Assets资源使用 | Moakap's Blog</title>
+  <title> | Moakap's Blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DFB6WMHQPG"></script>
     <script>
@@ -173,7 +171,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://moakap.github.io/2021/05/24/Expo/Assets-in-Expo/">
+    <link itemprop="mainEntityOfPage" href="https://moakap.github.io/2021/06/06/Swarm/Upload-and-Download-Files/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -186,7 +184,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Expo中的Assets资源使用
+          
         </h1>
 
         <div class="post-meta">
@@ -196,18 +194,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-05-24 11:52:51" itemprop="dateCreated datePublished" datetime="2021-05-24T11:52:51+00:00">2021-05-24</time>
+              <time title="创建时间：2021-06-06 04:02:31" itemprop="dateCreated datePublished" datetime="2021-06-06T04:02:31+00:00">2021-06-06</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-06 04:02:31" itemprop="dateModified" datetime="2021-06-06T04:02:31+00:00">2021-06-06</time>
-              </span>
 
           
-            <span id="/2021/05/24/Expo/Assets-in-Expo/" class="post-meta-item leancloud_visitors" data-flag-title="Expo中的Assets资源使用" title="阅读次数">
+            <span id="/2021/06/06/Swarm/Upload-and-Download-Files/" class="post-meta-item leancloud_visitors" data-flag-title="" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -222,8 +213,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/05/24/Expo/Assets-in-Expo/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/24/Expo/Assets-in-Expo/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/06/06/Swarm/Upload-and-Download-Files/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/06/Swarm/Upload-and-Download-Files/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -238,24 +229,45 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>图片、字体、视频、音频和其它你的App里用到的不是JavaScript的文件都被认为是资源(asset). 就比如说在在互联网上， 所有你通过http传输获取的东西叫资源。这一点跟移动app不同，在app里资源一般跟app本身的二进制文件打包在一起。</p>
-<p>然而，在Expo中通过<code>require</code>引用的资源（例如<code>&lt;Image source=&#123;require(&#39;./assets/images/example.png&#39;)&#125; /&gt;</code>在编译的时候已经在本地文件系统存在了）跟在web中通过URL引用的资源（例如<code>&lt;Image source=&#123;&#123;uri: 'http://yourwebsite.com/logo.png'&#125;&#125; /&gt;</code>）是有区别的。Expo不保证通过web URL引用的这些资源的可用性，因为这些资源不在Expo的管理范围。另外，Expo本身无法获取任意Web URL的全部信息。当你的资源存在于本地文件系统的时候，打包器能够读取资源的基本元数据metadata，比如宽度、高度，然后将这些信息传递给你的App，所以你不需要明确指明某个图片的宽度和高度。然而当你使用远程web URL引用资源的时候，你就必须明确得指明宽度、高度这些信息，否则系统会默认使用0x0。 最后，我们也会看到两者的缓存机制也不同。</p>
-<p>接下来是对<code>require</code>类型资源得详细解释，这些资源必须在编译的时候就已经在文件系统存在。而在通过远程URL引用图片资源的例子中，系统默认你知道怎么将一个图片上传到网络，并确保能够被web和移动App访问。</p>
-<h2 id="资源的位置"><a href="#资源的位置" class="headerlink" title="资源的位置"></a>资源的位置</h2><h3 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h3><p>当你工作在项目的本地开发环境时，所有资源被存放在本地文件系统，并且集成到JavaScript的模块中。所以如果想要包含某个图片，你可以直接在javascript中使用<code>require</code>引用，像这样<code>require(&#39;./assets/images/example.png&#39;)</code>。这里唯一的不同是，你必须指定资源的文件后缀；没有后缀的话，系统会默认这是一个javascript文件。下边这个语句会在编译的时候把资源连同资源的元数据一起赋值给一个对象，然后整个对象传递给<code>Image</code>组件做渲染。</p>
-<p><code>&lt;Image source=&#123;require(&#39;./assets/images/example.png&#39;)&#125; /&gt;</code></p>
-<h3 id="生产环境"><a href="#生产环境" class="headerlink" title="生产环境"></a>生产环境</h3><p>每次你通过Expo发布App的时候，Expo都会把所有需要的资源上传到Amazon CloudFront，一个快速的CDN。而且整个上传过程会非常智能，没有变化的资源会被跳过。整个过程都由Expo自动完成，不需要开发者任何操作。</p>
-<h2 id="自定义支持的资源扩展"><a href="#自定义支持的资源扩展" class="headerlink" title="自定义支持的资源扩展"></a>自定义支持的资源扩展</h2><p>有时候你需要用到的文件类型不在Expo默认的支持范围。例如，如果你想要在App中导入数据库，就可能会用到.db文件。参考<a target="_blank" rel="noopener" href="https://docs.expo.io/guides/customizing-metro/">自定义Metro</a>了解如何通过Metro自定义iOS和Android资源扩展，参考<a target="_blank" rel="noopener" href="https://docs.expo.io/guides/customizing-webpack/">自定义Webpack</a>了解如何通过Webpack自定义Web资源扩展。</p>
-<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>图片一般是Expo项目中占用空间最多的资源。优化图片可以减少用户设备上的空间占用，从而降低显示前的加载时间和使用带宽。可以通过执行<code>npx expo-optimize</code>命令来压缩PNG和JPEG图片。也可以设置下边的选项：</p>
-<ul>
-<li><code>--save</code>: 备份所有图片（以<code>.orig</code>文件的形式保存）</li>
-<li><code>--quality=N</code>: 设置文件压缩比率，N可以是1-100之间的整数（包含1和100，默认为60）</li>
-<li><code>--include=&quot;[pattern]&quot;</code>: 设置仅优化满足通配符模式的资源（默认使用app.json中的<code>assetBundlePatterns</code>字段）</li>
-<li><code>--exclude=&quot;[pattern]&quot;</code>: 排除满足通配符模式的资源</li>
-</ul>
-<p>注意：所有通配符得匹配范围都是相对于项目的根目录，跟执行命令所在的目录无关。</p>
-<h3 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h3><p>字体是启动App必不可缺的资源。web应用中的字体加载问题分为FOUT (Flash of Unstyled Text), FOIT (Flash of Invisible Text), FOFT (Flash of Faux Text)这几种，详细可以参考<a target="_blank" rel="noopener" href="https://css-tricks.com/fout-foit-foft/">这里</a>。</p>
-<p>icon-font-powered的默认行为是第一次加载的时候使用FOIT，然后在后续的加载中字体会自动被缓存。相比较于传统Web，在用户对移动设备有更高的标准要求，所以你可能需要在初始屏幕加载的过程中预加载和缓存字体和一些重要的图片。</p>
-<h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p>参考[这里](<a target="_blank" rel="noopener" href="https://docs.expo.io/guides/preloading-and-caching-assets/">Asset Caching - Expo Documentation</a>)了解更多资源缓存的话题。</p>
+        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">title: 上传和下载文件</span><br><span class="line">categories: </span><br><span class="line">  - Technology</span><br><span class="line">  - Swarm</span><br><span class="line">tags: </span><br><span class="line">  - Swarm上传</span><br><span class="line">  - Swarm下载</span><br><span class="line">date: 2021-06-06 12:02:45</span><br></pre></td></tr></table></figure>
+
+<h2 id="上传和下载文件"><a href="#上传和下载文件" class="headerlink" title="上传和下载文件"></a>上传和下载文件</h2><p>当我们把文件上传到Swarm，这些文件会被分解成大小为4kb的数据块，然后分布存储到网络中负责存储和分发节点。每个数据块上粘贴了一个特定面值的邮票（单位为gBZZ），邮票金额会随着数据的存储不断消耗，这些都是在我们购买邮票组的时候已经设定了。对于网络中的存储节点来说，邮票面值的大小代表了数据的重要程度和存储持续性，也就是数据要保持DISC（分布式不可更改存储数据块）。</p>
+<h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><p>按照下边的步骤上传数据到Swarm：</p>
+<ol>
+<li>给Bee节点钱包充值</li>
+<li>使用gBZZ购买邮票包</li>
+<li>等待票据包分发到网络</li>
+<li>上传内容，需要绑定邮票包ID，BEE节点会在对应的数据块上粘贴邮票</li>
+<li>使用hash下载内容</li>
+</ol>
+<h2 id="购买邮票包"><a href="#购买邮票包" class="headerlink" title="购买邮票包"></a>购买邮票包</h2><p>要上传数据到Swarm，必须消耗一定量的gBZZ，以此来告诉网络中的存储和分发节点你的数据是重要的。所以，在开始接下来的步骤前，你必须先购买一些邮票。参考<a target="_blank" rel="noopener" href="https://docs.ethswarm.org/docs/access-the-swarm/keep-your-data-alive">购买邮票包</a>。</p>
+<h3 id="上传"><a href="#上传" class="headerlink" title="上传"></a>上传</h3><p>Bee节点运行起来以后，会打开对应的HTTP API，你可以通过这些API来控制Bee。使用<a target="_blank" rel="noopener" href="https://ec.haxx.se/http/http-multipart">curl</a>命令行可以方便的调用这些api。</p>
+<p>首先，确保API正常运行。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://localhost:1633</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ethereum Swarm Bee</span><br></pre></td></tr></table></figure>
+
+<p>Bee API正常运行后，通过POST请求直接上传文件。这里你必须在头部指定<code>batch id</code>。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -H &quot;Swarm-Postage-Batch-Id: 78a26be9b42317fe6f0cbea3e47cbd0cf34f533db4e9c91cf92be40eb2968264&quot; -F file=@bee.jpg http://localhost:1633/bzz</span><br></pre></td></tr></table></figure>
+
+<p>我们也可以通过<code>Content-Type</code>来设置MIME类型，通过<code>name</code>来参数设置文件名。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl --data-binary @bee.jpg  -H &quot;Swarm-Postage-Batch-Id: 78a26be9b42317fe6f0cbea3e47cbd0cf34f533db4e9c91cf92be40eb2968264&quot; -H &quot;Content-Type: video/jpg&quot; &quot;http://localhost:1633/bzz?name=bee.jpg&quot;</span><br></pre></td></tr></table></figure>
+
+<p>注意：上传到Swarm的数据默认是公开的。对于敏感文件，必须在上传之前对文件内容进行加密来保证数据的隐私性。</p>
+<p>上传成功以后，结果会已json形式返回，其中包含swarm引用ID（hash），也就是上传文件的swarm地址，例如</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">&quot;reference&quot;</span>:<span class="string">&quot;042d4fe94b946e2cb51196a8c136b8cc335156525bf1ad7e86356c2402291dd4&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>妥善保存这个地址，接下来我们需要使用这个地址获取文件。</p>
+<p>在Swarm中，每个数据文件会有一个唯一的地址。如果同一个文件上传两次，会得到相同的hash值。这也确保了Swarm中数据的安全性和真实性。</p>
+<p>如果想在上传过程中获取上传状态，参考<a target="_blank" rel="noopener" href="https://docs.ethswarm.org/docs/access-the-swarm/syncing">获取上传状态</a>。一旦文件完全同步到网络，网络中的其它节点会负责存储和分发数据。</p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>文件上传到Swarm以后，可以通过HTTP GET直接下载。</p>
+<p>命令行下载</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -OJ http://localhost:1633/bzz/042d4fe94b946e2cb51196a8c136b8cc335156525bf1ad7e86356c2402291dd4</span><br></pre></td></tr></table></figure>
+
+<p>你也可以直接在浏览器中输入连接来下载文件。</p>
+<p><a target="_blank" rel="noopener" href="http://localhost:1633/bzz/042d4fe94b946e2cb51196a8c136b8cc335156525bf1ad7e86356c2402291dd4">http://localhost:1633/bzz/042d4fe…2291dd4</a></p>
+<h2 id="公共网关"><a href="#公共网关" class="headerlink" title="公共网关"></a>公共网关</h2><p>要分享文件给没有运行Bee节点的人，你只要简单替换链接中的主机地址为Swarm公共网关。这样他们也能够下载这个文件了。</p>
+<p><a target="_blank" rel="noopener" href="https://gateway.ethswarm.org/bzzd/042d4fe94b946e2cb51196a8c136b8cc335156525bf1ad7e86356c2402291dd4">https://gateway.ethswarm.org/bzz/042d4fe…2291dd4</a></p>
 
     </div>
 
@@ -264,21 +276,19 @@
     
 
       <footer class="post-footer">
-          
-          <div class="post-tags">
-              <a href="/tags/expo/" rel="tag"><i class="fa fa-tag"></i> expo</a>
-              <a href="/tags/assets/" rel="tag"><i class="fa fa-tag"></i> assets</a>
-          </div>
 
         
 
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2021/05/24/about/" rel="next" title="about">
-      about <i class="fa fa-chevron-right"></i>
+    <a href="/2021/05/26/the-1st-post/" rel="prev" title="The 1st blog.">
+      <i class="fa fa-chevron-left"></i> The 1st blog.
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/06/06/Swarm/Keep-data-alive/" rel="next" title="在Swarm存储数据">
+      在Swarm存储数据 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -339,7 +349,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B5%84%E6%BA%90%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">资源的位置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="nav-number">1.1.</span> <span class="nav-text">开发环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83"><span class="nav-number">1.2.</span> <span class="nav-text">生产环境</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%94%AF%E6%8C%81%E7%9A%84%E8%B5%84%E6%BA%90%E6%89%A9%E5%B1%95"><span class="nav-number">2.</span> <span class="nav-text">自定义支持的资源扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E5%8C%96"><span class="nav-number">3.</span> <span class="nav-text">优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E7%89%87"><span class="nav-number">3.1.</span> <span class="nav-text">图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E4%BD%93"><span class="nav-number">3.2.</span> <span class="nav-text">字体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%93%E5%AD%98"><span class="nav-number">3.3.</span> <span class="nav-text">缓存</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8A%E4%BC%A0%E5%92%8C%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">上传和下载文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Overview"><span class="nav-number">1.1.</span> <span class="nav-text">Overview</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%AD%E4%B9%B0%E9%82%AE%E7%A5%A8%E5%8C%85"><span class="nav-number">2.</span> <span class="nav-text">购买邮票包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8A%E4%BC%A0"><span class="nav-number">2.1.</span> <span class="nav-text">上传</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD"><span class="nav-number">3.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AC%E5%85%B1%E7%BD%91%E5%85%B3"><span class="nav-number">4.</span> <span class="nav-text">公共网关</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
