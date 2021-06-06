@@ -125,17 +125,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">8</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">7</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">8</span></a>
 
   </li>
   </ul>
@@ -162,6 +162,121 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,default">
+    <link itemprop="mainEntityOfPage" href="https://moakap.github.io/2021/06/06/Swarm/Keep-data-alive/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="moakap">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Moakap's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/06/Swarm/Keep-data-alive/" class="post-title-link" itemprop="url">在Swarm存储数据</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-06-06 11:00:51 / 修改时间：03:03:01" itemprop="dateCreated datePublished" datetime="2021-06-06T11:00:51+00:00">2021-06-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/" itemprop="url" rel="index"><span itemprop="name">technology</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/Swarm/" itemprop="url" rel="index"><span itemprop="name">Swarm</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/06/06/Swarm/Keep-data-alive/" class="post-meta-item leancloud_visitors" data-flag-title="在Swarm存储数据" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/06/06/Swarm/Keep-data-alive/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/06/Swarm/Keep-data-alive/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="保持Swarm数据活跃"><a href="#保持Swarm数据活跃" class="headerlink" title="保持Swarm数据活跃"></a>保持Swarm数据活跃</h2><p>Swarm中包括了网络中所有节点的所有存储空间，也叫做DISC（分布式不可更改存储数据块）。只有拥有数据块 对应的邮票的节点拥有写入权限。</p>
+<h4 id="节点钱包充值"><a href="#节点钱包充值" class="headerlink" title="节点钱包充值"></a>节点钱包充值</h4><p>要启动Bee节点，你应该已经提供了相应数量的gETH（用作gas费用）和gBZZ（用作跟其它节点交换数据）。这些会在你的节点第一次启动的时候转入到节点对应的支票地址。为了能够接入更多存款买更多票据块，你就需要给你的钱包充入gBZZ。最简单的方法就是直接从你的支票本中提现。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -XPOST &quot;http://localhost:1635/chequebook/withdraw/?amount=1000&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="充值票据"><a href="#充值票据" class="headerlink" title="充值票据"></a>充值票据</h3><p>邮票根据数据块分组/批产生，这样存储节点可以根据本地信息计算数据块相关的邮票的有效性。这样也可以保证Swarm中数据的隐私性。</p>
+<p>整个swarm地址空间被分成2^16也就是65536个不同的数据桶（bucket）。所以票据组默认会被创建在这些数据桶中（深度16）。当上传数据时，每个文件为被拆分成大小为4kb的数据区块（chunk），这些数据库根据地址分属于对应的数据桶。</p>
+<p>创建票据组时需要指定两个值，票据组深度和金额。</p>
+<h4 id="金额"><a href="#金额" class="headerlink" title="金额"></a>金额</h4><p>金额表示当前票据组代表的gBZZ数量。购买整个票据组需要支付的gBZZ会根据这个金额和票据组深度来计算。</p>
+<p>支付金额形成了当前票据组的余额。余额会随着时间和数据块在Goerli区块链中的使用逐渐减少。</p>
+<h4 id="票据组深度"><a href="#票据组深度" class="headerlink" title="票据组深度"></a>票据组深度</h4><p>票据组的深度定义了每个数据桶可以分配的数据块(chunk)数量。每个数据桶中的数据块数量  = <code>2^(batch depth - bucket depth) = 2^(batch depth - 16)</code>. </p>
+<h4 id="票据组深度和数量的计算"><a href="#票据组深度和数量的计算" class="headerlink" title="票据组深度和数量的计算"></a>票据组深度和数量的计算</h4><p>邮票是Swarm中最新引入的功能，主要考虑如何更好的使用票据组，还处于早起概念阶段。</p>
+<p>现在，开始上传内容的最简单方法就是购买足够大的票据组。否则，如果数据组不够大，就会出现过多的数据块被分配到同一个数据桶的情况。</p>
+<p>具体的数据取决于你想要在swarm中保存数据的时长。由于价格的波动，很难准确预测你的数据块会耗尽所有余额；然而可以根据当前价格和剩余金额来大概估算。</p>
+<p>就当前情况，我们建议你为票据组设置深度为20，至少10000000数量。这应该可以允许你上传相当一些数据，并且保证在可见的将来这些文件一直保存在Swarm中。</p>
+<p>注意：当购买邮票时，默认你已经同意从账户中消耗相应数量的gBZZ。尽管你的账户余额会随着时间逐渐减少，票据组中的gBZZ无法取现。这也是Swarm分布式设计思想的结果，具体参考Swarm白皮书。</p>
+<p><code>curl -s -XPOST http://localhost:1633/stamps/10000000/20</code></p>
+<p>购买了票据组后，其它Bee节点需要同步并且注册相应的票据组。取决于网络状况，这个同步过程可能需要几分钟时间 。</p>
+<h3 id="计算票据组余额"><a href="#计算票据组余额" class="headerlink" title="计算票据组余额"></a>计算票据组余额</h3><p>你的票据组需要保持足够的余额，以便其它Bee节点依据“邻里规范”为你的数据提供存储和服务。因此你需要定期检查余额，并根据需要充值。</p>
+<p><code>curl localhost:1635/chainstate</code></p>
+<p>以上命令会显示当前数据块的单价（单位GPLUR, GBZZ的最小单位）。</p>
+<p>不就的将来，这个功能会加入到账户总票据信息中。当前这个阶段，你需要针对每个新创建的票据组ID重新上传内容。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -197,7 +312,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-06 03:01:31" itemprop="dateModified" datetime="2021-06-06T03:01:31+00:00">2021-06-06</time>
+                <time title="修改时间：2021-06-06 03:03:01" itemprop="dateModified" datetime="2021-06-06T03:03:01+00:00">2021-06-06</time>
               </span>
 
           
@@ -283,7 +398,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-06 03:01:31" itemprop="dateModified" datetime="2021-06-06T03:01:31+00:00">2021-06-06</time>
+                <time title="修改时间：2021-06-06 03:03:01" itemprop="dateModified" datetime="2021-06-06T03:03:01+00:00">2021-06-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -498,7 +613,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-06 03:01:31" itemprop="dateModified" datetime="2021-06-06T03:01:31+00:00">2021-06-06</time>
+                <time title="修改时间：2021-06-06 03:03:01" itemprop="dateModified" datetime="2021-06-06T03:03:01+00:00">2021-06-06</time>
               </span>
 
           
@@ -664,7 +779,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-06 03:01:31" itemprop="dateModified" datetime="2021-06-06T03:01:31+00:00">2021-06-06</time>
+                <time title="修改时间：2021-06-06 03:03:01" itemprop="dateModified" datetime="2021-06-06T03:03:01+00:00">2021-06-06</time>
               </span>
 
           
@@ -762,7 +877,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-06 03:01:31" itemprop="dateModified" datetime="2021-06-06T03:01:31+00:00">2021-06-06</time>
+                <time title="修改时间：2021-06-06 03:03:01" itemprop="dateModified" datetime="2021-06-06T03:03:01+00:00">2021-06-06</time>
               </span>
 
           
@@ -892,7 +1007,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-06 03:01:31" itemprop="dateModified" datetime="2021-06-06T03:01:31+00:00">2021-06-06</time>
+                <time title="修改时间：2021-06-06 03:03:01" itemprop="dateModified" datetime="2021-06-06T03:03:01+00:00">2021-06-06</time>
               </span>
 
           
@@ -977,7 +1092,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-06 03:01:31" itemprop="dateModified" datetime="2021-06-06T03:01:31+00:00">2021-06-06</time>
+                <time title="修改时间：2021-06-06 03:03:01" itemprop="dateModified" datetime="2021-06-06T03:03:01+00:00">2021-06-06</time>
               </span>
 
           
@@ -1111,20 +1226,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
