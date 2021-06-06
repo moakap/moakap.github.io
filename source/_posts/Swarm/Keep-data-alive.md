@@ -1,6 +1,9 @@
 ---
 title: 在Swarm存储数据
 default_category: Swarm
+categories:
+  - technology
+  - Swarm
 tags: 
   - Swarm
   - Bee
