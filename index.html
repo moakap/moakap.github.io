@@ -191,7 +191,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-06-06 12:02:45 / 修改时间：04:16:23" itemprop="dateCreated datePublished" datetime="2021-06-06T12:02:45+00:00">2021-06-06</time>
+              <time title="创建时间：2021-06-06 12:02:45 / 修改时间：04:28:23" itemprop="dateCreated datePublished" datetime="2021-06-06T12:02:45+00:00">2021-06-06</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -320,7 +320,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-06-06 11:00:51 / 修改时间：04:16:23" itemprop="dateCreated datePublished" datetime="2021-06-06T11:00:51+00:00">2021-06-06</time>
+              <time title="创建时间：2021-06-06 11:00:51 / 修改时间：04:28:23" itemprop="dateCreated datePublished" datetime="2021-06-06T11:00:51+00:00">2021-06-06</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -368,20 +368,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="保持Swarm数据活跃"><a href="#保持Swarm数据活跃" class="headerlink" title="保持Swarm数据活跃"></a>保持Swarm数据活跃</h2><p>Swarm中包括了网络中所有节点的所有存储空间，也叫做DISC（分布式不可更改存储数据块）。只有拥有数据块对应的邮票的节点拥有写入权限。</p>
-<h4 id="节点钱包充值"><a href="#节点钱包充值" class="headerlink" title="节点钱包充值"></a>节点钱包充值</h4><p>要启动Bee节点，你应该已经提供了相应数量的gETH（用作gas费用）和gBZZ（用作跟其它节点交换数据）。这些会在你的节点第一次启动的时候转入到节点对应的支票地址。为了能够接入更多存款买更多邮票包，你就需要给你的钱包充入gBZZ。最简单的方法就是直接从你的支票本中提现。</p>
+          <h2 id="保持Swarm数据活跃"><a href="#保持Swarm数据活跃" class="headerlink" title="保持Swarm数据活跃"></a>保持Swarm数据活跃</h2><p>Swarm中包括了网络中所有节点的所有存储空间，也叫做DISC（分布式不可更改存储数据块）。只有数据块上邮票的拥有者节点具有写权限。</p>
+<h4 id="节点钱包充值"><a href="#节点钱包充值" class="headerlink" title="节点钱包充值"></a>节点钱包充值</h4><p>要启动Bee节点，你应该已经提供了相应数量的gETH（用作gas费用）和gBZZ（用作跟其它节点交换数据）。这些会在你的节点第一次启动的时候转入到节点对应的支票地址。为了购买邮票包，你就需要给你的钱包充入gBZZ。最简单的方法就是直接从你的支票本中提现。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -XPOST &quot;http://localhost:1635/chequebook/withdraw/?amount=1000&quot;</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="购买邮票"><a href="#购买邮票" class="headerlink" title="购买邮票"></a>购买邮票</h3><p>邮票根据数据块分组/批产生，这样存储节点可以根据本地信息计算数据块相关的邮票的有效性。也可以保证Swarm中数据的隐私性。</p>
-<p>整个swarm地址空间被分成2^16也就是65536个不同的数据桶（bucket）。所以邮票包默认会被创建在这些数据桶中（深度16）。当上传数据时，每个文件为被拆分成大小为4kb的数据区块（chunk），这些数据块根据地址分属于对应的数据桶。</p>
-<p>创建邮票包时需要指定两个值，邮票包的深度和金额。</p>
-<h4 id="金额"><a href="#金额" class="headerlink" title="金额"></a>金额</h4><p>金额表示当前邮票包代表的gBZZ数量。购买整个邮票包需要支付的gBZZ会根据这个金额和邮票包深度来计算。</p>
-<p>支付金额形成了当前邮票包的余额。余额会随着时间和数据块在Goerli区块链中的使用逐渐减少。</p>
+<h3 id="购买邮票包"><a href="#购买邮票包" class="headerlink" title="购买邮票包"></a>购买邮票包</h3><p>邮票是分组/批产生的，这样存储节点可以根据本地信息计算数据块上的邮票的有效性。也可以保证Swarm中数据的隐私性。</p>
+<p>整个swarm地址空间被分成2^16也就是65536个不同的数据桶（bucket），数据桶的深度为16。然后在数据桶中创建邮票包。上传以后，每个文件会被拆分成许多大小4kb的数据区块（chunk），然后分配到某个数据桶。<br>创建邮票包时需要指定两个值，深度和数量。</p>
+<h4 id="数量"><a href="#数量" class="headerlink" title="数量"></a>数量</h4><p>表示邮票包代表的gBZZ数量。购买整个邮票包需要支付的gBZZ会根据数量和邮票包深度来计算。</p>
+<p>支付数量形成了当前邮票包的余额。余额会随着时间和数据块在Goerli区块链中的使用逐渐减少。</p>
 <h4 id="深度"><a href="#深度" class="headerlink" title="深度"></a>深度</h4><p>邮票包的深度定义了每个数据桶可以分配的数据块(chunk)数量。每个数据桶中的数据块数量  = <code>2^(batch depth - bucket depth) = 2^(batch depth - 16)</code>. </p>
 <h4 id="邮票包深度和数量的计算"><a href="#邮票包深度和数量的计算" class="headerlink" title="邮票包深度和数量的计算"></a>邮票包深度和数量的计算</h4><p>邮票是Swarm中最新引入的功能，主要考虑如何更好的使用邮票包，还处于早起概念阶段。</p>
-<p>现在，开始上传内容的最简单方法就是购买足够大的邮票包。否则，邮票包不够大，就会出现大量的数据块被分配到同一个数据桶的情况。</p>
+<p>现在，开始上传内容的最简单方法就是购买一个足够大的邮票包。否则，邮票包不够大，就会出现大量的数据块被分配到同一个数据桶的情况。</p>
 <p>具体的数量取决于你想要在swarm中保存数据的时长。由于价格是波动的，很难准确预测你的数据块会用完所有余额；然而可以根据当前价格和剩余金额来大概估算。</p>
 <p>就当前情况，我们建议你为邮票包设置深度为20，至少10000000数量。这应该可以让你上传相当一些数据，并且保证在可见的将来这些文件一直保存在Swarm中。</p>
 <p>注意：当购买邮票时，默认你已经同意从账户中扣除相应数量的gBZZ。尽管你的账户余额会随着时间逐渐减少，邮票包中的gBZZ是无法退回的。这也是Swarm分布式设计思想的结果，具体参考Swarm白皮书。</p>
@@ -441,7 +440,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-06 04:16:23" itemprop="dateModified" datetime="2021-06-06T04:16:23+00:00">2021-06-06</time>
+                <time title="修改时间：2021-06-06 04:28:23" itemprop="dateModified" datetime="2021-06-06T04:28:23+00:00">2021-06-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -656,7 +655,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-06 04:16:23" itemprop="dateModified" datetime="2021-06-06T04:16:23+00:00">2021-06-06</time>
+                <time title="修改时间：2021-06-06 04:28:23" itemprop="dateModified" datetime="2021-06-06T04:28:23+00:00">2021-06-06</time>
               </span>
 
           
@@ -822,7 +821,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-06 04:16:23" itemprop="dateModified" datetime="2021-06-06T04:16:23+00:00">2021-06-06</time>
+                <time title="修改时间：2021-06-06 04:28:23" itemprop="dateModified" datetime="2021-06-06T04:28:23+00:00">2021-06-06</time>
               </span>
 
           
@@ -952,7 +951,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-06 04:16:23" itemprop="dateModified" datetime="2021-06-06T04:16:23+00:00">2021-06-06</time>
+                <time title="修改时间：2021-06-06 04:28:23" itemprop="dateModified" datetime="2021-06-06T04:28:23+00:00">2021-06-06</time>
               </span>
 
           
@@ -1037,7 +1036,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-06 04:16:23" itemprop="dateModified" datetime="2021-06-06T04:16:23+00:00">2021-06-06</time>
+                <time title="修改时间：2021-06-06 04:28:23" itemprop="dateModified" datetime="2021-06-06T04:28:23+00:00">2021-06-06</time>
               </span>
 
           
@@ -1140,7 +1139,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-06 04:16:23" itemprop="dateModified" datetime="2021-06-06T04:16:23+00:00">2021-06-06</time>
+                <time title="修改时间：2021-06-06 04:28:23" itemprop="dateModified" datetime="2021-06-06T04:28:23+00:00">2021-06-06</time>
               </span>
 
           
@@ -1226,7 +1225,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-06 04:16:23" itemprop="dateModified" datetime="2021-06-06T04:16:23+00:00">2021-06-06</time>
+                <time title="修改时间：2021-06-06 04:28:23" itemprop="dateModified" datetime="2021-06-06T04:28:23+00:00">2021-06-06</time>
               </span>
 
           
