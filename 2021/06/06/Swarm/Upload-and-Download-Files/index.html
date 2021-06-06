@@ -20,16 +20,18 @@
     var CONFIG = {"hostname":"moakap.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="12345678title: 上传和下载文件categories:   - Technology  - Swarmtags:   - Swarm上传  - Swarm下载date: 2021-06-06 12:02:45  上传和下载文件当我们把文件上传到Swarm，这些文件会被分解成大小为4kb的数据块，然后分布存储到网络中负责存储和分发节点。每个数据块上粘贴了一个特定面值的邮票（单位为gBZZ">
+  <meta name="description" content="上传和下载文件当我们把文件上传到Swarm，这些文件会被分解成大小为4kb的数据块，然后分布存储到网络中负责存储和分发节点。每个数据块上粘贴了一个特定面值的邮票（单位为gBZZ），邮票金额会随着数据的存储不断消耗，这些都是在我们购买邮票组的时候已经设定了。对于网络中的存储节点来说，邮票面值的大小代表了数据的重要程度和存储持续性，也就是数据要保持DISC（分布式不可更改存储数据块）。 Overvie">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Moakap&#39;s Blog">
+<meta property="og:title" content="上传和下载文件">
 <meta property="og:url" content="https://moakap.github.io/2021/06/06/Swarm/Upload-and-Download-Files/index.html">
 <meta property="og:site_name" content="Moakap&#39;s Blog">
-<meta property="og:description" content="12345678title: 上传和下载文件categories:   - Technology  - Swarmtags:   - Swarm上传  - Swarm下载date: 2021-06-06 12:02:45  上传和下载文件当我们把文件上传到Swarm，这些文件会被分解成大小为4kb的数据块，然后分布存储到网络中负责存储和分发节点。每个数据块上粘贴了一个特定面值的邮票（单位为gBZZ">
+<meta property="og:description" content="上传和下载文件当我们把文件上传到Swarm，这些文件会被分解成大小为4kb的数据块，然后分布存储到网络中负责存储和分发节点。每个数据块上粘贴了一个特定面值的邮票（单位为gBZZ），邮票金额会随着数据的存储不断消耗，这些都是在我们购买邮票组的时候已经设定了。对于网络中的存储节点来说，邮票面值的大小代表了数据的重要程度和存储持续性，也就是数据要保持DISC（分布式不可更改存储数据块）。 Overvie">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-06-06T04:04:57.029Z">
-<meta property="article:modified_time" content="2021-06-06T04:04:57.029Z">
+<meta property="article:published_time" content="2021-06-06T12:02:45.000Z">
+<meta property="article:modified_time" content="2021-06-06T04:06:23.742Z">
 <meta property="article:author" content="moakap">
+<meta property="article:tag" content="Swarm上传">
+<meta property="article:tag" content="Swarm下载">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://moakap.github.io/2021/06/06/Swarm/Upload-and-Download-Files/">
@@ -45,7 +47,7 @@
   };
 </script>
 
-  <title> | Moakap's Blog</title>
+  <title>上传和下载文件 | Moakap's Blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DFB6WMHQPG"></script>
     <script>
@@ -129,7 +131,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">11</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -184,7 +186,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
+          上传和下载文件
         </h1>
 
         <div class="post-meta">
@@ -193,12 +195,26 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-06-06 04:04:57" itemprop="dateCreated datePublished" datetime="2021-06-06T04:04:57+00:00">2021-06-06</time>
+              <time title="创建时间：2021-06-06 12:02:45 / 修改时间：04:06:23" itemprop="dateCreated datePublished" datetime="2021-06-06T12:02:45+00:00">2021-06-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technology/" itemprop="url" rel="index"><span itemprop="name">Technology</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technology/Swarm/" itemprop="url" rel="index"><span itemprop="name">Swarm</span></a>
+                </span>
             </span>
 
           
-            <span id="/2021/06/06/Swarm/Upload-and-Download-Files/" class="post-meta-item leancloud_visitors" data-flag-title="" title="阅读次数">
+            <span id="/2021/06/06/Swarm/Upload-and-Download-Files/" class="post-meta-item leancloud_visitors" data-flag-title="上传和下载文件" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -229,9 +245,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">title: 上传和下载文件</span><br><span class="line">categories: </span><br><span class="line">  - Technology</span><br><span class="line">  - Swarm</span><br><span class="line">tags: </span><br><span class="line">  - Swarm上传</span><br><span class="line">  - Swarm下载</span><br><span class="line">date: 2021-06-06 12:02:45</span><br></pre></td></tr></table></figure>
-
-<h2 id="上传和下载文件"><a href="#上传和下载文件" class="headerlink" title="上传和下载文件"></a>上传和下载文件</h2><p>当我们把文件上传到Swarm，这些文件会被分解成大小为4kb的数据块，然后分布存储到网络中负责存储和分发节点。每个数据块上粘贴了一个特定面值的邮票（单位为gBZZ），邮票金额会随着数据的存储不断消耗，这些都是在我们购买邮票组的时候已经设定了。对于网络中的存储节点来说，邮票面值的大小代表了数据的重要程度和存储持续性，也就是数据要保持DISC（分布式不可更改存储数据块）。</p>
+        <h2 id="上传和下载文件"><a href="#上传和下载文件" class="headerlink" title="上传和下载文件"></a>上传和下载文件</h2><p>当我们把文件上传到Swarm，这些文件会被分解成大小为4kb的数据块，然后分布存储到网络中负责存储和分发节点。每个数据块上粘贴了一个特定面值的邮票（单位为gBZZ），邮票金额会随着数据的存储不断消耗，这些都是在我们购买邮票组的时候已经设定了。对于网络中的存储节点来说，邮票面值的大小代表了数据的重要程度和存储持续性，也就是数据要保持DISC（分布式不可更改存储数据块）。</p>
 <h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><p>按照下边的步骤上传数据到Swarm：</p>
 <ol>
 <li>给Bee节点钱包充值</li>
@@ -276,6 +290,11 @@
     
 
       <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Swarm%E4%B8%8A%E4%BC%A0/" rel="tag"><i class="fa fa-tag"></i> Swarm上传</a>
+              <a href="/tags/Swarm%E4%B8%8B%E8%BD%BD/" rel="tag"><i class="fa fa-tag"></i> Swarm下载</a>
+          </div>
 
         
 
@@ -283,13 +302,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/05/26/Swarm/Swarm-Bee-Configuration/" rel="prev" title="Swarm Bee配置">
-      <i class="fa fa-chevron-left"></i> Swarm Bee配置
+    <a href="/2021/06/06/Swarm/Keep-data-alive/" rel="prev" title="在Swarm存储数据">
+      <i class="fa fa-chevron-left"></i> 在Swarm存储数据
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/06/06/Swarm/Keep-data-alive/" rel="next" title="在Swarm存储数据">
-      在Swarm存储数据 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -376,7 +392,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
