@@ -1,4 +1,4 @@
-```
+---
 title: 上传和下载文件
 categories: 
   - Technology
@@ -7,7 +7,8 @@ tags:
   - Swarm上传
   - Swarm下载
 date: 2021-06-06 12:02:45
-```
+
+---
 
 ## 上传和下载文件
 
