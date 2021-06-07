@@ -40,8 +40,8 @@ custom_file_path:
 # ---------------------------------------------------------------
 
 favicon:
-  small: /images/snail-filled.png
-  medium: /images/snail-filled.png
+  small: /images/snail-filled-16x16.png
+  medium: /images/snail-filled-32x32.png
   apple_touch_icon: /images/snail-filled.png
   safari_pinned_tab: /images/snail-filled.png
   #android_manifest: /images/manifest.json
