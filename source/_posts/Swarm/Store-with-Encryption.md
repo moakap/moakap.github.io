@@ -1,6 +1,6 @@
 ---
 title: Swarm加密存储
-categries: 
+categories: 
   - Technology
   - Swarm
 tags: 
