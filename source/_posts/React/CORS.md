@@ -1,5 +1,6 @@
 ---
 title: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+date: 2021-06-08 18:48:24
 tags: 
   - CORS
   - nginx
