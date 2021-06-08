@@ -20,17 +20,21 @@
     var CONFIG = {"hostname":"moakap.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="about">
-<meta property="og:url" content="https://moakap.github.io/2021/05/24/about/index.html">
+  <meta name="description" content="No ‘Access-Control-Allow-Origin’ header is present on the requested resource.   CORS是什么？CORS （Cross-Origin Resource Sharing，跨域资源共享）是一个系统，它由一系列传输的HTTP头组成，这些HTTP头决定浏览器是否阻止前端 JavaScript 代码获取跨域请求的响应。同源安全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="No &#39;Access-Control-Allow-Origin&#39; header is present on the requested resource.">
+<meta property="og:url" content="https://moakap.github.io/2021/06/08/React/CORS/index.html">
 <meta property="og:site_name" content="Moakap&#39;s Blog">
+<meta property="og:description" content="No ‘Access-Control-Allow-Origin’ header is present on the requested resource.   CORS是什么？CORS （Cross-Origin Resource Sharing，跨域资源共享）是一个系统，它由一系列传输的HTTP头组成，这些HTTP头决定浏览器是否阻止前端 JavaScript 代码获取跨域请求的响应。同源安全">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-05-24T18:52:51.000Z">
+<meta property="article:published_time" content="2021-06-08T10:48:22.050Z">
 <meta property="article:modified_time" content="2021-06-08T10:48:22.050Z">
 <meta property="article:author" content="moakap">
+<meta property="article:tag" content="CORS">
+<meta property="article:tag" content="nginx">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://moakap.github.io/2021/05/24/about/">
+<link rel="canonical" href="https://moakap.github.io/2021/06/08/React/CORS/">
 
 
 <script id="page-configurations">
@@ -43,7 +47,7 @@
   };
 </script>
 
-  <title>about | Moakap's Blog</title>
+  <title>No 'Access-Control-Allow-Origin' header is present on the requested resource. | Moakap's Blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DFB6WMHQPG"></script>
     <script>
@@ -169,7 +173,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://moakap.github.io/2021/05/24/about/">
+    <link itemprop="mainEntityOfPage" href="https://moakap.github.io/2021/06/08/React/CORS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/snail-filled.png">
@@ -182,7 +186,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          about
+          No 'Access-Control-Allow-Origin' header is present on the requested resource.
         </h1>
 
         <div class="post-meta">
@@ -192,11 +196,24 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-05-24 18:52:51" itemprop="dateCreated datePublished" datetime="2021-05-24T18:52:51+00:00">2021-05-24</time>
+              <time title="创建时间：2021-06-08 10:48:22" itemprop="dateCreated datePublished" datetime="2021-06-08T10:48:22+00:00">2021-06-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technology/" itemprop="url" rel="index"><span itemprop="name">Technology</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technology/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">后端开发</span></a>
+                </span>
             </span>
 
           
-            <span id="/2021/05/24/about/" class="post-meta-item leancloud_visitors" data-flag-title="about" title="阅读次数">
+            <span id="/2021/06/08/React/CORS/" class="post-meta-item leancloud_visitors" data-flag-title="No 'Access-Control-Allow-Origin' header is present on the requested resource." title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -211,8 +228,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/05/24/about/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/24/about/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/06/08/React/CORS/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/08/React/CORS/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -227,7 +244,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <blockquote>
+<p>No ‘Access-Control-Allow-Origin’ header is present on the requested resource. </p>
+</blockquote>
+<h2 id="CORS是什么？"><a href="#CORS是什么？" class="headerlink" title="CORS是什么？"></a>CORS是什么？</h2><p><strong>CORS</strong> （Cross-Origin Resource Sharing，跨域资源共享）是一个系统，它由一系列传输的<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/HTTP_header">HTTP头</a>组成，这些HTTP头决定浏览器是否阻止前端 JavaScript 代码获取跨域请求的响应。<br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy">同源安全策略</a> （<strong>same-origin policy</strong>）默认阻止“跨域”获取资源。但是 CORS 给了web服务器这样的权限，即服务器可以选择，允许跨域请求访问到它们的资源。</p>
+<h2 id="错误信息-blocked-by-CORS-policy-No-‘Access-Control-Allow-Origin’-header-is-present-on-the-requested-resource"><a href="#错误信息-blocked-by-CORS-policy-No-‘Access-Control-Allow-Origin’-header-is-present-on-the-requested-resource" class="headerlink" title="错误信息 blocked by CORS policy: No ‘Access-Control-Allow-Origin’ header is present on the requested resource."></a>错误信息 blocked by CORS policy: No ‘Access-Control-Allow-Origin’ header is present on the requested resource.</h2><p>如果请求发送方和服务提供方不在同一个源/域内，服务器返回的响应不包含<code>Access-Control-Allow-Origin</code>字段，或者<code>Access-Control-Allow-Origin</code>字段和http请求的<code>origin</code>不匹配，相应会被浏览器拦截，例如</p>
+<blockquote>
+<p>…has been blocked by CORS policy: No ‘Access-Control-Allow-Origin’ header is present on the requested resource.</p>
+</blockquote>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><h3 id="服务器端-nginx设置CORS"><a href="#服务器端-nginx设置CORS" class="headerlink" title="服务器端 - nginx设置CORS"></a>服务器端 - nginx设置CORS</h3><p>在nginx对应的site配置文件中打开CORS，同时支持预检请求（preflight request）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line"># Wide-open CORS config for nginx</span><br><span class="line">#</span><br><span class="line">location / &#123;</span><br><span class="line">     if ($request_method = &#x27;OPTIONS&#x27;) &#123;</span><br><span class="line">        add_header &#x27;Access-Control-Allow-Origin&#x27; &#x27;*&#x27;;</span><br><span class="line">        add_header &#x27;Access-Control-Allow-Methods&#x27; &#x27;GET, POST, OPTIONS&#x27;;</span><br><span class="line">        #</span><br><span class="line">        # Custom headers and headers various browsers *should* be OK with but aren&#x27;t</span><br><span class="line">        #</span><br><span class="line">        add_header &#x27;Access-Control-Allow-Headers&#x27; &#x27;DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range&#x27;;</span><br><span class="line">        #</span><br><span class="line">        # Tell client that this pre-flight info is valid for 20 days</span><br><span class="line">        #</span><br><span class="line">        add_header &#x27;Access-Control-Max-Age&#x27; 1728000;</span><br><span class="line">        add_header &#x27;Content-Type&#x27; &#x27;text/plain; charset=utf-8&#x27;;</span><br><span class="line">        add_header &#x27;Content-Length&#x27; 0;</span><br><span class="line">        return 204;</span><br><span class="line">     &#125;</span><br><span class="line">     if ($request_method = &#x27;POST&#x27;) &#123;</span><br><span class="line">        add_header &#x27;Access-Control-Allow-Origin&#x27; &#x27;*&#x27;;</span><br><span class="line">        add_header &#x27;Access-Control-Allow-Methods&#x27; &#x27;GET, POST, OPTIONS&#x27;;</span><br><span class="line">        add_header &#x27;Access-Control-Allow-Headers&#x27; &#x27;DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range&#x27;;</span><br><span class="line">        add_header &#x27;Access-Control-Expose-Headers&#x27; &#x27;Content-Length,Content-Range&#x27;;</span><br><span class="line">     &#125;</span><br><span class="line">     if ($request_method = &#x27;GET&#x27;) &#123;</span><br><span class="line">        add_header &#x27;Access-Control-Allow-Origin&#x27; &#x27;*&#x27;;</span><br><span class="line">        add_header &#x27;Access-Control-Allow-Methods&#x27; &#x27;GET, POST, OPTIONS&#x27;;</span><br><span class="line">        add_header &#x27;Access-Control-Allow-Headers&#x27; &#x27;DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range&#x27;;</span><br><span class="line">        add_header &#x27;Access-Control-Expose-Headers&#x27; &#x27;Content-Length,Content-Range&#x27;;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其它服务器打开CORS，请参考[这里](<a target="_blank" rel="noopener" href="https://enable-cors.org/server.html">enable cross-origin resource sharing (enable-cors.org)</a>). </p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS">https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS</a></li>
+<li><a target="_blank" rel="noopener" href="https://enable-cors.org/server_nginx.html">enable cross-origin resource sharing</a></li>
+</ul>
+
     </div>
 
     
@@ -235,6 +268,11 @@
     
 
       <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/CORS/" rel="tag"><i class="fa fa-tag"></i> CORS</a>
+              <a href="/tags/nginx/" rel="tag"><i class="fa fa-tag"></i> nginx</a>
+          </div>
 
         
 
@@ -242,13 +280,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/05/24/Expo/Assets-in-Expo/" rel="prev" title="Expo中的Assets资源使用">
-      <i class="fa fa-chevron-left"></i> Expo中的Assets资源使用
+    <a href="/2021/06/07/Swarm/Store-with-Encryption/" rel="prev" title="Swarm加密存储">
+      <i class="fa fa-chevron-left"></i> Swarm加密存储
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/05/25/React/Context-in-React/" rel="next" title="React中的Context">
-      React中的Context <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -308,6 +343,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CORS%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">CORS是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF-blocked-by-CORS-policy-No-%E2%80%98Access-Control-Allow-Origin%E2%80%99-header-is-present-on-the-requested-resource"><span class="nav-number">2.</span> <span class="nav-text">错误信息 blocked by CORS policy: No ‘Access-Control-Allow-Origin’ header is present on the requested resource.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF-nginx%E8%AE%BE%E7%BD%AECORS"><span class="nav-number">3.1.</span> <span class="nav-text">服务器端 - nginx设置CORS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
