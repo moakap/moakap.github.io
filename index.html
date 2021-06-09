@@ -342,20 +342,14 @@
       
           <p>在Swarm中，所有的数据都是公开的。如果需要保护特定的敏感内容，可以使用加密存储，这样只有授权的用户解密后可以查看这些内容。</p>
 <p>Bee客户端提供了在上传时对文件和目录进行加密的简单方法，只有能够访问相应的解密密钥的用户可以读取加密后的数据。</p>
-<h2 id="加密上传文件"><a href="#加密上传文件" class="headerlink" title="加密上传文件"></a>加密上传文件</h2><p>如果需要对文件加密，只要在上传的时候设置HTTP头部参数<code>Swarm-Encrypt: true</code>就可以了。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -F file=@bee.jpg -H &quot;Swarm-Encrypt: true&quot; http://localhost:1633/bzz</span><br></pre></td></tr></table></figure>
-
-<p>上传成功后，Bee会返回一个64字节的文件引用hash，而不是正常的32字节文件引用hash。</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">&quot;reference&quot;</span>:<span class="string">&quot;f7b1a45b70ee91d3dbfd98a2a692387f24db7279a9c96c447409e9205cf265baef29bf6aa294264762e33f6a18318562c86383dd8bfea2cec14fae08a8039bf3&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上边的例子可以看到，使用Bee节点的加密方法返回的资源hash是一个128位的16进制字符串。其中前边64位是我们熟悉的Swarm资源hash地址，通过这个地址可以获取对应的资源数据。这一点跟不加密上传文件时一样的。</p>
-<p>128位hash的后边64位是解密用的密钥，用来解密和查看原始的资源数据。这部分属于敏感数据需要单独保存。同时，不要通过公共网关发送密钥数据，避免网关本身通过密钥解密你的私有数据。如果你的bee节点在本地主机运行，你可以安全地把BEE api绑定到<code>localhost</code>。这样你的数据就会很安全，因为这些关键的密钥数据不会暴漏到网络中。</p>
-<p>注意：为了保证数据的安全性，加密功能在所有的Swarm网关上都是关闭的。要使用加密功能，请在自己的电脑上安装Bee。</p>
-<h2 id="下载和解密文件"><a href="#下载和解密文件" class="headerlink" title="下载和解密文件"></a>下载和解密文件</h2><p>要从Swarm提前加密文件，直接使用64字节的资源hash字符串就可以了。Bee客户端会负责下载对应数据块、解密和还原原始数据格式。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -OJ http://localhost:1633/bzz/f7b1a45b70ee91d3dbfd98a2a692387f24db7279a9c96c447409e9205cf265baef29bf6aa294264762e33f6a18318562c86383dd8bfea2cec14fae08a8039bf3</span><br></pre></td></tr></table></figure>
-
-<p>再次提醒：不要在公共网关中使用64字节的加密hash请求数据，因为里边直接包含了密钥信息。要使用加密功能，请运行自己的Bee节点。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/06/07/Swarm/Store-with-Encryption/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
