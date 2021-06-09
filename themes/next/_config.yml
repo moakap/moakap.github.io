@@ -232,6 +232,9 @@ chat:
 # ---------------------------------------------------------------
 
 # Automatically excerpt description in homepage as preamble text.
+auto_excerpt:
+  enable: true
+  length: 150
 excerpt_description: true
 
 # Read more button
