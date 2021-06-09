@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"moakap.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="保持Swarm数据活跃Swarm中包括了网络中所有节点的所有存储空间，也叫做DISC（分布式不可更改存储数据块）。只有数据块上邮票的拥有者节点具有写权限。 节点钱包充值要启动Bee节点，你应该已经提供了相应数量的gETH（用作gas费用）和gBZZ（用作跟其它节点交换数据）。这些会在你的节点第一次启动的时候转入到节点对应的支票地址。为了购买邮票包，你就需要给你的钱包充入gBZZ。最简单的方法就是直">
+  <meta name="description" content="保持Swarm数据活跃Swarm中包括了网络中所有节点的所有存储空间，也叫做DISC（分布式不可更改存储数据块）。只有数据块上邮票的拥有者节点具有写权限。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在Swarm存储数据">
 <meta property="og:url" content="https://moakap.github.io/2021/06/06/Swarm/Keep-data-alive/index.html">
 <meta property="og:site_name" content="Moakap&#39;s Blog">
-<meta property="og:description" content="保持Swarm数据活跃Swarm中包括了网络中所有节点的所有存储空间，也叫做DISC（分布式不可更改存储数据块）。只有数据块上邮票的拥有者节点具有写权限。 节点钱包充值要启动Bee节点，你应该已经提供了相应数量的gETH（用作gas费用）和gBZZ（用作跟其它节点交换数据）。这些会在你的节点第一次启动的时候转入到节点对应的支票地址。为了购买邮票包，你就需要给你的钱包充入gBZZ。最简单的方法就是直">
+<meta property="og:description" content="保持Swarm数据活跃Swarm中包括了网络中所有节点的所有存储空间，也叫做DISC（分布式不可更改存储数据块）。只有数据块上邮票的拥有者节点具有写权限。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-06-06T11:00:51.000Z">
-<meta property="article:modified_time" content="2021-06-09T04:12:53.918Z">
+<meta property="article:modified_time" content="2021-06-09T04:13:08.385Z">
 <meta property="article:author" content="moakap">
 <meta property="article:tag" content="Swarm">
 <meta property="article:tag" content="Bee">
@@ -246,6 +246,8 @@
 
       
         <h2 id="保持Swarm数据活跃"><a href="#保持Swarm数据活跃" class="headerlink" title="保持Swarm数据活跃"></a>保持Swarm数据活跃</h2><p>Swarm中包括了网络中所有节点的所有存储空间，也叫做DISC（分布式不可更改存储数据块）。只有数据块上邮票的拥有者节点具有写权限。</p>
+<span id="more"></span>
+
 <h4 id="节点钱包充值"><a href="#节点钱包充值" class="headerlink" title="节点钱包充值"></a>节点钱包充值</h4><p>要启动Bee节点，你应该已经提供了相应数量的gETH（用作gas费用）和gBZZ（用作跟其它节点交换数据）。这些会在你的节点第一次启动的时候转入到节点对应的支票地址。为了购买邮票包，你就需要给你的钱包充入gBZZ。最简单的方法就是直接从你的支票本中提现。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -XPOST &quot;http://localhost:1635/chequebook/withdraw/?amount=1000&quot;</span><br></pre></td></tr></table></figure>
 
