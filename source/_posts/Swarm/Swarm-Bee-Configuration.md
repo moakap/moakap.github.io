@@ -21,6 +21,8 @@ bee start \
   --debug-api-addr=:6666
 ```
 
+<!-- more -->
+
 ## 配置文件
 
 Bee节点也可以通过提供```--config```加yaml配置文件的方式来配置。
