@@ -15,6 +15,8 @@ categories:
 **CORS** （Cross-Origin Resource Sharing，跨域资源共享）是一个系统，它由一系列传输的[HTTP头](https://developer.mozilla.org/zh-CN/docs/Glossary/HTTP_header)组成，这些HTTP头决定浏览器是否阻止前端 JavaScript 代码获取跨域请求的响应。
 [同源安全策略](https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy) （**same-origin policy**）默认阻止“跨域”获取资源。但是 CORS 给了web服务器这样的权限，即服务器可以选择，允许跨域请求访问到它们的资源。
 
+<!-- more -->
+
 ## 错误信息 blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
 如果请求发送方和服务提供方不在同一个源/域内，服务器返回的响应不包含```Access-Control-Allow-Origin```字段，或者```Access-Control-Allow-Origin```字段和http请求的```origin```不匹配，相应会被浏览器拦截，例如
 > ...has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
