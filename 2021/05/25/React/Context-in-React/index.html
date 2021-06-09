@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"moakap.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Context定义和目的Context 提供了一种在组件之间共享数据的方式，而不必显式地通过组件树的逐层传递 props。 应用场景哪些数据会需要共享？  Context 设计目的是为了共享那些对于一个组件树而言是“全局”的数据，例如当前认证的用户、主题或首选语言。  使用步骤1. 创建并初始化Context1const MyContext &#x3D; createContex(defaultValue)">
+  <meta name="description" content="Context定义和目的Context 提供了一种在组件之间共享数据的方式，而不必显式地通过组件树的逐层传递 props。 应用场景哪些数据会需要共享？  Context 设计目的是为了共享那些对于一个组件树而言是“全局”的数据，例如当前认证的用户、主题或首选语言。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React中的Context">
 <meta property="og:url" content="https://moakap.github.io/2021/05/25/React/Context-in-React/index.html">
 <meta property="og:site_name" content="Moakap&#39;s Blog">
-<meta property="og:description" content="Context定义和目的Context 提供了一种在组件之间共享数据的方式，而不必显式地通过组件树的逐层传递 props。 应用场景哪些数据会需要共享？  Context 设计目的是为了共享那些对于一个组件树而言是“全局”的数据，例如当前认证的用户、主题或首选语言。  使用步骤1. 创建并初始化Context1const MyContext &#x3D; createContex(defaultValue)">
+<meta property="og:description" content="Context定义和目的Context 提供了一种在组件之间共享数据的方式，而不必显式地通过组件树的逐层传递 props。 应用场景哪些数据会需要共享？  Context 设计目的是为了共享那些对于一个组件树而言是“全局”的数据，例如当前认证的用户、主题或首选语言。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-05-25T18:52:51.000Z">
-<meta property="article:modified_time" content="2021-06-09T04:13:25.428Z">
+<meta property="article:modified_time" content="2021-06-09T04:14:14.900Z">
 <meta property="article:author" content="moakap">
 <meta property="article:tag" content="React">
 <meta property="article:tag" content="Context">
@@ -235,6 +235,8 @@
 <h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><h3 id="哪些数据会需要共享？"><a href="#哪些数据会需要共享？" class="headerlink" title="哪些数据会需要共享？"></a>哪些数据会需要共享？</h3><blockquote>
 <p> Context 设计目的是为了共享那些对于一个组件树而言是<strong>“全局”的数据</strong>，例如当前认证的用户、主题或首选语言。</p>
 </blockquote>
+<span id="more"></span>
+
 <h2 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h2><h3 id="1-创建并初始化Context"><a href="#1-创建并初始化Context" class="headerlink" title="1. 创建并初始化Context"></a>1. 创建并初始化Context</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> MyContext = createContex(defaultValue);</span><br></pre></td></tr></table></figure>
 
 <p>创建一个 Context 对象。当 React 渲染一个订阅了这个 Context 对象的组件，这个组件会从组件树中离自身最近的那个匹配的 <code>Provider</code> 中读取到当前的 context 值。</p>
