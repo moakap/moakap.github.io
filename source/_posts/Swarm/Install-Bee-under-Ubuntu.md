@@ -12,7 +12,7 @@ date: 2021-05-26 10:52:51
 
 基本安装步骤比较简单，可以直接[Swarm Bee参考官方文档]([Quick Start | Swarm Bee Client (ethswarm.org)](https://docs.ethswarm.org/docs/installation/quick-start))。
 
-
+<!-- more -->
 
 ### 1.1 Bee Clef安装
 
