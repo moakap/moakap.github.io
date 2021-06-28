@@ -18,6 +18,8 @@ Swarm主网与6月21日上线，根据[官方通知](https://medium.com/ethereum
 - 7月22日: aBZZ转移截止。
 - 8月2日: 派发BZZ，测试网Goerli的aBZZ会转化成xDai中的BZZ。
 
+<!-- more -->
+
 ## Swarm主网运行Bee
 同时，从6月21日开始，所有节点都可以切到主网来专区BZZ。根据官方的说法，从测试网到主网没有任何继承关系，不存在所谓的升级操作(upgrade)。除了ethereum地址不变，节点在主网里会是一个全新的节点。
 
