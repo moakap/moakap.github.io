@@ -20,22 +20,22 @@
     var CONFIG = {"hostname":"moakap.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="保持Swarm数据活跃Swarm中包括了网络中所有节点的所有存储空间，也叫做DISC（分布式不可更改存储数据块）。只有数据块上邮票的拥有者节点具有写权限。">
+  <meta name="description" content="React Navigation在特定页面隐藏tab菜单栏在基于tab的导航应用中，有时候我们需要在某些页面隐藏tab菜单栏。假设这里有5个页面：  Home Feed Notifications Profile Settings">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在Swarm存储数据">
-<meta property="og:url" content="https://moakap.github.io/2021/06/06/Swarm/Keep-data-alive/index.html">
+<meta property="og:title" content="React Navigation在特定页面隐藏tab菜单栏">
+<meta property="og:url" content="https://moakap.github.io/2021/06/28/React/Hiding-tab-bar-in-specific-screens/index.html">
 <meta property="og:site_name" content="Moakap&#39;s Blog">
-<meta property="og:description" content="保持Swarm数据活跃Swarm中包括了网络中所有节点的所有存储空间，也叫做DISC（分布式不可更改存储数据块）。只有数据块上邮票的拥有者节点具有写权限。">
+<meta property="og:description" content="React Navigation在特定页面隐藏tab菜单栏在基于tab的导航应用中，有时候我们需要在某些页面隐藏tab菜单栏。假设这里有5个页面：  Home Feed Notifications Profile Settings">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-06-06T11:00:51.000Z">
+<meta property="article:published_time" content="2021-06-28T16:55:51.000Z">
 <meta property="article:modified_time" content="2021-06-28T08:56:10.078Z">
 <meta property="article:author" content="moakap">
-<meta property="article:tag" content="Swarm">
-<meta property="article:tag" content="Bee">
-<meta property="article:tag" content="Stamps">
+<meta property="article:tag" content="React">
+<meta property="article:tag" content="React-Navigation">
+<meta property="article:tag" content="Tab">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://moakap.github.io/2021/06/06/Swarm/Keep-data-alive/">
+<link rel="canonical" href="https://moakap.github.io/2021/06/28/React/Hiding-tab-bar-in-specific-screens/">
 
 
 <script id="page-configurations">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>在Swarm存储数据 | Moakap's Blog</title>
+  <title>React Navigation在特定页面隐藏tab菜单栏 | Moakap's Blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DFB6WMHQPG"></script>
     <script>
@@ -174,7 +174,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://moakap.github.io/2021/06/06/Swarm/Keep-data-alive/">
+    <link itemprop="mainEntityOfPage" href="https://moakap.github.io/2021/06/28/React/Hiding-tab-bar-in-specific-screens/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/snail-filled.png">
@@ -187,7 +187,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          在Swarm存储数据
+          React Navigation在特定页面隐藏tab菜单栏
         </h1>
 
         <div class="post-meta">
@@ -197,7 +197,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-06-06 11:00:51" itemprop="dateCreated datePublished" datetime="2021-06-06T11:00:51+00:00">2021-06-06</time>
+              <time title="创建时间：2021-06-28 16:55:51" itemprop="dateCreated datePublished" datetime="2021-06-28T16:55:51+00:00">2021-06-28</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -205,16 +205,20 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/technology/" itemprop="url" rel="index"><span itemprop="name">technology</span></a>
+                  <a href="/categories/Technology/" itemprop="url" rel="index"><span itemprop="name">Technology</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/technology/Swarm/" itemprop="url" rel="index"><span itemprop="name">Swarm</span></a>
+                  <a href="/categories/Technology/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technology/%E5%89%8D%E7%AB%AF/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/06/06/Swarm/Keep-data-alive/" class="post-meta-item leancloud_visitors" data-flag-title="在Swarm存储数据" title="阅读次数">
+            <span id="/2021/06/28/React/Hiding-tab-bar-in-specific-screens/" class="post-meta-item leancloud_visitors" data-flag-title="React Navigation在特定页面隐藏tab菜单栏" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -229,8 +233,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/06/06/Swarm/Keep-data-alive/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/06/Swarm/Keep-data-alive/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/06/28/React/Hiding-tab-bar-in-specific-screens/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/28/React/Hiding-tab-bar-in-specific-screens/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -245,30 +249,25 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="保持Swarm数据活跃"><a href="#保持Swarm数据活跃" class="headerlink" title="保持Swarm数据活跃"></a>保持Swarm数据活跃</h2><p>Swarm中包括了网络中所有节点的所有存储空间，也叫做DISC（分布式不可更改存储数据块）。只有数据块上邮票的拥有者节点具有写权限。</p>
+        <h2 id="React-Navigation在特定页面隐藏tab菜单栏"><a href="#React-Navigation在特定页面隐藏tab菜单栏" class="headerlink" title="React Navigation在特定页面隐藏tab菜单栏"></a>React Navigation在特定页面隐藏tab菜单栏</h2><p>在基于tab的导航应用中，有时候我们需要在某些页面隐藏tab菜单栏。假设这里有5个页面：</p>
+<ul>
+<li>Home</li>
+<li>Feed</li>
+<li>Notifications</li>
+<li>Profile</li>
+<li>Settings</li>
+</ul>
 <span id="more"></span>
 
-<h4 id="节点钱包充值"><a href="#节点钱包充值" class="headerlink" title="节点钱包充值"></a>节点钱包充值</h4><p>要启动Bee节点，你应该已经提供了相应数量的gETH（用作gas费用）和gBZZ（用作跟其它节点交换数据）。这些会在你的节点第一次启动的时候转入到节点对应的支票地址。为了购买邮票包，你就需要给你的钱包充入gBZZ。最简单的方法就是直接从你的支票本中提现。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -XPOST &quot;http://localhost:1635/chequebook/withdraw/?amount=1000&quot;</span><br></pre></td></tr></table></figure>
+<p>App对应的导航逻辑大致是这样的:</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">HomeStack</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">Stack.Navigator</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">Stack.Screen</span> <span class="attr">name</span>=<span class="string">&quot;Home&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Home&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">Stack.Screen</span> <span class="attr">name</span>=<span class="string">&quot;Profile&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Profile&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">Stack.Screen</span> <span class="attr">name</span>=<span class="string">&quot;Settings&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Settings&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">Stack.Navigator</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">Tab.Navigator</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">Tab.Screen</span> <span class="attr">name</span>=<span class="string">&quot;Home&quot;</span> <span class="attr">component</span>=<span class="string">&#123;HomeStack&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">Tab.Screen</span> <span class="attr">name</span>=<span class="string">&quot;Feed&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Feed&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">Tab.Screen</span> <span class="attr">name</span>=<span class="string">&quot;Notifications&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Notifications&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">Tab.Navigator</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>在现有结构中，当我们导航到Profile和Settings页面时，仍然可以在页面底部看到tab菜单栏。</p>
+<p>但是我们的设计是只在Home、Feed和Notifications页面显示tab菜单栏，而Profile和Settings页面时却不需要显示tab，我们需要改变现有的导航结构。最简单的方法是将tab导航器放在导航栈的第一个页面内部，而不是将导航栈放在tab里边，像下边这样：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">HomeTabs</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">Tab.Navigator</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">Tab.Screen</span> <span class="attr">name</span>=<span class="string">&quot;Home&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Home&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">Tab.Screen</span> <span class="attr">name</span>=<span class="string">&quot;Feed&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Feed&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">Tab.Screen</span> <span class="attr">name</span>=<span class="string">&quot;Notifications&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Notifications&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">Tab.Navigator</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">Stack.Navigator</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">Stack.Screen</span> <span class="attr">name</span>=<span class="string">&quot;Home&quot;</span> <span class="attr">component</span>=<span class="string">&#123;HomeTabs&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">Stack.Screen</span> <span class="attr">name</span>=<span class="string">&quot;Profile&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Profile&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">Stack.Screen</span> <span class="attr">name</span>=<span class="string">&quot;Settings&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Settings&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">Stack.Navigator</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-<h3 id="购买邮票包"><a href="#购买邮票包" class="headerlink" title="购买邮票包"></a>购买邮票包</h3><p>邮票是分组/批产生的，这样存储节点可以根据本地信息计算数据块上的邮票的有效性。也可以保证Swarm中数据的隐私性。</p>
-<p>整个swarm地址空间被分成2^16也就是65536个不同的数据桶（bucket），数据桶的深度为16。然后在数据桶中创建邮票包。上传以后，每个文件会被拆分成许多大小4kb的数据区块（chunk），然后分配到某个数据桶。<br>创建邮票包时需要指定两个值，深度和数量。</p>
-<h4 id="数量"><a href="#数量" class="headerlink" title="数量"></a>数量</h4><p>表示邮票包代表的gBZZ数量。购买整个邮票包需要支付的gBZZ会根据数量和邮票包深度来计算。</p>
-<p>支付数量形成了当前邮票包的余额。余额会随着时间和数据块在Goerli区块链中的使用逐渐减少。</p>
-<h4 id="深度"><a href="#深度" class="headerlink" title="深度"></a>深度</h4><p>邮票包的深度定义了每个数据桶可以分配的数据块(chunk)数量。每个数据桶中的数据块数量  = <code>2^(batch depth - bucket depth) = 2^(batch depth - 16)</code>. </p>
-<h4 id="邮票包深度和数量的计算"><a href="#邮票包深度和数量的计算" class="headerlink" title="邮票包深度和数量的计算"></a>邮票包深度和数量的计算</h4><p>邮票是Swarm中最新引入的功能，主要考虑如何更好的使用邮票包，还处于早起概念阶段。</p>
-<p>现在，开始上传内容的最简单方法就是购买一个足够大的邮票包。否则，邮票包不够大，就会出现大量的数据块被分配到同一个数据桶的情况。</p>
-<p>具体的数量取决于你想要在swarm中保存数据的时长。由于价格是波动的，很难准确预测你的数据块会用完所有余额；然而可以根据当前价格和剩余金额来大概估算。</p>
-<p>就当前情况，我们建议你为邮票包设置深度为20，至少10000000数量。这应该可以让你上传相当一些数据，并且保证在可见的将来这些文件一直保存在Swarm中。</p>
-<p>注意：当购买邮票时，默认你已经同意从账户中扣除相应数量的gBZZ。尽管你的账户余额会随着时间逐渐减少，邮票包中的gBZZ是无法退回的。这也是Swarm分布式设计思想的结果，具体参考Swarm白皮书。</p>
-<p><code>curl -s -XPOST http://localhost:1633/stamps/10000000/20</code></p>
-<p>购买了邮票包后，其它Bee节点需要同步并且注册相应的邮票包。取决于网络状况，这个同步过程可能需要几分钟时间 。</p>
-<h3 id="计算邮票包余额"><a href="#计算邮票包余额" class="headerlink" title="计算邮票包余额"></a>计算邮票包余额</h3><p>你的邮票包需要保持足够的余额，以便其它Bee节点依据“邻里规范”为你的数据提供存储和服务。因此你需要定期检查余额，并根据需要充值。</p>
-<p><code>curl localhost:1635/chainstate</code></p>
-<p>以上命令会显示当前单个数据块的价格（单位GPLUR, GBZZ的最小单位）。</p>
-<p>很快，信息也会加入到你的账户总票据信息中。当前这个阶段，你需要针对每个新创建的邮票包ID重新上传内容。</p>
+<p>重新组织过导航结构以后，现在，当我们导航到Profile和Settings页面时，就看不到tab菜单栏了。</p>
+<p>有一些导航器，比如<a target="_blank" rel="noopener" href="https://reactnavigation.org/docs/bottom-tab-navigator">底部tab导航器</a>，也会有一个tabBarVisible的选项，可以用来隐藏tab栏。然而，我们不推荐使用这种方法，因为在导航过程中使用改变tab栏的显示和隐藏会影响导航栈的动画切换，有时还可能导致其它一些想不到的错误。</p>
 
     </div>
 
@@ -279,9 +278,9 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/Swarm/" rel="tag"><i class="fa fa-tag"></i> Swarm</a>
-              <a href="/tags/Bee/" rel="tag"><i class="fa fa-tag"></i> Bee</a>
-              <a href="/tags/Stamps/" rel="tag"><i class="fa fa-tag"></i> Stamps</a>
+              <a href="/tags/React/" rel="tag"><i class="fa fa-tag"></i> React</a>
+              <a href="/tags/React-Navigation/" rel="tag"><i class="fa fa-tag"></i> React-Navigation</a>
+              <a href="/tags/Tab/" rel="tag"><i class="fa fa-tag"></i> Tab</a>
           </div>
 
         
@@ -290,13 +289,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/05/26/Swarm/Swarm-Bee-Configuration/" rel="prev" title="Swarm Bee配置">
-      <i class="fa fa-chevron-left"></i> Swarm Bee配置
+    <a href="/2021/06/28/React/React-Navigation-Authentication-Flows/" rel="prev" title="React Navigation中的登录认证流程">
+      <i class="fa fa-chevron-left"></i> React Navigation中的登录认证流程
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/06/06/Swarm/Upload-and-Download-Files/" rel="next" title="上传和下载文件">
-      上传和下载文件 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -356,7 +352,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%9D%E6%8C%81Swarm%E6%95%B0%E6%8D%AE%E6%B4%BB%E8%B7%83"><span class="nav-number">1.</span> <span class="nav-text">保持Swarm数据活跃</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8A%82%E7%82%B9%E9%92%B1%E5%8C%85%E5%85%85%E5%80%BC"><span class="nav-number">1.0.1.</span> <span class="nav-text">节点钱包充值</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B4%AD%E4%B9%B0%E9%82%AE%E7%A5%A8%E5%8C%85"><span class="nav-number">1.1.</span> <span class="nav-text">购买邮票包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E9%87%8F"><span class="nav-number">1.1.1.</span> <span class="nav-text">数量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6"><span class="nav-number">1.1.2.</span> <span class="nav-text">深度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%82%AE%E7%A5%A8%E5%8C%85%E6%B7%B1%E5%BA%A6%E5%92%8C%E6%95%B0%E9%87%8F%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="nav-number">1.1.3.</span> <span class="nav-text">邮票包深度和数量的计算</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E9%82%AE%E7%A5%A8%E5%8C%85%E4%BD%99%E9%A2%9D"><span class="nav-number">1.2.</span> <span class="nav-text">计算邮票包余额</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#React-Navigation%E5%9C%A8%E7%89%B9%E5%AE%9A%E9%A1%B5%E9%9D%A2%E9%9A%90%E8%97%8Ftab%E8%8F%9C%E5%8D%95%E6%A0%8F"><span class="nav-number">1.</span> <span class="nav-text">React Navigation在特定页面隐藏tab菜单栏</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
