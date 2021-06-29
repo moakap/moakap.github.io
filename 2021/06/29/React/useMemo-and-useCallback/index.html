@@ -28,7 +28,7 @@
 <meta property="og:description" content="React中的useMemo和useCallback先看看二者的官方定义。 useMemo1const memoizedValue &#x3D; useMemo(() &#x3D;&gt; computeExpensiveValue(a, b), [a, b]);   返回一个带有缓存（记忆）功能的值。 输入 create函数（用来创建&#x2F;生成要缓存的值，所以叫create函数） 依赖项列表（指明什么时候需要重新计算并">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-06-29T21:51:51.000Z">
-<meta property="article:modified_time" content="2021-06-29T13:58:03.312Z">
+<meta property="article:modified_time" content="2021-06-29T13:58:35.003Z">
 <meta property="article:author" content="moakap">
 <meta property="article:tag" content="React">
 <meta property="article:tag" content="useMemo">
@@ -260,6 +260,8 @@
 </ul>
 </li>
 </ul>
+<span id="more"></span>
+
 <p>useMemo仅在某个依赖项改变时才会触发重新计算。这种优化可以避免在每次渲染时都进行不必要的高开销计算。</p>
 <p>另外就是当依赖项发生改变时，传入的函数会在渲染时执行。所以函数中应该避免那些在渲染时不该做的操作，比如那些应该在<code>useEffect</code>中执行的副作用操作。</p>
 <p>如果没有指明依赖列表，每次渲染时都会重新计算。</p>
