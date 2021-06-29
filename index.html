@@ -125,7 +125,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">19</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">21</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -135,7 +135,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">14</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">15</span></a>
 
   </li>
   </ul>
@@ -162,6 +162,147 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,default">
+    <link itemprop="mainEntityOfPage" href="https://moakap.github.io/2021/06/29/React/useMemo-and-useCallback/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/snail-filled.png">
+      <meta itemprop="name" content="moakap">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Moakap's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/29/React/useMemo-and-useCallback/" class="post-title-link" itemprop="url">React中的useMemo和useCallback</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-29 21:51:51" itemprop="dateCreated datePublished" datetime="2021-06-29T21:51:51+00:00">2021-06-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technology/" itemprop="url" rel="index"><span itemprop="name">Technology</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technology/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technology/%E5%89%8D%E7%AB%AF/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/06/29/React/useMemo-and-useCallback/" class="post-meta-item leancloud_visitors" data-flag-title="React中的useMemo和useCallback" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/06/29/React/useMemo-and-useCallback/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/29/React/useMemo-and-useCallback/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="React中的useMemo和useCallback"><a href="#React中的useMemo和useCallback" class="headerlink" title="React中的useMemo和useCallback"></a>React中的useMemo和useCallback</h2><p>先看看二者的基本定义</p>
+<h3 id="useMemo"><a href="#useMemo" class="headerlink" title="useMemo"></a>useMemo</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> memoizedValue = useMemo(<span class="function">() =&gt;</span> computeExpensiveValue(a, b), [a, b]);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>返回一个带有缓存（记忆）功能的值。</li>
+<li>输入<ul>
+<li>create函数（用来创建/生成要缓存的值，所以叫create函数）</li>
+<li>依赖项列表（指明什么时候需要重新计算并覆盖之前缓存的值）</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">另外就是当依赖项发生改变时，传入的函数会在渲染时执行。所以函数中应该避免那些在渲染时不该做的操作，比如那些应该在```useEffect```中执行的副作用操作。</span><br><span class="line"></span><br><span class="line">如果没有指明依赖列表，每次渲染时都会重新计算。</span><br><span class="line"></span><br><span class="line">所以从这个角度来说，```useMemo```只应该被用来作为性能优化的一种方法，而不是某种语义的保证。</span><br><span class="line"></span><br><span class="line">将来，React可能会根据需要选择“忘记”某些记忆的值，在重新渲染的时候如论如何都触发重新计算，比如在组件不再显示时释放内存。所以我们的代码应该能够在没有```useMemo```的时候一样能够正常工作，然后把```useMemo```仅仅作为性能优化的一部分。</span><br><span class="line"></span><br><span class="line">注意：依赖项列表不会作为参数传递给create函数。尽管从概念上来这就是依赖项代表的意义，函数中引用的每一个值都应该在依赖列表中出现。将来，这些依赖列表可能会由足够高级的编译器来自动生成。</span><br><span class="line"></span><br><span class="line">我们建议使用```exhaustive-deps```规则作为```eslint-plugin-react-hooks```包的一部分。这样就可以在依赖性声明不正确时给出警告和修复建议。</span><br><span class="line"></span><br><span class="line">### useCallback</span><br><span class="line"></span><br><span class="line">```js</span><br><span class="line">const memoizedCallback = useCallback(</span><br><span class="line">  () =&gt; &#123;</span><br><span class="line">    doSomething(a, b);</span><br><span class="line">  &#125;,</span><br><span class="line">  [a, b],</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>返回一个具有缓存（记忆）功能的回调函数。</li>
+<li>输入<ul>
+<li>内联函数（要缓存的函数）</li>
+<li>依赖项列表（指明什么时候需要重新定义函数）</li>
+</ul>
+</li>
+</ul>
+<p>useCallback会返回一个具有记忆功能版本的回调函数，仅仅在依赖项中的至少一个发生变化的时候改变。当传递回调给那些使用依赖引用对等性进行性能优化来避免不必要的渲染的子组件时会非常有用（例如<code>shouldComponentUpdate</code>）。</p>
+<p><code>useCabllback(fn, deps)</code>相当于 <code>useMemo(() =&gt; fn, deps)</code>。</p>
+<h3 id="useMemo和useCallback比较"><a href="#useMemo和useCallback比较" class="headerlink" title="useMemo和useCallback比较"></a>useMemo和useCallback比较</h3><h4 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h4><ul>
+<li>输入参数相同<ul>
+<li>从定义来说，两个的输入是一样的，都是一个函数和依赖项列表。</li>
+</ul>
+</li>
+<li>目的相同/类似<ul>
+<li>从功能和目的上来说，<code>useMemo</code>和<code>useCallback</code>都是在某种意义上的性能优化。要么减少不必要的计算（由于父组件中state变化），要么减少不必要的函数重新定义（父组件中state变化导致组件重新渲染，同时会触发函数定义的刷新）。</li>
+<li>本身并不影响程序的任何逻辑流程。</li>
+</ul>
+</li>
+</ul>
+<h4 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a>不同点</h4><ul>
+<li>（从定义及语法上看）返回值不同<ul>
+<li><code>useMemo</code>- 返回具有缓存功能的值，缓存的是函数的返回值。</li>
+<li><code>useCallback</code>- 返回具有缓存功能的回调函数，缓存的是函数本身。</li>
+</ul>
+</li>
+<li>使用场景不同<br>这个就很好理解了，因为有不同的返回值，所以对应的使用场景也不同。<ul>
+<li><code>useMemo</code>- 从父组件传递变量到子组件，用来避免<strong>子组件</strong>内一些不必要的高开销计算。适用于高开销计算的场景，节约内存资源。</li>
+<li><code>useCallback</code>- 从父组件传递回调函数到子组件，用来避免由于父组件自身state变化而重新渲染时的不必要的回调函数的重新生成。这样当把callback传递给子组件时，就会触发子组件的重新渲染（每次都是新生成的函数props），有些情况下，会使子组件内的一些性能优化失效。</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1072,95 +1213,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,default">
-    <link itemprop="mainEntityOfPage" href="https://moakap.github.io/2021/05/25/React/Context-in-React/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/snail-filled.png">
-      <meta itemprop="name" content="moakap">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Moakap's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/25/React/Context-in-React/" class="post-title-link" itemprop="url">React中的Context</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-05-25 18:52:51" itemprop="dateCreated datePublished" datetime="2021-05-25T18:52:51+00:00">2021-05-25</time>
-            </span>
-
-          
-            <span id="/2021/05/25/React/Context-in-React/" class="post-meta-item leancloud_visitors" data-flag-title="React中的Context" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/05/25/React/Context-in-React/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/25/React/Context-in-React/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Context定义和目的"><a href="#Context定义和目的" class="headerlink" title="Context定义和目的"></a>Context定义和目的</h2><p>Context 提供了一种在组件之间共享数据的方式，而不必显式地通过组件树的逐层传递 props。</p>
-<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><h3 id="哪些数据会需要共享？"><a href="#哪些数据会需要共享？" class="headerlink" title="哪些数据会需要共享？"></a>哪些数据会需要共享？</h3><blockquote>
-<p> Context 设计目的是为了共享那些对于一个组件树而言是<strong>“全局”的数据</strong>，例如当前认证的用户、主题或首选语言。</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/05/25/React/Context-in-React/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1232,7 +1284,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1245,7 +1297,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

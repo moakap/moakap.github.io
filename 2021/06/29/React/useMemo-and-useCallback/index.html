@@ -20,21 +20,22 @@
     var CONFIG = {"hostname":"moakap.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="图片、字体、视频、音频和其它你的App里用到的不是JavaScript的文件都被认为是资源(asset). 就比如说在在互联网上， 所有你通过http传输获取的东西叫资源。这一点跟移动app不同，在app里资源一般跟app本身的二进制文件打包在一起。 然而，在Expo中通过require引用的资源（例如&lt;Image source&#x3D;&amp;#123;require(&#39;.&#x2F;assets&#x2F;ima">
+  <meta name="description" content="React中的useMemo和useCallback先看看二者的基本定义 useMemo1const memoizedValue &#x3D; useMemo(() &#x3D;&gt; computeExpensiveValue(a, b), [a, b]);   返回一个带有缓存（记忆）功能的值。 输入 create函数（用来创建&#x2F;生成要缓存的值，所以叫create函数） 依赖项列表（指明什么时候需要重新计算并覆">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Expo中的Assets资源使用">
-<meta property="og:url" content="https://moakap.github.io/2021/05/24/Expo/Assets-in-Expo/index.html">
+<meta property="og:title" content="React中的useMemo和useCallback">
+<meta property="og:url" content="https://moakap.github.io/2021/06/29/React/useMemo-and-useCallback/index.html">
 <meta property="og:site_name" content="Moakap&#39;s Blog">
-<meta property="og:description" content="图片、字体、视频、音频和其它你的App里用到的不是JavaScript的文件都被认为是资源(asset). 就比如说在在互联网上， 所有你通过http传输获取的东西叫资源。这一点跟移动app不同，在app里资源一般跟app本身的二进制文件打包在一起。 然而，在Expo中通过require引用的资源（例如&lt;Image source&#x3D;&amp;#123;require(&#39;.&#x2F;assets&#x2F;ima">
+<meta property="og:description" content="React中的useMemo和useCallback先看看二者的基本定义 useMemo1const memoizedValue &#x3D; useMemo(() &#x3D;&gt; computeExpensiveValue(a, b), [a, b]);   返回一个带有缓存（记忆）功能的值。 输入 create函数（用来创建&#x2F;生成要缓存的值，所以叫create函数） 依赖项列表（指明什么时候需要重新计算并覆">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-05-24T11:52:51.000Z">
+<meta property="article:published_time" content="2021-06-29T21:51:51.000Z">
 <meta property="article:modified_time" content="2021-06-29T13:50:47.905Z">
 <meta property="article:author" content="moakap">
-<meta property="article:tag" content="expo">
-<meta property="article:tag" content="assets">
+<meta property="article:tag" content="React">
+<meta property="article:tag" content="useMemo">
+<meta property="article:tag" content="useCallback">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://moakap.github.io/2021/05/24/Expo/Assets-in-Expo/">
+<link rel="canonical" href="https://moakap.github.io/2021/06/29/React/useMemo-and-useCallback/">
 
 
 <script id="page-configurations">
@@ -47,7 +48,7 @@
   };
 </script>
 
-  <title>Expo中的Assets资源使用 | Moakap's Blog</title>
+  <title>React中的useMemo和useCallback | Moakap's Blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DFB6WMHQPG"></script>
     <script>
@@ -173,7 +174,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://moakap.github.io/2021/05/24/Expo/Assets-in-Expo/">
+    <link itemprop="mainEntityOfPage" href="https://moakap.github.io/2021/06/29/React/useMemo-and-useCallback/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/snail-filled.png">
@@ -186,7 +187,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Expo中的Assets资源使用
+          React中的useMemo和useCallback
         </h1>
 
         <div class="post-meta">
@@ -196,11 +197,28 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-05-24 11:52:51" itemprop="dateCreated datePublished" datetime="2021-05-24T11:52:51+00:00">2021-05-24</time>
+              <time title="创建时间：2021-06-29 21:51:51" itemprop="dateCreated datePublished" datetime="2021-06-29T21:51:51+00:00">2021-06-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technology/" itemprop="url" rel="index"><span itemprop="name">Technology</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technology/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technology/%E5%89%8D%E7%AB%AF/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a>
+                </span>
             </span>
 
           
-            <span id="/2021/05/24/Expo/Assets-in-Expo/" class="post-meta-item leancloud_visitors" data-flag-title="Expo中的Assets资源使用" title="阅读次数">
+            <span id="/2021/06/29/React/useMemo-and-useCallback/" class="post-meta-item leancloud_visitors" data-flag-title="React中的useMemo和useCallback" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -215,8 +233,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/05/24/Expo/Assets-in-Expo/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/24/Expo/Assets-in-Expo/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/06/29/React/useMemo-and-useCallback/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/29/React/useMemo-and-useCallback/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -231,26 +249,52 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>图片、字体、视频、音频和其它你的App里用到的不是JavaScript的文件都被认为是资源(asset). 就比如说在在互联网上， 所有你通过http传输获取的东西叫资源。这一点跟移动app不同，在app里资源一般跟app本身的二进制文件打包在一起。</p>
-<p>然而，在Expo中通过<code>require</code>引用的资源（例如<code>&lt;Image source=&#123;require(&#39;./assets/images/example.png&#39;)&#125; /&gt;</code>在编译的时候已经在本地文件系统存在了）跟在web中通过URL引用的资源（例如<code>&lt;Image source=&#123;&#123;uri: 'http://yourwebsite.com/logo.png'&#125;&#125; /&gt;</code>）是有区别的。Expo不保证通过web URL引用的这些资源的可用性，因为这些资源不在Expo的管理范围。另外，Expo本身无法获取任意Web URL的全部信息。当你的资源存在于本地文件系统的时候，打包器能够读取资源的基本元数据metadata，比如宽度、高度，然后将这些信息传递给你的App，所以你不需要明确指明某个图片的宽度和高度。然而当你使用远程web URL引用资源的时候，你就必须明确得指明宽度、高度这些信息，否则系统会默认使用0x0。 最后，我们也会看到两者的缓存机制也不同。</p>
-<p>接下来是对<code>require</code>类型资源得详细解释，这些资源必须在编译的时候就已经在文件系统存在。而在通过远程URL引用图片资源的例子中，系统默认你知道怎么将一个图片上传到网络，并确保能够被web和移动App访问。</p>
-<span id="more"></span>
+        <h2 id="React中的useMemo和useCallback"><a href="#React中的useMemo和useCallback" class="headerlink" title="React中的useMemo和useCallback"></a>React中的useMemo和useCallback</h2><p>先看看二者的基本定义</p>
+<h3 id="useMemo"><a href="#useMemo" class="headerlink" title="useMemo"></a>useMemo</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> memoizedValue = useMemo(<span class="function">() =&gt;</span> computeExpensiveValue(a, b), [a, b]);</span><br></pre></td></tr></table></figure>
 
-<h2 id="资源的位置"><a href="#资源的位置" class="headerlink" title="资源的位置"></a>资源的位置</h2><h3 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h3><p>当你工作在项目的本地开发环境时，所有资源被存放在本地文件系统，并且集成到JavaScript的模块中。所以如果想要包含某个图片，你可以直接在javascript中使用<code>require</code>引用，像这样<code>require(&#39;./assets/images/example.png&#39;)</code>。这里唯一的不同是，你必须指定资源的文件后缀；没有后缀的话，系统会默认这是一个javascript文件。下边这个语句会在编译的时候把资源连同资源的元数据一起赋值给一个对象，然后整个对象传递给<code>Image</code>组件做渲染。</p>
-<p><code>&lt;Image source=&#123;require(&#39;./assets/images/example.png&#39;)&#125; /&gt;</code></p>
-<h3 id="生产环境"><a href="#生产环境" class="headerlink" title="生产环境"></a>生产环境</h3><p>每次你通过Expo发布App的时候，Expo都会把所有需要的资源上传到Amazon CloudFront，一个快速的CDN。而且整个上传过程会非常智能，没有变化的资源会被跳过。整个过程都由Expo自动完成，不需要开发者任何操作。</p>
-<h2 id="自定义支持的资源扩展"><a href="#自定义支持的资源扩展" class="headerlink" title="自定义支持的资源扩展"></a>自定义支持的资源扩展</h2><p>有时候你需要用到的文件类型不在Expo默认的支持范围。例如，如果你想要在App中导入数据库，就可能会用到.db文件。参考<a target="_blank" rel="noopener" href="https://docs.expo.io/guides/customizing-metro/">自定义Metro</a>了解如何通过Metro自定义iOS和Android资源扩展，参考<a target="_blank" rel="noopener" href="https://docs.expo.io/guides/customizing-webpack/">自定义Webpack</a>了解如何通过Webpack自定义Web资源扩展。</p>
-<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>图片一般是Expo项目中占用空间最多的资源。优化图片可以减少用户设备上的空间占用，从而降低显示前的加载时间和使用带宽。可以通过执行<code>npx expo-optimize</code>命令来压缩PNG和JPEG图片。也可以设置下边的选项：</p>
 <ul>
-<li><code>--save</code>: 备份所有图片（以<code>.orig</code>文件的形式保存）</li>
-<li><code>--quality=N</code>: 设置文件压缩比率，N可以是1-100之间的整数（包含1和100，默认为60）</li>
-<li><code>--include=&quot;[pattern]&quot;</code>: 设置仅优化满足通配符模式的资源（默认使用app.json中的<code>assetBundlePatterns</code>字段）</li>
-<li><code>--exclude=&quot;[pattern]&quot;</code>: 排除满足通配符模式的资源</li>
+<li>返回一个带有缓存（记忆）功能的值。</li>
+<li>输入<ul>
+<li>create函数（用来创建/生成要缓存的值，所以叫create函数）</li>
+<li>依赖项列表（指明什么时候需要重新计算并覆盖之前缓存的值）</li>
 </ul>
-<p>注意：所有通配符得匹配范围都是相对于项目的根目录，跟执行命令所在的目录无关。</p>
-<h3 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h3><p>字体是启动App必不可缺的资源。web应用中的字体加载问题分为FOUT (Flash of Unstyled Text), FOIT (Flash of Invisible Text), FOFT (Flash of Faux Text)这几种，详细可以参考<a target="_blank" rel="noopener" href="https://css-tricks.com/fout-foit-foft/">这里</a>。</p>
-<p>icon-font-powered的默认行为是第一次加载的时候使用FOIT，然后在后续的加载中字体会自动被缓存。相比较于传统Web，在用户对移动设备有更高的标准要求，所以你可能需要在初始屏幕加载的过程中预加载和缓存字体和一些重要的图片。</p>
-<h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p>参考[这里](<a target="_blank" rel="noopener" href="https://docs.expo.io/guides/preloading-and-caching-assets/">Asset Caching - Expo Documentation</a>)了解更多资源缓存的话题。</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">另外就是当依赖项发生改变时，传入的函数会在渲染时执行。所以函数中应该避免那些在渲染时不该做的操作，比如那些应该在```useEffect```中执行的副作用操作。</span><br><span class="line"></span><br><span class="line">如果没有指明依赖列表，每次渲染时都会重新计算。</span><br><span class="line"></span><br><span class="line">所以从这个角度来说，```useMemo```只应该被用来作为性能优化的一种方法，而不是某种语义的保证。</span><br><span class="line"></span><br><span class="line">将来，React可能会根据需要选择“忘记”某些记忆的值，在重新渲染的时候如论如何都触发重新计算，比如在组件不再显示时释放内存。所以我们的代码应该能够在没有```useMemo```的时候一样能够正常工作，然后把```useMemo```仅仅作为性能优化的一部分。</span><br><span class="line"></span><br><span class="line">注意：依赖项列表不会作为参数传递给create函数。尽管从概念上来这就是依赖项代表的意义，函数中引用的每一个值都应该在依赖列表中出现。将来，这些依赖列表可能会由足够高级的编译器来自动生成。</span><br><span class="line"></span><br><span class="line">我们建议使用```exhaustive-deps```规则作为```eslint-plugin-react-hooks```包的一部分。这样就可以在依赖性声明不正确时给出警告和修复建议。</span><br><span class="line"></span><br><span class="line">### useCallback</span><br><span class="line"></span><br><span class="line">```js</span><br><span class="line">const memoizedCallback = useCallback(</span><br><span class="line">  () =&gt; &#123;</span><br><span class="line">    doSomething(a, b);</span><br><span class="line">  &#125;,</span><br><span class="line">  [a, b],</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>返回一个具有缓存（记忆）功能的回调函数。</li>
+<li>输入<ul>
+<li>内联函数（要缓存的函数）</li>
+<li>依赖项列表（指明什么时候需要重新定义函数）</li>
+</ul>
+</li>
+</ul>
+<p>useCallback会返回一个具有记忆功能版本的回调函数，仅仅在依赖项中的至少一个发生变化的时候改变。当传递回调给那些使用依赖引用对等性进行性能优化来避免不必要的渲染的子组件时会非常有用（例如<code>shouldComponentUpdate</code>）。</p>
+<p><code>useCabllback(fn, deps)</code>相当于 <code>useMemo(() =&gt; fn, deps)</code>。</p>
+<h3 id="useMemo和useCallback比较"><a href="#useMemo和useCallback比较" class="headerlink" title="useMemo和useCallback比较"></a>useMemo和useCallback比较</h3><h4 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h4><ul>
+<li>输入参数相同<ul>
+<li>从定义来说，两个的输入是一样的，都是一个函数和依赖项列表。</li>
+</ul>
+</li>
+<li>目的相同/类似<ul>
+<li>从功能和目的上来说，<code>useMemo</code>和<code>useCallback</code>都是在某种意义上的性能优化。要么减少不必要的计算（由于父组件中state变化），要么减少不必要的函数重新定义（父组件中state变化导致组件重新渲染，同时会触发函数定义的刷新）。</li>
+<li>本身并不影响程序的任何逻辑流程。</li>
+</ul>
+</li>
+</ul>
+<h4 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a>不同点</h4><ul>
+<li>（从定义及语法上看）返回值不同<ul>
+<li><code>useMemo</code>- 返回具有缓存功能的值，缓存的是函数的返回值。</li>
+<li><code>useCallback</code>- 返回具有缓存功能的回调函数，缓存的是函数本身。</li>
+</ul>
+</li>
+<li>使用场景不同<br>这个就很好理解了，因为有不同的返回值，所以对应的使用场景也不同。<ul>
+<li><code>useMemo</code>- 从父组件传递变量到子组件，用来避免<strong>子组件</strong>内一些不必要的高开销计算。适用于高开销计算的场景，节约内存资源。</li>
+<li><code>useCallback</code>- 从父组件传递回调函数到子组件，用来避免由于父组件自身state变化而重新渲染时的不必要的回调函数的重新生成。这样当把callback传递给子组件时，就会触发子组件的重新渲染（每次都是新生成的函数props），有些情况下，会使子组件内的一些性能优化失效。</li>
+</ul>
+</li>
+</ul>
 
     </div>
 
@@ -261,8 +305,9 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/expo/" rel="tag"><i class="fa fa-tag"></i> expo</a>
-              <a href="/tags/assets/" rel="tag"><i class="fa fa-tag"></i> assets</a>
+              <a href="/tags/React/" rel="tag"><i class="fa fa-tag"></i> React</a>
+              <a href="/tags/useMemo/" rel="tag"><i class="fa fa-tag"></i> useMemo</a>
+              <a href="/tags/useCallback/" rel="tag"><i class="fa fa-tag"></i> useCallback</a>
           </div>
 
         
@@ -271,13 +316,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/05/23/the-1st-post/" rel="prev" title="The 1st blog.">
-      <i class="fa fa-chevron-left"></i> The 1st blog.
+    <a href="/2021/06/28/React/Hiding-tab-bar-in-specific-screens/" rel="prev" title="React Navigation在特定页面隐藏tab菜单栏">
+      <i class="fa fa-chevron-left"></i> React Navigation在特定页面隐藏tab菜单栏
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/05/24/about/" rel="next" title="about">
-      about <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -337,7 +379,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B5%84%E6%BA%90%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">资源的位置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="nav-number">1.1.</span> <span class="nav-text">开发环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83"><span class="nav-number">1.2.</span> <span class="nav-text">生产环境</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%94%AF%E6%8C%81%E7%9A%84%E8%B5%84%E6%BA%90%E6%89%A9%E5%B1%95"><span class="nav-number">2.</span> <span class="nav-text">自定义支持的资源扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E5%8C%96"><span class="nav-number">3.</span> <span class="nav-text">优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E7%89%87"><span class="nav-number">3.1.</span> <span class="nav-text">图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E4%BD%93"><span class="nav-number">3.2.</span> <span class="nav-text">字体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%93%E5%AD%98"><span class="nav-number">3.3.</span> <span class="nav-text">缓存</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#React%E4%B8%AD%E7%9A%84useMemo%E5%92%8CuseCallback"><span class="nav-number">1.</span> <span class="nav-text">React中的useMemo和useCallback</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#useMemo"><span class="nav-number">1.1.</span> <span class="nav-text">useMemo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#useMemo%E5%92%8CuseCallback%E6%AF%94%E8%BE%83"><span class="nav-number">1.2.</span> <span class="nav-text">useMemo和useCallback比较</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E5%90%8C%E7%82%B9"><span class="nav-number">1.2.1.</span> <span class="nav-text">相同点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C%E7%82%B9"><span class="nav-number">1.2.2.</span> <span class="nav-text">不同点</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
