@@ -26,6 +26,7 @@ const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
   - create函数（用来创建/生成要缓存的值，所以叫create函数）
   - 依赖项列表（指明什么时候需要重新计算并覆盖之前缓存的值）
 
+<!-- more -->
 
 useMemo仅在某个依赖项改变时才会触发重新计算。这种优化可以避免在每次渲染时都进行不必要的高开销计算。
 
