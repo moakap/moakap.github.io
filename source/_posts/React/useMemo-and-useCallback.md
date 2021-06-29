@@ -26,6 +26,7 @@ const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
   - create函数（用来创建/生成要缓存的值，所以叫create函数）
   - 依赖项列表（指明什么时候需要重新计算并覆盖之前缓存的值）
 
+
 ```useMemo```仅在某个依赖项改变时才会触发重新计算。这种优化可以避免在每次渲染时都进行不必要的高开销计算。
 
 另外就是当依赖项发生改变时，传入的函数会在渲染时执行。所以函数中应该避免那些在渲染时不该做的操作，比如那些应该在```useEffect```中执行的副作用操作。
@@ -40,6 +41,7 @@ const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 
 我们建议使用```exhaustive-deps```规则作为```eslint-plugin-react-hooks```包的一部分。这样就可以在依赖性声明不正确时给出警告和修复建议。
 
+
 ### useCallback
 
 ```js
@@ -51,10 +53,12 @@ const memoizedCallback = useCallback(
 );
 ```
 
+
 - 返回一个具有缓存（记忆）功能的回调函数。
 - 输入
   - 内联函数（要缓存的函数）
   - 依赖项列表（指明什么时候需要重新定义函数）
+
 
 useCallback会返回一个具有记忆功能版本的回调函数，仅仅在依赖项中的至少一个发生变化的时候改变。当传递回调给那些使用依赖引用对等性进行性能优化来避免不必要的渲染的子组件时会非常有用（例如```shouldComponentUpdate```）。
 
