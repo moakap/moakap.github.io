@@ -255,93 +255,14 @@
 </ul>
 </li>
 </ul>
-<p><a name="y1qgI"></a></p>
-<h4 id="非监督学习"><a href="#非监督学习" class="headerlink" title="非监督学习"></a>非监督学习</h4><p>非监督学习与监督学习正好相反，在过程中并不清楚有哪些特征标签，而是通过对样本的观察、分析和总结，去发现其中的特征，从看似杂乱无章的数据中发现共性。然后对新样本进行归类。</p>
-<blockquote>
-<p>归类/聚类（clustering）—— 对大量看似无特征的样本进行分类。</p>
-</blockquote>
-<p>经常会说非监督学习是归类或聚类（clustering）。与分类不同，聚类在划分之前并不知道有哪些类别，以及类别的特征，而是通过对样本的各种特征进行分析，将相似的样本划分为一组，进行“物以类聚”的划分。是一个从无到有的发现过程。</p>
-<p><a name="fiMUK"></a></p>
-<h4 id="半监督学习"><a href="#半监督学习" class="headerlink" title="半监督学习"></a>半监督学习</h4><p>介于监督和非监督学习之间。是基于监督学习获得理论和知识，对非监督学习的样本（无特征标签）进行分类。可以理解为我们走出学校以后根据在课堂上学到的知识和理论，对生活中遇到的事物进行分类和预测。</p>
-<p><a name="uSYKD"></a></p>
-<h2 id="Python-sklearn-scikit-learn"><a href="#Python-sklearn-scikit-learn" class="headerlink" title="Python sklearn (scikit-learn)"></a>Python sklearn (scikit-learn)</h2><p>Scikit-learn是一个用于Python的免费开源机器学习库。<br><a name="iuJ2D"></a></p>
-<h3 id="三大步骤"><a href="#三大步骤" class="headerlink" title="三大步骤"></a>三大步骤</h3><p>机器学习的本质就是让机器使用特定的算法对输入数据进行类似人的智能学习（找规律），根据同样的模型对新样本进行进行预测。具体到python中的sklearn，是通过一下三大步骤实现的。</p>
-<p><img src="https://user-images.githubusercontent.com/6308127/158024312-d4f37678-c620-4b07-bb4e-2c83b67bd25f.png" alt="image"></p>
-<ol>
-<li>准备数据——对输入数据进行预处理</li>
-<li>选择、训练和测试模型——使用处理后的样本数据，针对特定模型进行拟合、训练<ol>
-<li>模型的选择，可以根据要解决的问题和使用场景，scikit-learn提供了一张图（<a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html">选择正确的估计器</a>）来详细描述模型选择的流程，最终指向机器学习的集中主要使用场景，<strong>回归、分类</strong>和<strong>聚类</strong>，以及scikit-learn提供的<strong>数据降维</strong>方法。</li>
-</ol>
-</li>
-</ol>
-<p><img src="https://user-images.githubusercontent.com/6308127/158024353-55d53328-ecd2-4fae-a888-5eb1ed0ac771.png" alt="image"></p>
-<ol start="3">
-<li>使用模型预测——使用训练后的模型对新样本进行预测，并根据预测结果过进一步优化</li>
-</ol>
-<p><a name="rDElf"></a></p>
-<h3 id="scikit-learn-sklearn-实现"><a href="#scikit-learn-sklearn-实现" class="headerlink" title="scikit-learn (sklearn) 实现"></a>scikit-learn (sklearn) 实现</h3><p>sklearn中内置了常用的机器学习算法和模型，以及基本的预处理方法。分别由<strong>预测（估计）器（estimator）</strong>和<strong>预处理器（preprocessing）</strong>实现，并且它们继承自同一个基础预测器。</p>
-<p><a name="o4N0l"></a></p>
-<h4 id="转换器和预处理器"><a href="#转换器和预处理器" class="headerlink" title="转换器和预处理器"></a>转换器和预处理器</h4><p>预处理器和转换器主要负责对原始数据的预处理和转换，从而消除不同数据之间的绝对差异。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line"></span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="comment"># X = [...]</span></span><br><span class="line"></span><br><span class="line">StandardScaler().fit().transform(X)</span><br></pre></td></tr></table></figure>
-
-<p><a name="paTIs"></a></p>
-<h4 id="预测器"><a href="#预测器" class="headerlink" title="预测器"></a>预测器</h4><p>sklearn中提供的数十种内置机器学习算法和模型，都通过估算器提供。可以通过引入相应的估算器来使用对应的模型。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化估算器</span></span><br><span class="line">clf = RandomForestClassifier(random_state=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用训练数据进行模型拟合</span></span><br><span class="line">clf.fit(X, y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 预测</span></span><br><span class="line">clf.predict(...) <span class="comment"># </span></span><br></pre></td></tr></table></figure>
-
-<p><a name="JOf32"></a></p>
-<h4 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h4><p>管道用来将转换器和预测器组合成一个同一的对象，表示一个完整的数据流处理过程（管道）。然后使用管道的fit和predict来进行训练和预测。同时，使用管道还可以防止数据泄露。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler <span class="comment"># 预处理器</span></span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression <span class="comment"># 预测器</span></span><br><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> make_pipeline <span class="comment"># 管道</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建管道</span></span><br><span class="line">pipe = make_pipeline(</span><br><span class="line">    StandardScaler(),</span><br><span class="line">    LogisticRegression(random_state=<span class="number">0</span>)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">#准备数据...</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 像使用预测器一样使用管道</span></span><br><span class="line"><span class="comment"># 1) 训练整个pipeline</span></span><br><span class="line">pipe.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2) 使用管道预测</span></span><br><span class="line">pipe.predict(X_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ...</span></span><br></pre></td></tr></table></figure>
-<p><a name="ZzwI5"></a></p>
-<h3 id="模型评估"><a href="#模型评估" class="headerlink" title="模型评估"></a>模型评估</h3><p>针对不同类型的算法和模型，对应评估指标也不相同。<br><a name="TsRUk"></a></p>
-<h4 id="回归算法指标"><a href="#回归算法指标" class="headerlink" title="回归算法指标"></a>回归算法指标</h4><p>回归算法的核心思想是评估预测值和观察值之间的误差。从最原始的残差（residual）到基于残差的各种变形，以便后续的数学运算和处理。</p>
-<ul>
-<li>Mean Absolute Error 平均绝对误差：对残差做绝对值处理，避免残差正负导致的相互抵消。</li>
-<li>Mean Squared Error 均方误差：为了便于求导，对平均绝对误差进行平方。</li>
-<li>Root Mean Squared Error 均方根误差：如果目标变量的量纲保持一致，可以对均方误差进行开放。</li>
-<li>Coefficient of determination 决定系数：进一步去除对量纲的依赖。</li>
-</ul>
-<p><a name="bJN0S"></a></p>
-<h4 id="分类算法指标"><a href="#分类算法指标" class="headerlink" title="分类算法指标"></a>分类算法指标</h4><p>相比较回归算法的各种残差指标，分类算法更多的则是关注分类的精度，即预测正确的样本数量占总预测样本的比例。然后，预计不同的场景，从不同角度来看精度对结果的影响。</p>
-<ul>
-<li>Accuracy 精度：每一个分类中预测正确的样本数占总样本的比例。</li>
-<li>混淆矩阵 Confusion Matrix</li>
-<li>准确率（查准率） Precision</li>
-<li>召回率（查全率）Recall</li>
-<li>Fβ Score</li>
-<li>AUC Area Under Curve</li>
-<li>KS Kolmogorov-Smirnov</li>
-</ul>
-<p>关于各个指标的详细说明，可以参考<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/36305931">知乎——机器学习评估指标</a>。</p>
-<p><a name="g0vJv"></a></p>
-<h3 id="参数搜索"><a href="#参数搜索" class="headerlink" title="参数搜索"></a>参数搜索</h3><p>所有预测器都有可以调整的参数，也叫<strong>超参数</strong>。其特指不能通过学习得到的参数。在使用各种不同模型时，需要将超参数作为参数传递给预测器。<br />sklearn中提供了在参数集中搜索最佳超参数的方法，其基于最佳<a target="_blank" rel="noopener" href="http://scikit-learn.org.cn/view/6.html"><strong>交叉验证</strong></a><strong>（CV, Cross-Validation）分数</strong>获取对应的超参数。sklearn中最简单的方法是调用<a target="_blank" rel="noopener" href="https://scikit-learn.org.cn/view/663.html">cross_val_score</a>函数。</p>
-<blockquote>
-<p>估算器中的任意参数都可以通过参数搜索来获得最佳参数。</p>
-</blockquote>
-<p>参数搜索的基本要素</p>
-<ul>
-<li>参数搜索方法</li>
-<li>评估方法</li>
-</ul>
-<p>sklearn中两种抽样搜索最佳参数的方法：<br><a name="DkNQD"></a></p>
-<h4 id="GridSearchCV-网格搜索方法"><a href="#GridSearchCV-网格搜索方法" class="headerlink" title="GridSearchCV 网格搜索方法"></a>GridSearchCV 网格搜索方法</h4><p>计算参数集中所有参数的组合。GridSearchCV通过使用param_grid参数来指定参数候选值。<br />例如下边的例子指定搜索两个参数候选值。通过GridSearchCV的fitting接口拟合后，会对所有候选参数进行评估，保留最优参数组合。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 选择模型</span></span><br><span class="line">clf = ...</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定网格搜索的参数</span></span><br><span class="line">param_grid = [</span><br><span class="line">  &#123;<span class="string">&#x27;C&#x27;</span>: [<span class="number">1</span>, <span class="number">10</span>, <span class="number">100</span>, <span class="number">1000</span>], <span class="string">&#x27;kernel&#x27;</span>: [<span class="string">&#x27;linear&#x27;</span>]&#125;,</span><br><span class="line">  &#123;<span class="string">&#x27;C&#x27;</span>: [<span class="number">1</span>, <span class="number">10</span>, <span class="number">100</span>, <span class="number">1000</span>], <span class="string">&#x27;gamma&#x27;</span>: [<span class="number">0.001</span>, <span class="number">0.0001</span>], <span class="string">&#x27;kernel&#x27;</span>: [<span class="string">&#x27;rbf&#x27;</span>]&#125;,</span><br><span class="line"> ] </span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行网格搜索</span></span><br><span class="line">grid_search = GridSearchCV(clf, param_grid=param_grid)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line">grid_search.fit(X, y)</span><br></pre></td></tr></table></figure>
-<p><a name="prnyv"></a></p>
-<h4 id="RandomizedSearchCV-随机搜索方法"><a href="#RandomizedSearchCV-随机搜索方法" class="headerlink" title="RandomizedSearchCV 随机搜索方法"></a>RandomizedSearchCV 随机搜索方法</h4><p>从具有制定分布的参数空间中抽样出定量的参数候选。RandomizedSearchCV会在指定范围内，使用某个特定分布抽取参数值进行评估。用字典形式来指定参数的具体抽样范围，针对每一个参数，可以指定</p>
-<ul>
-<li>具体的参数</li>
-<li>采样分布——可以使用scipy.stats模块，其中包含了很多采样分布，如expon，gamma，uniform或者randint。</li>
-<li>离散选项列表</li>
-</ul>
-<p>例子</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 选择模型</span></span><br><span class="line">clf = ...</span><br><span class="line"></span><br><span class="line"><span class="comment"># RandomizedSearchCV 参数设置示例</span></span><br><span class="line">param_dist = &#123;</span><br><span class="line">    <span class="string">&#x27;C&#x27;</span>: scipy.stats.expon(scale=<span class="number">100</span>),  <span class="comment"># 取值分布</span></span><br><span class="line">    <span class="string">&#x27;gamma&#x27;</span>: scipy.stats.expon(scale=<span class="number">.1</span>),</span><br><span class="line">    <span class="string">&#x27;kernel&#x27;</span>: [<span class="string">&#x27;rbf&#x27;</span>], <span class="comment"># 离散列表</span></span><br><span class="line">    <span class="string">&#x27;class_weight&#x27;</span>:[<span class="string">&#x27;balanced&#x27;</span>, <span class="literal">None</span>] <span class="comment"># 离散列表</span></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行随机搜索</span></span><br><span class="line">n_iter_search = <span class="number">20</span></span><br><span class="line">random_search = RandomizedSearchCV(clf, param_distributions=param_dist,</span><br><span class="line">                                   n_iter=n_iter_search)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line">random_search.fit(X, y)</span><br></pre></td></tr></table></figure>
-<p><a name="CdyrC"></a></p>
-<h4 id="评估方法（指标）"><a href="#评估方法（指标）" class="headerlink" title="评估方法（指标）"></a>评估方法（指标）</h4><p>参数搜索默认使用估计器的score函数来评估参数的设置。默认为</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://scikit-learn.org.cn/view/476.html">sklearn.metrics.accuracy_score</a> 用于分类</li>
-<li><a target="_blank" rel="noopener" href="https://scikit-learn.org.cn/view/519.html">sklearn.metrics.r2_score</a> 应用于回归</li>
-</ul>
-<p>当然，sklearn还提供了其它一些<a target="_blank" rel="noopener" href="http://scikit-learn.org.cn/view/93.html#3.3.1%20%E8%AF%84%E5%88%86%E5%8F%82%E6%95%B0%EF%BC%9A%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E5%87%86%E5%88%99">评估函数</a>可供不从场景使用。同时，也可以将多种评估指标结合起来使用。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/03/12/ML/ML_basics_and_sklearn_framework/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
