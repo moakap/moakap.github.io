@@ -20,7 +20,8 @@ date: 2022-03-12 23:23:51
 <a name="VpZBO"></a>
 ### 机器学习 vs. 传统编程
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22905381/1642299458840-e6c4e9d0-a4ea-430a-8846-900f13cedf55.png#clientId=u5bee9120-247f-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=304&id=u4452b774&margin=%5Bobject%20Object%5D&name=image.png&originHeight=304&originWidth=450&originalType=binary&ratio=1&rotation=0&showTitle=false&size=53348&status=done&style=none&taskId=u3851b853-50e0-48a2-a098-b603878fff9&title=&width=450)
+![image](https://user-images.githubusercontent.com/6308127/158024257-4a667037-e685-4875-98a0-71fbf52549c5.png)
+
 <a name="nnf5g"></a>
 ### 三种类别
 根据使用场景不同，有可以划分为三大类
@@ -51,11 +52,13 @@ Scikit-learn是一个用于Python的免费开源机器学习库。
 ### 三大步骤
 机器学习的本质就是让机器使用特定的算法对输入数据进行类似人的智能学习（找规律），根据同样的模型对新样本进行进行预测。具体到python中的sklearn，是通过一下三大步骤实现的。
 
+![image](https://user-images.githubusercontent.com/6308127/158024312-d4f37678-c620-4b07-bb4e-2c83b67bd25f.png)
+
 1. 准备数据——对输入数据进行预处理
 1. 选择、训练和测试模型——使用处理后的样本数据，针对特定模型进行拟合、训练
    1. 模型的选择，可以根据要解决的问题和使用场景，scikit-learn提供了一张图（[选择正确的估计器](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html)）来详细描述模型选择的流程，最终指向机器学习的集中主要使用场景，**回归、分类**和**聚类**，以及scikit-learn提供的**数据降维**方法。
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22905381/1643429276200-4856e982-e272-4fe9-95cc-f9361b9556f7.png#clientId=u35127f2c-c93a-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=662&id=ub44cc5c2&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1323&originWidth=2122&originalType=binary&ratio=1&rotation=0&showTitle=false&size=947070&status=done&style=none&taskId=u2b053fd0-4a43-435e-8fc4-e91720b522f&title=&width=1061)
+![image](https://user-images.githubusercontent.com/6308127/158024353-55d53328-ecd2-4fae-a888-5eb1ed0ac771.png)
 
 3. 使用模型预测——使用训练后的模型对新样本进行预测，并根据预测结果过进一步优化
 
