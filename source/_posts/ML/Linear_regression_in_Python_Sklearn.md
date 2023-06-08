@@ -12,7 +12,7 @@ tags:
   - Python
 ---
 
-![](https://img-blog.csdnimg.cn/img_convert/f0ac38d631f4558e939e25df62e62df0.png)
+![image](https://github.com/moakap/moakap.github.io/assets/6308127/8778ba9b-b307-483e-a819-bbdcb3caa0e6)
 
 这里重点学习一下回归算法
 ## 机器学习基础
@@ -44,7 +44,8 @@ tags:
 Scikit-learn是一个用于Python的免费开源机器学习库。
 ### 机器学习三大步骤
 机器学习的本质就是让机器使用特定的算法对输入数据进行类似人的智能学习（找规律），根据同样的模型对新样本进行进行预测。具体到python中的sklearn，是通过一下三大步骤实现的。
-![](https://img-blog.csdnimg.cn/img_convert/e6461d1bcb708b968b84ab16cfc3c51b.png)
+
+![image](https://github.com/moakap/moakap.github.io/assets/6308127/9f65e409-5b3e-4fb6-8562-d265e1f8529b)
 
 1. 准备数据——对输入数据进行预处理
 1. 选择、训练和测试模型——使用处理后的样本数据，针对特定模型进行拟合、训练
@@ -57,7 +58,8 @@ Scikit-learn是一个用于Python的免费开源机器学习库。
 ### scikit-learn (sklearn) 实现
 sklearn中内置了常用的机器学习算法和模型，以及基本的预处理方法。分别由**预测（估计）器（estimator）**和**预处理器（preprocessing）**实现，并且它们继承自同一个基础预测器。
 
-![](https://img-blog.csdnimg.cn/img_convert/96032923be30405249dbeaddb49ab511.png)
+![image](https://github.com/moakap/moakap.github.io/assets/6308127/be0eb8c9-5ad5-4833-9f25-bacc8ac7d8be)
+
 #### 转换器和预处理器
 预处理器和转换器主要负责对原始数据的预处理和转换，从而消除不同数据之间的绝对差异。
 ```python
@@ -199,7 +201,10 @@ random_search.fit(X, y)
 
 ## 回归算法
 从sklearn模型流程可以很清楚得看到回归算法的使用场景。
-![image.png](https://img-blog.csdnimg.cn/img_convert/6496b061a2d99c9d00a9e8e5ab14c0a6.png#clientId=u35127f2c-c93a-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=251&id=u408eadf1&margin=[object Object]&name=image.png&originHeight=884&originWidth=1378&originalType=binary&ratio=1&rotation=0&showTitle=false&size=385245&status=done&style=none&taskId=u53cf04fe-fc69-4ea8-a6c1-e6402c87324&title=&width=391)
+
+![image](https://github.com/moakap/moakap.github.io/assets/6308127/2dabe469-f961-4042-8aa9-d0be2c69c237)
+
+
 使用场景
 
 - 样本数大于50
@@ -270,7 +275,9 @@ $dist(P_i, P_j) = \sqrt{(P_ik-P_jk)^T\Sigma^{-1}(P_ik-P_jk)}$
 #### 普通最小二乘法(Ordinary Least Square, OLS)
 最小二乘法直接使用残差的平方和作为衡量标准，通过拟合$W$使残差$\epsilon$的平方和最小。数学上表示为下边的形式：
 $min{\Vert Xw-y\Vert _2^2}$
-![image.png](https://img-blog.csdnimg.cn/img_convert/d0c3002ba1d041e6be8c62cb632b4f64.png#clientId=u21aa29a4-be78-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=240&id=u4b140a9b&margin=[object Object]&name=image.png&originHeight=480&originWidth=640&originalType=binary&ratio=1&rotation=0&showTitle=false&size=16055&status=done&style=none&taskId=u8ca7bced-72e2-4a40-9fbd-7e1386524b6&title=&width=320)
+
+![image](https://github.com/moakap/moakap.github.io/assets/6308127/d00ad045-6ed6-4e03-aa25-71789c15485b)
+
 在sklearn的线性回归模型LinearRegression中，使用$fit()$函数拟合模型，并在模型的coef_中存储拟合后的相关系数$w$。
 ```python
 import numpy as np
@@ -310,7 +317,9 @@ print("NNLS R2 score", r2_score_nnls)
 
 #### 过拟合(Overfitting)和欠拟合(Underfitting)
 过拟合和欠拟合是使用实际数据进行分析时可能会遇到的两种基本问题。
-![image.png](https://img-blog.csdnimg.cn/img_convert/b6faa6bc3c5d1428f48a67ceede6b7b0.png#clientId=u21aa29a4-be78-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=126&id=lBmXy&margin=[object Object]&name=image.png&originHeight=252&originWidth=735&originalType=binary&ratio=1&rotation=0&showTitle=false&size=13524&status=done&style=none&taskId=u4de5531d-82e5-408a-82fb-0cc2a39a43e&title=&width=367.5)
+
+![image](https://github.com/moakap/moakap.github.io/assets/6308127/4243d0aa-dd7a-4149-bf64-0e09a359c0ed)
+
 
 - **欠拟合**——指模型在训练集中的表现就很差了，经验误差很大。
 
@@ -332,7 +341,8 @@ print("NNLS R2 score", r2_score_nnls)
 $min{\Vert Xw-y\Vert _2^2}+\alpha\Vert w \Vert _2^2$
 其中$\Vert w \Vert _2^2$为回归系数向量的L2范数（所有参数的平方和）。使用复杂度参数$\alpha \ge0$来控制收缩程度：值越大，收缩程度越大，对应的回归系数对共线性的容忍程度也就越大。至于为什么L2正则化能防止过拟合，可以参考[深入理解L1、L2正则化](https://www.cnblogs.com/zingp/p/10375691.html#_label0)。
 
-![image.png](https://img-blog.csdnimg.cn/img_convert/5e50ad1a7b10c1ecfa5043b930eb04ca.png#clientId=u21aa29a4-be78-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=240&id=u0879ddae&margin=[object Object]&name=image.png&originHeight=480&originWidth=640&originalType=binary&ratio=1&rotation=0&showTitle=false&size=50003&status=done&style=none&taskId=u3f6b9f9d-f927-4420-b103-7b6dbaa26c2&title=&width=320)
+![image](https://github.com/moakap/moakap.github.io/assets/6308127/8928205c-4bab-423e-b754-27eb7e510c10)
+
 在sklearn中，可以通过指定alpha参数来设定$\alpha$。
 ```python
 from sklearn import linear_model
@@ -378,7 +388,9 @@ $min{\frac1{2n_{sample}}\Vert Xw-y\Vert _2^2}+\alpha\beta\Vert w \Vert_1+\frac{\
 在实际应用中，特征数量往往非常多，其中即包含了我们需要的与目标相关的特征，也有一些完全不相关的特征，并且特征之间也可能存在相互依赖。这会导致对应的模型就越复杂，模型训练和预测需要的计算量就越大，同时也会影响算法的预测能力。
 特征选取就是从大量的特征中选取一个特征子集，构造出更好的模型（如残差最小）。
 特征选择分为产生、评估、验证三大步骤，如下图。
-![image.png](https://img-blog.csdnimg.cn/img_convert/7e36abde0a778c84516a3c09e3860ad5.png#clientId=u0613ca18-f5a9-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=128&id=u53f211f5&margin=[object Object]&name=image.png&originHeight=255&originWidth=657&originalType=binary&ratio=1&rotation=0&showTitle=false&size=19594&status=done&style=none&taskId=u4bcce21d-3396-431c-b1f6-56fba0e55a6&title=&width=328.5)
+
+![image](https://github.com/moakap/moakap.github.io/assets/6308127/e4162e96-5b35-406a-bfc2-f0644fe42a4d)
+
 特征选择的过程 ( M. Dash and H. Liu 1997 )
 
 ###### 1. 特征生成
@@ -421,7 +433,8 @@ $min{\frac1{2n_{sample}}\Vert Xw-y\Vert _2^2}+\alpha\beta\Vert w \Vert_1+\frac{\
 
 ##### LARS Lasso
 LarsLasso是利用LARS算法实现的LASSO模型，与基于坐标下降的LASSO模型不同，它得到的是分段线性的精确解，是其自身系数范数的函数。
-![image.png](https://img-blog.csdnimg.cn/img_convert/da0c0ec2ffbd18f6be733685e29309e1.png#clientId=udf5c4bc4-57b9-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=187&id=gBERK&margin=[object Object]&name=image.png&originHeight=373&originWidth=509&originalType=binary&ratio=1&rotation=0&showTitle=false&size=54863&status=done&style=none&taskId=u2cf2312c-ee09-4e3d-a647-69847784a64&title=&width=254.5)
+![image](https://github.com/moakap/moakap.github.io/assets/6308127/32e0ee89-64ec-4805-9660-4374e5b13ff4)
+
 ##### 正交匹配追踪（OMP）
 一种类似于最小角回归的前向特征选择方法，正交匹配追踪可以用固定数目的非零元素逼近最优解向量。或者，正交匹配追踪可以针对特定的误差，而不是特定数目的非零系数。
 
@@ -458,7 +471,8 @@ $\min_w \frac{1}{2n_{samples}}  \sum_i d(y_i, \hat{y_i}) + \frac{\alpha}{2}\|w\|
 $\alpha$是L2正则化惩罚项。提供样本权重后，平均值即为加权平均值。
 
 ##### 再生指数离散模型(EDM) 
-![image.png](https://img-blog.csdnimg.cn/img_convert/b1f081adcb0f177d6a90f30a257cdad3.png#clientId=udf5c4bc4-57b9-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=191&id=u1d3c0a97&margin=[object Object]&name=image.png&originHeight=382&originWidth=913&originalType=binary&ratio=1&rotation=0&showTitle=false&size=63616&status=done&style=none&taskId=u8e4ceb0d-9694-41c7-bda9-cb6d7800266&title=&width=456.5)
+![image](https://github.com/moakap/moakap.github.io/assets/6308127/e222c2dc-f8bc-4df3-8c71-8ec62cd9452f)
+
 ##### TweedieRegressor
 TweedieRegressor为Tweedie分布实现了一个广义线性模型，该模型允许使用适当的$power$参数对上述任何分布进行建模。
 
