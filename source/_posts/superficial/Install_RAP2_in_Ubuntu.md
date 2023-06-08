@@ -1,6 +1,9 @@
 ---
 title: ubuntu下安装和部署RAP2
 date: 2023-06-08 15:15:51
+categories: 
+  - 蜻蜓点水
+  - RAP2
 tags:
   - RAP2
   - Ubuntu
