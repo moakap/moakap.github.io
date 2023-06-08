@@ -1,8 +1,8 @@
 ---
 title: 在Swarm存储数据
 default_category: Swarm
-categories:
-  - technology
+categories: 
+  - 蜻蜓点水
   - Swarm
 tags: 
   - Swarm
