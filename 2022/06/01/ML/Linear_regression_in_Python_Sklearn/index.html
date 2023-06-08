@@ -20,28 +20,40 @@
     var CONFIG = {"hostname":"moakap.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Moakap&#39;s Blog">
-<meta property="og:url" content="https://moakap.github.io/index.html">
+  <meta name="description" content="这里重点学习一下回归算法 机器学习基础机器学习 vs. 传统编程![image.png](https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;img_convert&#x2F;2f58b529d7d93bbf6b48f3c1a4de8793.png#clientId&#x3D;u5bee9120-247f-4&amp;crop&#x3D;0&amp;crop&#x3D;0&amp;crop&#x3D;1&amp;crop&#x3D;1&amp;fro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习之Python Sklearn——线性回归">
+<meta property="og:url" content="https://moakap.github.io/2022/06/01/ML/Linear_regression_in_Python_Sklearn/index.html">
 <meta property="og:site_name" content="Moakap&#39;s Blog">
+<meta property="og:description" content="这里重点学习一下回归算法 机器学习基础机器学习 vs. 传统编程![image.png](https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;img_convert&#x2F;2f58b529d7d93bbf6b48f3c1a4de8793.png#clientId&#x3D;u5bee9120-247f-4&amp;crop&#x3D;0&amp;crop&#x3D;0&amp;crop&#x3D;1&amp;crop&#x3D;1&amp;fro">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/f0ac38d631f4558e939e25df62e62df0.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/e6461d1bcb708b968b84ab16cfc3c51b.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/96032923be30405249dbeaddb49ab511.png">
+<meta property="article:published_time" content="2022-06-01T15:15:51.000Z">
+<meta property="article:modified_time" content="2023-06-08T08:10:48.849Z">
 <meta property="article:author" content="moakap">
+<meta property="article:tag" content="ML">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Linear Regression">
+<meta property="article:tag" content="Sklearn">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/img_convert/f0ac38d631f4558e939e25df62e62df0.png">
 
-<link rel="canonical" href="https://moakap.github.io/">
+<link rel="canonical" href="https://moakap.github.io/2022/06/01/ML/Linear_regression_in_Python_Sklearn/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>Moakap's Blog</title>
+  <title>机器学习之Python Sklearn——线性回归 | Moakap's Blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DFB6WMHQPG"></script>
     <script>
@@ -160,249 +172,13 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,default">
-    <link itemprop="mainEntityOfPage" href="https://moakap.github.io/2023/06/08/superficial/Install_RAP2_in_Ubuntu/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/snail-filled.png">
-      <meta itemprop="name" content="moakap">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Moakap's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/06/08/superficial/Install_RAP2_in_Ubuntu/" class="post-title-link" itemprop="url">ubuntu下安装和部署RAP2</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-06-08 15:15:51" itemprop="dateCreated datePublished" datetime="2023-06-08T15:15:51+00:00">2023-06-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%9C%BB%E8%9C%93%E7%82%B9%E6%B0%B4/" itemprop="url" rel="index"><span itemprop="name">蜻蜓点水</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%9C%BB%E8%9C%93%E7%82%B9%E6%B0%B4/RAP2/" itemprop="url" rel="index"><span itemprop="name">RAP2</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2023/06/08/superficial/Install_RAP2_in_Ubuntu/" class="post-meta-item leancloud_visitors" data-flag-title="ubuntu下安装和部署RAP2" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2023/06/08/superficial/Install_RAP2_in_Ubuntu/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2023/06/08/superficial/Install_RAP2_in_Ubuntu/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="ubuntu下安装和部署RAP2"><a href="#ubuntu下安装和部署RAP2" class="headerlink" title="ubuntu下安装和部署RAP2"></a>ubuntu下安装和部署RAP2</h1><h2 id="1-后台部署"><a href="#1-后台部署" class="headerlink" title="1. 后台部署"></a>1. 后台部署</h2><h3 id="1-1-安装mysql和redis"><a href="#1-1-安装mysql和redis" class="headerlink" title="1.1 安装mysql和redis"></a>1.1 安装mysql和redis</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt update</span><br><span class="line">$ sudo apt install mysql-server</span><br><span class="line">$ sudo apt install redis-server</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-2-安装pandoc"><a href="#1-2-安装pandoc" class="headerlink" title="1.2 安装pandoc"></a>1.2 安装pandoc</h3><p>1.2.1 从<a target="_blank" rel="noopener" href="https://github.com/jgm/pandoc/releases">pandoc release下载页面</a>下载最新版本</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://github.com/jgm/pandoc/releases/download/3.1/pandoc-3.1-1-amd64.deb</span><br></pre></td></tr></table></figure>
-
-<p>1.2.2 安装</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ sudo dpkg -i pandoc-3.1-1-amd64.deb</span><br><span class="line">$ pandoc -v</span><br><span class="line">pandoc 3.1</span><br><span class="line">Features: +server +lua</span><br><span class="line">Scripting engine: Lua 5.4</span><br><span class="line">User data directory: /home/ubuntu/.local/share/pandoc</span><br><span class="line">Copyright (C) 2006-2023 John MacFarlane. Web:  https://pandoc.org</span><br><span class="line">This is free software; see the source for copying conditions. There is no</span><br><span class="line">warranty, not even for merchantability or fitness for a particular purpose.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="1-3-安装nodejs和npm"><a href="#1-3-安装nodejs和npm" class="headerlink" title="1.3 安装nodejs和npm"></a>1.3 安装nodejs和npm</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$  sudo apt install nodejs npm</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-4-创建数据库"><a href="#1-4-创建数据库" class="headerlink" title="1.4 创建数据库"></a>1.4 创建数据库</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ mysql -u root -p </span><br><span class="line">Enter password: </span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">mysql&gt; CREATE DATABASE IF NOT EXISTS RAP2_DELOS_APP DEFAULT CHARSET utf8 COLLATE utf8_general_ci;</span><br><span class="line">Query OK, 1 row affected, 2 warnings (0.07 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; show databases;</span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| RAP2_DELOS_APP     |</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-5-初始化"><a href="#1-5-初始化" class="headerlink" title="1.5 初始化"></a>1.5 初始化</h3><p>1.5.1 下载rap2-delos并安装依赖软件包</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github.com/thx/rap2-delos.git</span><br><span class="line">...</span><br><span class="line">$ cd rap2-delos</span><br><span class="line">$ npm install</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>1.5.2 修改项目配置<br>根据需要修改<code>src/config/config.&#123;ENV&#125;.ts</code>中对应的数据库配置信息。</p>
-<p>1.5.3 安装typescript</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g typescript</span><br><span class="line">npm run build</span><br></pre></td></tr></table></figure>
-
-<p>1.5.4 初始化数据库</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ npm run create-db</span><br><span class="line"></span><br><span class="line">&gt; rap2-delos@2.9.0 create-db /home/ubuntu/mysites/rap/rap2-delos</span><br><span class="line">&gt; cross-env NODE_ENV=development node dist/scripts/initSchema</span><br><span class="line"></span><br><span class="line">----------------------------------------</span><br><span class="line">DATABASE √</span><br><span class="line">    HOST     localhost</span><br><span class="line">    PORT     3306</span><br><span class="line">    DATABASE RAP2_DELOS_APP</span><br><span class="line">----------------------------------------</span><br><span class="line">成功初始化 DB Schema</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-6-启动后台服务"><a href="#1-6-启动后台服务" class="headerlink" title="1.6 启动后台服务"></a>1.6 启动后台服务</h3><p>1.6.1 开发模式下启动</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$ npm run dev</span><br><span class="line">&gt; rap2-delos@2.9.0 dev /home/ubuntu/mysites/rap/rap2-delos</span><br><span class="line">&gt; cross-env NODE_ENV=development nodemon --watch scripts --watch dist dist/scripts/dev.js</span><br><span class="line"></span><br><span class="line">[nodemon] 2.0.21</span><br><span class="line">[nodemon] to restart at any time, enter `rs`</span><br><span class="line">[nodemon] watching path(s): scripts dist/**/*</span><br><span class="line">[nodemon] watching extensions: js,mjs,json</span><br><span class="line">[nodemon] starting `node dist/scripts/dev.js`</span><br><span class="line">Starting task: locker check</span><br><span class="line">----------------------------------------</span><br><span class="line">rap2-delos is running as http://localhost:8080</span><br><span class="line">----------------------------------------</span><br><span class="line">DATABASE √</span><br><span class="line">    HOST     localhost</span><br><span class="line">    PORT     3306</span><br><span class="line">    DATABASE RAP2_DELOS_APP</span><br><span class="line">----------------------------------------</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>1.6.2 生产模式下启动</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm run build</span><br><span class="line">$ npm start</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-前端部署"><a href="#2-前端部署" class="headerlink" title="2. 前端部署"></a>2. 前端部署</h2><h3 id="2-1-下载前端代码库"><a href="#2-1-下载前端代码库" class="headerlink" title="2.1 下载前端代码库"></a>2.1 下载前端代码库</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github.com/thx/rap2-dolores.git</span><br><span class="line">...</span><br><span class="line">$ cd rap2-delores</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-2-安装依赖"><a href="#2-2-安装依赖" class="headerlink" title="2.2 安装依赖"></a>2.2 安装依赖</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-3-配置后端api地址并生成静态站点"><a href="#2-3-配置后端api地址并生成静态站点" class="headerlink" title="2.3 配置后端api地址并生成静态站点"></a>2.3 配置后端api地址并生成静态站点</h3><p>配置文件路径：/src/config/config.prod.js</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  serve: &#x27;http://127.0.0.1:8080&#x27;,</span><br><span class="line">  keys: [&#x27;some secret hurr&#x27;],</span><br><span class="line">  session: &#123;</span><br><span class="line">    key: &#x27;koa:sess&#x27;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>更改<code>serve</code>字段，改成我们的后端访问地址，访问地址直接使用ip，不要使用127.0.0.1。 注意加 http://</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run build</span><br></pre></td></tr></table></figure>
-
-<h4 id="“0308010c-digital-envelope-routines-unsupported”错误"><a href="#“0308010c-digital-envelope-routines-unsupported”错误" class="headerlink" title="“0308010c:digital envelope routines::unsupported”错误"></a>“0308010c:digital envelope routines::unsupported”错误</h4><p>参考<a target="_blank" rel="noopener" href="https://www.freecodecamp.org/chinese/news/error-error-0308010c-digital-envelope-routines-unsupported-node-error-solved/">如何解决 “0308010c:digital envelope routines::unsupported” 的错误</a>，修改rap2-dolores下package.json中的<code>react-scripts start</code>命令，添加<code>--openssl-legacy-provider</code>选项。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;build-css&quot;: &quot;node ./node_modules/sass/sass src/:src/ --quiet&quot;,</span><br><span class="line">    &quot;watch-css&quot;: &quot;npm run build-css &amp;&amp; node ./node_modules/sass/sass src/:src/ --watch&quot;,</span><br><span class="line">    &quot;start-js&quot;: &quot;react-scripts start --openssl-legacy-provider&quot;,</span><br><span class="line">    &quot;start&quot;: &quot;npm-run-all -p watch-css start-js --max-old-space-size=4096&quot;,</span><br><span class="line">    &quot;build&quot;: &quot;npm run lint &amp;&amp; npm run build-css &amp;&amp; react-scripts --openssl-legacy-provider build&quot;,</span><br><span class="line">    &quot;test-backup&quot;: &quot;npm run lint &amp;&amp; react-scripts test --env=jsdom&quot;,</span><br><span class="line">    &quot;test&quot;: &quot;npm run lint&quot;,</span><br><span class="line">    &quot;eject&quot;: &quot;react-scripts eject&quot;,</span><br><span class="line">    &quot;lint&quot;: &quot;tslint --project ./ -c tslint.json --fix&quot;,</span><br><span class="line">    &quot;build-docker&quot;: &quot;docker build --rm -f \&quot;Dockerfile\&quot; -t rapteam/rap2-dolores:latest .&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-4-部署-build到服务器"><a href="#2-4-部署-build到服务器" class="headerlink" title="2.4 部署/build到服务器"></a>2.4 部署<code>/build</code>到服务器</h3><h4 id="2-4-1-ngnix配置文件"><a href="#2-4-1-ngnix配置文件" class="headerlink" title="2.4.1 ngnix配置文件"></a>2.4.1 ngnix配置文件</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">server &#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        listen [::]:80;</span><br><span class="line"></span><br><span class="line">        server_name rap2.example.com;</span><br><span class="line"></span><br><span class="line">        root $&#123;PATH_TO_rap2-dolores&#125;;</span><br><span class="line">        index index.html index.php;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">                try_files $uri $uri/ /index.html;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="404-not-found"><a href="#404-not-found" class="headerlink" title="404 not found"></a>404 not found</h4><p>参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/waterdemo/article/details/81354973">这里</a>，只需要确保nginx配置文件下的localtion路径为<code>try_files $uri $uri/ /index.html;</code>即可。</p>
-<p>如果使用了下边的配置，就会出现404错误</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">        try_files $uri $uri/ =404;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,default">
-    <link itemprop="mainEntityOfPage" href="https://moakap.github.io/2023/02/24/superficial/Install_Flarum/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/snail-filled.png">
-      <meta itemprop="name" content="moakap">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Moakap's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/02/24/superficial/Install_Flarum/" class="post-title-link" itemprop="url">安装Flarum</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-02-24 10:19:55" itemprop="dateCreated datePublished" datetime="2023-02-24T10:19:55+00:00">2023-02-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%9C%BB%E8%9C%93%E7%82%B9%E6%B0%B4/" itemprop="url" rel="index"><span itemprop="name">蜻蜓点水</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%9C%BB%E8%9C%93%E7%82%B9%E6%B0%B4/Flarum/" itemprop="url" rel="index"><span itemprop="name">Flarum</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2023/02/24/superficial/Install_Flarum/" class="post-meta-item leancloud_visitors" data-flag-title="安装Flarum" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2023/02/24/superficial/Install_Flarum/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2023/02/24/superficial/Install_Flarum/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-安装Composer"><a href="#1-安装Composer" class="headerlink" title="1. 安装Composer"></a>1. 安装Composer</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">php -r &quot;copy(&#x27;https://getcomposer.org/installer&#x27;, &#x27;composer-setup.php&#x27;);&quot;</span><br><span class="line">php -r &quot;if (hash_file(&#x27;sha384&#x27;, &#x27;composer-setup.php&#x27;) === &#x27;55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae&#x27;) &#123; echo &#x27;Installer verified&#x27;; &#125; else &#123; echo &#x27;Installer corrupt&#x27;; unlink(&#x27;composer-setup.php&#x27;); &#125; echo PHP_EOL;&quot;</span><br><span class="line">php composer-setup.php</span><br><span class="line">php -r &quot;unlink(&#x27;composer-setup.php&#x27;);&quot;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-安装Flarum"><a href="#2-安装Flarum" class="headerlink" title="2. 安装Flarum"></a>2. 安装Flarum</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer create-project flarum/flarum . </span><br></pre></td></tr></table></figure>
-
-<h2 id="3-设置nginx和URL重写"><a href="#3-设置nginx和URL重写" class="headerlink" title="3. 设置nginx和URL重写"></a>3. 设置nginx和URL重写</h2><p>在nginx站点配置文件中添加root和flarum 配置文件。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root /&lt;Flarum路径&gt;/public</span><br><span class="line">include /&lt;Flarum 路径&gt;/.nginx.conf;</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-安装Flarum"><a href="#4-安装Flarum" class="headerlink" title="4. 安装Flarum"></a>4. 安装Flarum</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://moakap.github.io/2022/06/01/ML/Linear_regression_in_Python_Sklearn/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -415,10 +191,9 @@
       <meta itemprop="name" content="Moakap's Blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/06/01/ML/Linear_regression_in_Python_Sklearn/" class="post-title-link" itemprop="url">机器学习之Python Sklearn——线性回归</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          机器学习之Python Sklearn——线性回归
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -479,7 +254,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><img src="https://img-blog.csdnimg.cn/img_convert/f0ac38d631f4558e939e25df62e62df0.png"></p>
+        <p><img src="https://img-blog.csdnimg.cn/img_convert/f0ac38d631f4558e939e25df62e62df0.png"></p>
 <p>这里重点学习一下回归算法</p>
 <h2 id="机器学习基础"><a href="#机器学习基础" class="headerlink" title="机器学习基础"></a>机器学习基础</h2><h3 id="机器学习-vs-传统编程"><a href="#机器学习-vs-传统编程" class="headerlink" title="机器学习 vs. 传统编程"></a>机器学习 vs. 传统编程</h3><p>![image.png](<a target="_blank" rel="noopener" href="https://img-blog.csdnimg.cn/img_convert/2f58b529d7d93bbf6b48f3c1a4de8793.png#clientId=u5bee9120-247f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=304&amp;id=u4452b774&amp;margin=[object">https://img-blog.csdnimg.cn/img_convert/2f58b529d7d93bbf6b48f3c1a4de8793.png#clientId=u5bee9120-247f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=304&amp;id=u4452b774&amp;margin=[object</a> Object]&amp;name=image.png&amp;originHeight=304&amp;originWidth=450&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=53348&amp;status=done&amp;style=none&amp;taskId=u3851b853-50e0-48a2-a098-b603878fff9&amp;title=&amp;width=450)</p>
 <h3 id="三种类别"><a href="#三种类别" class="headerlink" title="三种类别"></a>三种类别</h3><p>根据使用场景不同，有可以划分为三大类</p>
@@ -726,775 +501,47 @@
 <li>【机器学习中正则化项L1和L2的直观理解】<a target="_blank" rel="noopener" href="https://blog.csdn.net/jinping_shi/article/details/52433975">https://blog.csdn.net/jinping_shi/article/details/52433975</a></li>
 </ol>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,default">
-    <link itemprop="mainEntityOfPage" href="https://moakap.github.io/2022/03/12/ML/ML_basics_and_sklearn_framework/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/snail-filled.png">
-      <meta itemprop="name" content="moakap">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Moakap's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/03/12/ML/ML_basics_and_sklearn_framework/" class="post-title-link" itemprop="url">机器学习基础入门和Python sklearn</a>
-        </h2>
+          <div class="post-tags">
+              <a href="/tags/ML/" rel="tag"><i class="fa fa-tag"></i> ML</a>
+              <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+              <a href="/tags/Linear-Regression/" rel="tag"><i class="fa fa-tag"></i> Linear Regression</a>
+              <a href="/tags/Sklearn/" rel="tag"><i class="fa fa-tag"></i> Sklearn</a>
+          </div>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-12 23:23:51" itemprop="dateCreated datePublished" datetime="2022-03-12T23:23:51+00:00">2022-03-12</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%9C%BB%E8%9C%93%E7%82%B9%E6%B0%B4/" itemprop="url" rel="index"><span itemprop="name">蜻蜓点水</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%9C%BB%E8%9C%93%E7%82%B9%E6%B0%B4/ML/" itemprop="url" rel="index"><span itemprop="name">ML</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2022/03/12/ML/ML_basics_and_sklearn_framework/" class="post-meta-item leancloud_visitors" data-flag-title="机器学习基础入门和Python sklearn" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/03/12/ML/ML_basics_and_sklearn_framework/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/03/12/ML/ML_basics_and_sklearn_framework/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>关于机器学习的一些笔记和摘抄整理。</p>
-<p><a name="LsXQL"></a></p>
-<h2 id="机器学习基础"><a href="#机器学习基础" class="headerlink" title="机器学习基础"></a>机器学习基础</h2><p><a name="VpZBO"></a></p>
-<h3 id="机器学习-vs-传统编程"><a href="#机器学习-vs-传统编程" class="headerlink" title="机器学习 vs. 传统编程"></a>机器学习 vs. 传统编程</h3><p><img src="https://user-images.githubusercontent.com/6308127/158024257-4a667037-e685-4875-98a0-71fbf52549c5.png" alt="image"></p>
-<p><a name="nnf5g"></a></p>
-<h3 id="三种类别"><a href="#三种类别" class="headerlink" title="三种类别"></a>三种类别</h3><p>根据使用场景不同，有可以划分为三大类<br><a name="KCTZE"></a></p>
-<h4 id="监督学习"><a href="#监督学习" class="headerlink" title="监督学习"></a>监督学习</h4><p>监督学习是根据已知的方法和规律，对新样本进行分类和预测。<br />监督学习就好比学生在学校学习各种知识和理论的过程。整个过程是在老师的监督下完成，所学知识的应用体现在平时的测试中，并且可以通过对比“标准”答案来不断改进和巩固学习成果，在下一次的测试中取得更好的成绩（预测效果）。根据目的不同，可以有分类和回归（预测）两种：</p>
-<ul>
-<li>分类 —— 根据事物特征将其划分到已知的类别。<ul>
-<li>根据事物的特征，将新遇到的事物（新样本）归类到已知的某个类别。</li>
-</ul>
-</li>
-<li>回归（预测）—— 根据事物的特征和预测将来的发展趋势。<ul>
-<li>根据事物的特征和发展规律，预测将来的发展趋势。</li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/03/12/ML/ML_basics_and_sklearn_framework/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,default">
-    <link itemprop="mainEntityOfPage" href="https://moakap.github.io/2021/06/29/React/useMemo-and-useCallback/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/snail-filled.png">
-      <meta itemprop="name" content="moakap">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Moakap's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/29/React/useMemo-and-useCallback/" class="post-title-link" itemprop="url">React中的useMemo和useCallback</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-29 21:51:51" itemprop="dateCreated datePublished" datetime="2021-06-29T21:51:51+00:00">2021-06-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%9C%BB%E8%9C%93%E7%82%B9%E6%B0%B4/" itemprop="url" rel="index"><span itemprop="name">蜻蜓点水</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%9C%BB%E8%9C%93%E7%82%B9%E6%B0%B4/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/06/29/React/useMemo-and-useCallback/" class="post-meta-item leancloud_visitors" data-flag-title="React中的useMemo和useCallback" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/06/29/React/useMemo-and-useCallback/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/29/React/useMemo-and-useCallback/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="React中的useMemo和useCallback"><a href="#React中的useMemo和useCallback" class="headerlink" title="React中的useMemo和useCallback"></a>React中的useMemo和useCallback</h2><p>先看看二者的<a target="_blank" rel="noopener" href="https://reactjs.org/docs/react-api.html#reactmemo">官方定义</a>。</p>
-<h3 id="useMemo"><a href="#useMemo" class="headerlink" title="useMemo"></a>useMemo</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> memoizedValue = useMemo(<span class="function">() =&gt;</span> computeExpensiveValue(a, b), [a, b]);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>返回一个带有缓存（记忆）功能的值。</li>
-<li>输入<ul>
-<li>create函数（用来创建/生成要缓存的值，所以叫create函数）</li>
-<li>依赖项列表（指明什么时候需要重新计算并覆盖之前缓存的值）</li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/29/React/useMemo-and-useCallback/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/12/ML/ML_basics_and_sklearn_framework/" rel="prev" title="机器学习基础入门和Python sklearn">
+      <i class="fa fa-chevron-left"></i> 机器学习基础入门和Python sklearn
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/02/24/superficial/Install_Flarum/" rel="next" title="安装Flarum">
+      安装Flarum <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
   
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,default">
-    <link itemprop="mainEntityOfPage" href="https://moakap.github.io/2021/06/28/React/Hiding-tab-bar-in-specific-screens/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/snail-filled.png">
-      <meta itemprop="name" content="moakap">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Moakap's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/28/React/Hiding-tab-bar-in-specific-screens/" class="post-title-link" itemprop="url">React Navigation在特定页面隐藏tab菜单栏</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-28 16:55:51" itemprop="dateCreated datePublished" datetime="2021-06-28T16:55:51+00:00">2021-06-28</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%9C%BB%E8%9C%93%E7%82%B9%E6%B0%B4/" itemprop="url" rel="index"><span itemprop="name">蜻蜓点水</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%9C%BB%E8%9C%93%E7%82%B9%E6%B0%B4/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/06/28/React/Hiding-tab-bar-in-specific-screens/" class="post-meta-item leancloud_visitors" data-flag-title="React Navigation在特定页面隐藏tab菜单栏" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/06/28/React/Hiding-tab-bar-in-specific-screens/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/28/React/Hiding-tab-bar-in-specific-screens/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="React-Navigation在特定页面隐藏tab菜单栏"><a href="#React-Navigation在特定页面隐藏tab菜单栏" class="headerlink" title="React Navigation在特定页面隐藏tab菜单栏"></a>React Navigation在特定页面隐藏tab菜单栏</h2><p>在基于tab的导航应用中，有时候我们需要在某些页面隐藏tab菜单栏。假设这里有5个页面：</p>
-<ul>
-<li>Home</li>
-<li>Feed</li>
-<li>Notifications</li>
-<li>Profile</li>
-<li>Settings</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/28/React/Hiding-tab-bar-in-specific-screens/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,default">
-    <link itemprop="mainEntityOfPage" href="https://moakap.github.io/2021/06/28/React/React-Navigation-Authentication-Flows/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/snail-filled.png">
-      <meta itemprop="name" content="moakap">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Moakap's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/28/React/React-Navigation-Authentication-Flows/" class="post-title-link" itemprop="url">React Navigation中的登录认证流程</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-28 16:45:51" itemprop="dateCreated datePublished" datetime="2021-06-28T16:45:51+00:00">2021-06-28</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%9C%BB%E8%9C%93%E7%82%B9%E6%B0%B4/" itemprop="url" rel="index"><span itemprop="name">蜻蜓点水</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%9C%BB%E8%9C%93%E7%82%B9%E6%B0%B4/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/06/28/React/React-Navigation-Authentication-Flows/" class="post-meta-item leancloud_visitors" data-flag-title="React Navigation中的登录认证流程" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/06/28/React/React-Navigation-Authentication-Flows/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/28/React/React-Navigation-Authentication-Flows/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>大部分应用需要某种方式的用户认证，以便用户可以访问个人相关的数据或其它隐私数据。典型的流程是这样的：</p>
-<ul>
-<li>用户打开app</li>
-<li>app从加密的持久存储中加载认证信息</li>
-<li>加载完以后，根据用户认证状态，用户会跳转到认证页面，或者到app主页面。</li>
-<li>如果用户退出登录，我们清理用户的认证信息，并且跳转回认证页面。</li>
-</ul>
-<p>注意：这里说的认证页面，就是指跟登录相关的页面，比如登录、注册、忘记密码等。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/28/React/React-Navigation-Authentication-Flows/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,default">
-    <link itemprop="mainEntityOfPage" href="https://moakap.github.io/2021/06/24/Swarm/Run_Bee_in_Swarm_Mainnet/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/snail-filled.png">
-      <meta itemprop="name" content="moakap">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Moakap's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/24/Swarm/Run_Bee_in_Swarm_Mainnet/" class="post-title-link" itemprop="url">Swarm主网运行Bee</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-24 10:19:55" itemprop="dateCreated datePublished" datetime="2021-06-24T10:19:55+00:00">2021-06-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%9C%BB%E8%9C%93%E7%82%B9%E6%B0%B4/" itemprop="url" rel="index"><span itemprop="name">蜻蜓点水</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%9C%BB%E8%9C%93%E7%82%B9%E6%B0%B4/Swarm/" itemprop="url" rel="index"><span itemprop="name">Swarm</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/06/24/Swarm/Run_Bee_in_Swarm_Mainnet/" class="post-meta-item leancloud_visitors" data-flag-title="Swarm主网运行Bee" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/06/24/Swarm/Run_Bee_in_Swarm_Mainnet/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/24/Swarm/Run_Bee_in_Swarm_Mainnet/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Swarm主网与6月21日上线，根据<a target="_blank" rel="noopener" href="https://medium.com/ethereum-swarm/swarm-airdrop-is-finishing-on-21-june-2021-important-notice-to-all-participants-6a58f29017a2">官方通知</a>，所有测试网的活动都会结束，之前参与空投的节点需要在7月12号之前把之前兑现。</p>
-<h2 id="空投安排"><a href="#空投安排" class="headerlink" title="空投安排"></a>空投安排</h2><ul>
-<li>6月21日: 主网上线，空投截至</li>
-<li>6月21日 - 7月12日: 支票兑现，收到支票但没有兑现的节点不能参与空投。</li>
-<li>7月15日: Swarm基金会公布信任节点(trusted nodes)，并部署空投BZZ (aBZZ - airdrop BZZ)到Goerli测试网。根据官方说法，到时候会发布一个专门的应用。通过空投应用可以查看自己的节点是否会收到空投以及对应的aBZZ币数量。</li>
-<li>7月15日 - 21日: 所有人可以在官网查看自己的aBZZ账户，参与者可以将aBZZ集中的某一个账户，用来在主网接收BZZ。</li>
-<li>7月22日: aBZZ转移截止。</li>
-<li>8月2日: 派发BZZ，测试网Goerli的aBZZ会转化成xDai中的BZZ。</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/24/Swarm/Run_Bee_in_Swarm_Mainnet/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,default">
-    <link itemprop="mainEntityOfPage" href="https://moakap.github.io/2021/06/08/React/CORS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/snail-filled.png">
-      <meta itemprop="name" content="moakap">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Moakap's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/08/React/CORS/" class="post-title-link" itemprop="url">No 'Access-Control-Allow-Origin' header is present on the requested resource.</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-08 18:48:24" itemprop="dateCreated datePublished" datetime="2021-06-08T18:48:24+00:00">2021-06-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%9C%BB%E8%9C%93%E7%82%B9%E6%B0%B4/" itemprop="url" rel="index"><span itemprop="name">蜻蜓点水</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%9C%BB%E8%9C%93%E7%82%B9%E6%B0%B4/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">后端开发</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/06/08/React/CORS/" class="post-meta-item leancloud_visitors" data-flag-title="No 'Access-Control-Allow-Origin' header is present on the requested resource." title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/06/08/React/CORS/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/08/React/CORS/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>No ‘Access-Control-Allow-Origin’ header is present on the requested resource. </p>
-</blockquote>
-<h2 id="CORS是什么？"><a href="#CORS是什么？" class="headerlink" title="CORS是什么？"></a>CORS是什么？</h2><p><strong>CORS</strong> （Cross-Origin Resource Sharing，跨域资源共享）是一个系统，它由一系列传输的<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/HTTP_header">HTTP头</a>组成，这些HTTP头决定浏览器是否阻止前端 JavaScript 代码获取跨域请求的响应。<br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy">同源安全策略</a> （<strong>same-origin policy</strong>）默认阻止“跨域”获取资源。但是 CORS 给了web服务器这样的权限，即服务器可以选择，允许跨域请求访问到它们的资源。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/08/React/CORS/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,default">
-    <link itemprop="mainEntityOfPage" href="https://moakap.github.io/2021/06/07/Swarm/Store-with-Encryption/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/snail-filled.png">
-      <meta itemprop="name" content="moakap">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Moakap's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/07/Swarm/Store-with-Encryption/" class="post-title-link" itemprop="url">Swarm加密存储</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-07 14:27:36" itemprop="dateCreated datePublished" datetime="2021-06-07T14:27:36+00:00">2021-06-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%9C%BB%E8%9C%93%E7%82%B9%E6%B0%B4/" itemprop="url" rel="index"><span itemprop="name">蜻蜓点水</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%9C%BB%E8%9C%93%E7%82%B9%E6%B0%B4/Swarm/" itemprop="url" rel="index"><span itemprop="name">Swarm</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/06/07/Swarm/Store-with-Encryption/" class="post-meta-item leancloud_visitors" data-flag-title="Swarm加密存储" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/06/07/Swarm/Store-with-Encryption/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/07/Swarm/Store-with-Encryption/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在Swarm中，所有的数据都是公开的。如果需要保护特定的敏感内容，可以使用加密存储，这样只有授权的用户解密后可以查看这些内容。</p>
-<p>Bee客户端提供了在上传时对文件和目录进行加密的简单方法，只有能够访问相应的解密密钥的用户可以读取加密后的数据。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/07/Swarm/Store-with-Encryption/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
 
 
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -1541,6 +588,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">机器学习基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-vs-%E4%BC%A0%E7%BB%9F%E7%BC%96%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">机器学习 vs. 传统编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E7%A7%8D%E7%B1%BB%E5%88%AB"><span class="nav-number">1.2.</span> <span class="nav-text">三种类别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.2.1.</span> <span class="nav-text">监督学习</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%9E%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.2.2.</span> <span class="nav-text">非监督学习</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.2.3.</span> <span class="nav-text">半监督学习</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python-sklearn-scikit-learn"><span class="nav-number">2.</span> <span class="nav-text">Python sklearn (scikit-learn)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%89%E5%A4%A7%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.1.</span> <span class="nav-text">机器学习三大步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#scikit-learn-sklearn-%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.2.</span> <span class="nav-text">scikit-learn (sklearn) 实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AC%E6%8D%A2%E5%99%A8%E5%92%8C%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8"><span class="nav-number">2.2.1.</span> <span class="nav-text">转换器和预处理器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B%E5%99%A8"><span class="nav-number">2.2.2.</span> <span class="nav-text">预测器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%A1%E9%81%93"><span class="nav-number">2.2.3.</span> <span class="nav-text">管道</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0"><span class="nav-number">2.3.</span> <span class="nav-text">模型评估</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95%E6%8C%87%E6%A0%87"><span class="nav-number">2.3.1.</span> <span class="nav-text">回归算法指标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95%E6%8C%87%E6%A0%87"><span class="nav-number">2.3.2.</span> <span class="nav-text">分类算法指标</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E6%90%9C%E7%B4%A2"><span class="nav-number">2.4.</span> <span class="nav-text">参数搜索</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GridSearchCV-%E7%BD%91%E6%A0%BC%E6%90%9C%E7%B4%A2%E6%96%B9%E6%B3%95"><span class="nav-number">2.4.1.</span> <span class="nav-text">GridSearchCV 网格搜索方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RandomizedSearchCV-%E9%9A%8F%E6%9C%BA%E6%90%9C%E7%B4%A2%E6%96%B9%E6%B3%95"><span class="nav-number">2.4.2.</span> <span class="nav-text">RandomizedSearchCV 随机搜索方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95%EF%BC%88%E6%8C%87%E6%A0%87%EF%BC%89"><span class="nav-number">2.4.3.</span> <span class="nav-text">评估方法（指标）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">回归算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90%EF%BC%88Regression-Analysis%EF%BC%89"><span class="nav-number">3.1.</span> <span class="nav-text">回归分析（Regression Analysis）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%EF%BC%88Liner-Regression%EF%BC%89%E5%9F%BA%E7%A1%80"><span class="nav-number">3.2.</span> <span class="nav-text">线性回归（Liner Regression）基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B%E5%80%BC%E5%92%8C%E7%9C%9F%E5%AE%9E%E5%80%BC%E7%9A%84%E8%B7%9D%E7%A6%BB"><span class="nav-number">3.2.1.</span> <span class="nav-text">预测值和真实值的距离</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E6%AE%8B%E5%B7%AE%E5%B9%B3%E6%96%B9%E5%92%8CSSE"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">1. 残差平方和SSE</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E6%AC%A7%E6%B0%8F%E8%B7%9D%E7%A6%BB"><span class="nav-number">3.2.1.2.</span> <span class="nav-text">2. 欧氏距离</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E6%9B%BC%E5%93%88%E9%A1%BF%E8%B7%9D%E7%A6%BB"><span class="nav-number">3.2.1.3.</span> <span class="nav-text">3. 曼哈顿距离</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E9%A9%AC%E6%B0%8F%E8%B7%9D%E7%A6%BB-Mahalanobis-Distance"><span class="nav-number">3.2.1.4.</span> <span class="nav-text">4. 马氏距离(Mahalanobis Distance)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-%E5%85%B6%E5%AE%83"><span class="nav-number">3.2.1.5.</span> <span class="nav-text">5. 其它</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95-Ordinary-Least-Square-OLS"><span class="nav-number">3.2.2.</span> <span class="nav-text">普通最小二乘法(Ordinary Least Square, OLS)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%9D%9E%E8%B4%9F%E6%9C%80%E5%B0%8F%E6%96%B9%E5%B7%AE"><span class="nav-number">3.2.2.1.</span> <span class="nav-text">非负最小方差</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%87%E6%8B%9F%E5%90%88-Overfitting-%E5%92%8C%E6%AC%A0%E6%8B%9F%E5%90%88-Underfitting"><span class="nav-number">3.2.3.</span> <span class="nav-text">过拟合(Overfitting)和欠拟合(Underfitting)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E5%8C%96"><span class="nav-number">3.2.3.1.</span> <span class="nav-text">正则化</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B2%AD-Ridge-%E5%9B%9E%E5%BD%92%EF%BC%88L2%E6%AD%A3%E5%88%99%E5%8C%96%EF%BC%89"><span class="nav-number">3.2.4.</span> <span class="nav-text">岭(Ridge)回归（L2正则化）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Lasso%E5%9B%9E%E5%BD%92%EF%BC%88L1%E6%AD%A3%E5%88%99%E5%8C%96%EF%BC%89"><span class="nav-number">3.2.5.</span> <span class="nav-text">Lasso回归（L1正则化）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E9%80%89%E5%8F%96%E4%B8%8E%E5%8E%8B%E7%BC%A9%E6%84%9F%E7%9F%A5"><span class="nav-number">3.2.5.1.</span> <span class="nav-text">特征选取与压缩感知</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Elastic-Net%E5%BC%B9%E6%80%A7%E7%BD%91%E7%BB%9C%E5%9B%9E%E5%BD%92%EF%BC%88L1-L2%E6%AD%A3%E5%88%99%E5%8C%96%EF%BC%89"><span class="nav-number">3.2.6.</span> <span class="nav-text">Elastic-Net弹性网络回归（L1+L2正则化）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%84%E4%BC%B0%E6%AD%A3%E5%88%99%E5%8C%96%E5%8F%82%E6%95%B0%E2%80%94%E2%80%94%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%9B%9E%E5%BD%92"><span class="nav-number">3.2.7.</span> <span class="nav-text">预估正则化参数——贝叶斯回归</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%B2%AD%E5%9B%9E%E5%BD%92"><span class="nav-number">3.2.7.1.</span> <span class="nav-text">贝叶斯岭回归</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E5%85%B3%E8%81%94%E5%88%A4%E5%AE%9A-ARD"><span class="nav-number">3.2.7.2.</span> <span class="nav-text">自动关联判定-ARD</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AB%98%E7%BB%B4%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="nav-number">3.2.8.</span> <span class="nav-text">高维数据的线性回归</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9"><span class="nav-number">3.2.8.1.</span> <span class="nav-text">特征选择</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-%E7%89%B9%E5%BE%81%E7%94%9F%E6%88%90"><span class="nav-number">3.2.8.1.1.</span> <span class="nav-text">1. 特征生成</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-%E7%89%B9%E5%BE%81%E8%AF%84%E4%BC%B0"><span class="nav-number">3.2.8.1.2.</span> <span class="nav-text">2. 特征评估</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-%E7%89%B9%E5%BE%81%E9%AA%8C%E8%AF%81"><span class="nav-number">3.2.8.1.3.</span> <span class="nav-text">3. 特征验证</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link"><span class="nav-number">3.2.8.2.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E8%A7%92%E5%9B%9E%E5%BD%92-Least-angle-Regression-LARS"><span class="nav-number">3.2.8.3.</span> <span class="nav-text">最小角回归(Least-angle Regression, LARS)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LARS-Lasso"><span class="nav-number">3.2.8.4.</span> <span class="nav-text">LARS Lasso</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%AD%A3%E4%BA%A4%E5%8C%B9%E9%85%8D%E8%BF%BD%E8%B8%AA%EF%BC%88OMP%EF%BC%89"><span class="nav-number">3.2.8.5.</span> <span class="nav-text">正交匹配追踪（OMP）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%EF%BC%88SGD%EF%BC%89"><span class="nav-number">3.2.8.6.</span> <span class="nav-text">随机梯度下降（SGD）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%84%9F%E7%9F%A5%E6%9C%BA-%EF%BC%88Perceptron%EF%BC%89"><span class="nav-number">3.2.8.7.</span> <span class="nav-text">感知机 （Perceptron）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A2%AB%E5%8A%A8%E6%84%9F%E7%9F%A5%E7%AE%97%E6%B3%95-Passive-Aggressive-Algorithms"><span class="nav-number">3.2.8.8.</span> <span class="nav-text">被动感知算法(Passive Aggressive Algorithms)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%BF%E4%B9%89%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%EF%BC%88GLM%EF%BC%89"><span class="nav-number">3.2.9.</span> <span class="nav-text">广义线性回归（GLM）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%86%8D%E7%94%9F%E6%8C%87%E6%95%B0%E7%A6%BB%E6%95%A3%E6%A8%A1%E5%9E%8B-EDM"><span class="nav-number">3.2.9.1.</span> <span class="nav-text">再生指数离散模型(EDM)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#TweedieRegressor"><span class="nav-number">3.2.9.2.</span> <span class="nav-text">TweedieRegressor</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%86%E9%85%8D%E6%96%B9%E5%BC%8F%E9%80%89%E6%8B%A9"><span class="nav-number">3.2.9.3.</span> <span class="nav-text">分配方式选择</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
