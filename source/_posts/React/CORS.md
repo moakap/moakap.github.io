@@ -5,7 +5,7 @@ tags:
   - CORS
   - nginx
 categories: 
-  - Technology
+  - 蜻蜓点水
   - 后端开发
 ---
 
