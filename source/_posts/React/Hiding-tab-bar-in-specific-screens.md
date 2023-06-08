@@ -2,7 +2,6 @@
 title: React Navigation在特定页面隐藏tab菜单栏
 categories: 
   - 蜻蜓点水
-  - 前端
   - React
 tags: 
   - React
