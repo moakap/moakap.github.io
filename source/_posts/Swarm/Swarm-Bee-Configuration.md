@@ -1,7 +1,7 @@
 ---
 title: Swarm Bee配置
 categories: 
-  - Technology
+  - 蜻蜓点水
   - Swarm
 tags: 
   - Swarm
