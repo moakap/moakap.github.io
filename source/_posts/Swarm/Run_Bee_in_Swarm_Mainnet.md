@@ -1,7 +1,7 @@
 ---
 title: Swarm主网运行Bee
 categories: 
-  - Technology
+  - 蜻蜓点水
   - Swarm
 tags: 
   - Swarm
