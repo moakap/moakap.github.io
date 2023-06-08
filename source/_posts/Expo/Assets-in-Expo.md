@@ -1,6 +1,9 @@
 ---
 title: Expo中的Assets资源使用
 date: 2021-05-24 11:52:51
+categories: 
+  - 蜻蜓点水
+  - Expo
 tags:
   - expo
   - assets
