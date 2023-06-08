@@ -1,7 +1,7 @@
 ---
 title: 上传和下载文件
 categories: 
-  - Technology
+  - 蜻蜓点水
   - Swarm
 tags: 
   - Swarm上传
