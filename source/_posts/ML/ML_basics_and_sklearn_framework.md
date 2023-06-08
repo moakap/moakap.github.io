@@ -1,8 +1,8 @@
 ---
 title: 机器学习基础入门和Python sklearn
 default_category: ML
-categories:
-  - technology
+categories: 
+  - 蜻蜓点水
   - ML
 tags: 
   - ML
