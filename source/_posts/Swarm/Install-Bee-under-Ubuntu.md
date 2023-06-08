@@ -1,6 +1,8 @@
 ---
 title: Ubuntu下运行Swarm Bee节点
-default_category: Swarm
+categories: 
+  - 蜻蜓点水
+  - Swarm
 tags: 
   - Swarm
   - Bee
