@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-CN,en,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/snail-filled.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/snail-filled-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/snail-filled-16x16.png">
+  <link rel="mask-icon" href="/images/snail-filled.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"moakap.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="ubuntu下安装和部署RAP21. 后台部署1.1 安装mysql和redis123$ sudo apt update$ sudo apt install mysql-server$ sudo apt install redis-server  1.2 安装pandoc1.2.1 从pandoc release下载页面下载最新版本 1$ wget https:&#x2F;&#x2F;github.com&#x2F;jgm&#x2F;p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu下安装和部署RAP2">
+<meta property="og:url" content="https://moakap.github.io/2023/06/08/superficial/Install_RAP2_in_Ubuntu/index.html">
+<meta property="og:site_name" content="Moakap&#39;s Blog">
+<meta property="og:description" content="ubuntu下安装和部署RAP21. 后台部署1.1 安装mysql和redis123$ sudo apt update$ sudo apt install mysql-server$ sudo apt install redis-server  1.2 安装pandoc1.2.1 从pandoc release下载页面下载最新版本 1$ wget https:&#x2F;&#x2F;github.com&#x2F;jgm&#x2F;p">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-06-08T15:15:51.000Z">
+<meta property="article:modified_time" content="2023-06-08T07:15:54.093Z">
+<meta property="article:author" content="moakap">
+<meta property="article:tag" content="Ubuntu">
+<meta property="article:tag" content="RAP2">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://moakap.github.io/2023/06/08/superficial/Install_RAP2_in_Ubuntu/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>ubuntu下安装和部署RAP2 | Moakap's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DFB6WMHQPG"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DFB6WMHQPG');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Moakap's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Keep moving, keep thinking!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">26</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">17</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://moakap.github.io/2023/06/08/superficial/Install_RAP2_in_Ubuntu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/snail-filled.png">
+      <meta itemprop="name" content="moakap">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Moakap's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ubuntu下安装和部署RAP2
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-06-08 15:15:51" itemprop="dateCreated datePublished" datetime="2023-06-08T15:15:51+00:00">2023-06-08</time>
+            </span>
+
+          
+            <span id="/2023/06/08/superficial/Install_RAP2_in_Ubuntu/" class="post-meta-item leancloud_visitors" data-flag-title="ubuntu下安装和部署RAP2" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2023/06/08/superficial/Install_RAP2_in_Ubuntu/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/06/08/superficial/Install_RAP2_in_Ubuntu/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="ubuntu下安装和部署RAP2"><a href="#ubuntu下安装和部署RAP2" class="headerlink" title="ubuntu下安装和部署RAP2"></a>ubuntu下安装和部署RAP2</h1><h2 id="1-后台部署"><a href="#1-后台部署" class="headerlink" title="1. 后台部署"></a>1. 后台部署</h2><h3 id="1-1-安装mysql和redis"><a href="#1-1-安装mysql和redis" class="headerlink" title="1.1 安装mysql和redis"></a>1.1 安装mysql和redis</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt update</span><br><span class="line">$ sudo apt install mysql-server</span><br><span class="line">$ sudo apt install redis-server</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-安装pandoc"><a href="#1-2-安装pandoc" class="headerlink" title="1.2 安装pandoc"></a>1.2 安装pandoc</h3><p>1.2.1 从<a target="_blank" rel="noopener" href="https://github.com/jgm/pandoc/releases">pandoc release下载页面</a>下载最新版本</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://github.com/jgm/pandoc/releases/download/3.1/pandoc-3.1-1-amd64.deb</span><br></pre></td></tr></table></figure>
+
+<p>1.2.2 安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ sudo dpkg -i pandoc-3.1-1-amd64.deb</span><br><span class="line">$ pandoc -v</span><br><span class="line">pandoc 3.1</span><br><span class="line">Features: +server +lua</span><br><span class="line">Scripting engine: Lua 5.4</span><br><span class="line">User data directory: /home/ubuntu/.local/share/pandoc</span><br><span class="line">Copyright (C) 2006-2023 John MacFarlane. Web:  https://pandoc.org</span><br><span class="line">This is free software; see the source for copying conditions. There is no</span><br><span class="line">warranty, not even for merchantability or fitness for a particular purpose.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-3-安装nodejs和npm"><a href="#1-3-安装nodejs和npm" class="headerlink" title="1.3 安装nodejs和npm"></a>1.3 安装nodejs和npm</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$  sudo apt install nodejs npm</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-4-创建数据库"><a href="#1-4-创建数据库" class="headerlink" title="1.4 创建数据库"></a>1.4 创建数据库</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ mysql -u root -p </span><br><span class="line">Enter password: </span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">mysql&gt; CREATE DATABASE IF NOT EXISTS RAP2_DELOS_APP DEFAULT CHARSET utf8 COLLATE utf8_general_ci;</span><br><span class="line">Query OK, 1 row affected, 2 warnings (0.07 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; show databases;</span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| RAP2_DELOS_APP     |</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-5-初始化"><a href="#1-5-初始化" class="headerlink" title="1.5 初始化"></a>1.5 初始化</h3><p>1.5.1 下载rap2-delos并安装依赖软件包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github.com/thx/rap2-delos.git</span><br><span class="line">...</span><br><span class="line">$ cd rap2-delos</span><br><span class="line">$ npm install</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>1.5.2 修改项目配置<br>根据需要修改<code>src/config/config.&#123;ENV&#125;.ts</code>中对应的数据库配置信息。</p>
+<p>1.5.3 安装typescript</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g typescript</span><br><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+
+<p>1.5.4 初始化数据库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ npm run create-db</span><br><span class="line"></span><br><span class="line">&gt; rap2-delos@2.9.0 create-db /home/ubuntu/mysites/rap/rap2-delos</span><br><span class="line">&gt; cross-env NODE_ENV=development node dist/scripts/initSchema</span><br><span class="line"></span><br><span class="line">----------------------------------------</span><br><span class="line">DATABASE √</span><br><span class="line">    HOST     localhost</span><br><span class="line">    PORT     3306</span><br><span class="line">    DATABASE RAP2_DELOS_APP</span><br><span class="line">----------------------------------------</span><br><span class="line">成功初始化 DB Schema</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-6-启动后台服务"><a href="#1-6-启动后台服务" class="headerlink" title="1.6 启动后台服务"></a>1.6 启动后台服务</h3><p>1.6.1 开发模式下启动</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$ npm run dev</span><br><span class="line">&gt; rap2-delos@2.9.0 dev /home/ubuntu/mysites/rap/rap2-delos</span><br><span class="line">&gt; cross-env NODE_ENV=development nodemon --watch scripts --watch dist dist/scripts/dev.js</span><br><span class="line"></span><br><span class="line">[nodemon] 2.0.21</span><br><span class="line">[nodemon] to restart at any time, enter `rs`</span><br><span class="line">[nodemon] watching path(s): scripts dist/**/*</span><br><span class="line">[nodemon] watching extensions: js,mjs,json</span><br><span class="line">[nodemon] starting `node dist/scripts/dev.js`</span><br><span class="line">Starting task: locker check</span><br><span class="line">----------------------------------------</span><br><span class="line">rap2-delos is running as http://localhost:8080</span><br><span class="line">----------------------------------------</span><br><span class="line">DATABASE √</span><br><span class="line">    HOST     localhost</span><br><span class="line">    PORT     3306</span><br><span class="line">    DATABASE RAP2_DELOS_APP</span><br><span class="line">----------------------------------------</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>1.6.2 生产模式下启动</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm run build</span><br><span class="line">$ npm start</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-前端部署"><a href="#2-前端部署" class="headerlink" title="2. 前端部署"></a>2. 前端部署</h2><h3 id="2-1-下载前端代码库"><a href="#2-1-下载前端代码库" class="headerlink" title="2.1 下载前端代码库"></a>2.1 下载前端代码库</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github.com/thx/rap2-dolores.git</span><br><span class="line">...</span><br><span class="line">$ cd rap2-delores</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-安装依赖"><a href="#2-2-安装依赖" class="headerlink" title="2.2 安装依赖"></a>2.2 安装依赖</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-配置后端api地址并生成静态站点"><a href="#2-3-配置后端api地址并生成静态站点" class="headerlink" title="2.3 配置后端api地址并生成静态站点"></a>2.3 配置后端api地址并生成静态站点</h3><p>配置文件路径：/src/config/config.prod.js</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  serve: &#x27;http://127.0.0.1:8080&#x27;,</span><br><span class="line">  keys: [&#x27;some secret hurr&#x27;],</span><br><span class="line">  session: &#123;</span><br><span class="line">    key: &#x27;koa:sess&#x27;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>更改<code>serve</code>字段，改成我们的后端访问地址，访问地址直接使用ip，不要使用127.0.0.1。 注意加 http://</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run build</span><br></pre></td></tr></table></figure>
+
+<h4 id="“0308010c-digital-envelope-routines-unsupported”错误"><a href="#“0308010c-digital-envelope-routines-unsupported”错误" class="headerlink" title="“0308010c:digital envelope routines::unsupported”错误"></a>“0308010c:digital envelope routines::unsupported”错误</h4><p>参考<a target="_blank" rel="noopener" href="https://www.freecodecamp.org/chinese/news/error-error-0308010c-digital-envelope-routines-unsupported-node-error-solved/">如何解决 “0308010c:digital envelope routines::unsupported” 的错误</a>，修改rap2-dolores下package.json中的<code>react-scripts start</code>命令，添加<code>--openssl-legacy-provider</code>选项。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;build-css&quot;: &quot;node ./node_modules/sass/sass src/:src/ --quiet&quot;,</span><br><span class="line">    &quot;watch-css&quot;: &quot;npm run build-css &amp;&amp; node ./node_modules/sass/sass src/:src/ --watch&quot;,</span><br><span class="line">    &quot;start-js&quot;: &quot;react-scripts start --openssl-legacy-provider&quot;,</span><br><span class="line">    &quot;start&quot;: &quot;npm-run-all -p watch-css start-js --max-old-space-size=4096&quot;,</span><br><span class="line">    &quot;build&quot;: &quot;npm run lint &amp;&amp; npm run build-css &amp;&amp; react-scripts --openssl-legacy-provider build&quot;,</span><br><span class="line">    &quot;test-backup&quot;: &quot;npm run lint &amp;&amp; react-scripts test --env=jsdom&quot;,</span><br><span class="line">    &quot;test&quot;: &quot;npm run lint&quot;,</span><br><span class="line">    &quot;eject&quot;: &quot;react-scripts eject&quot;,</span><br><span class="line">    &quot;lint&quot;: &quot;tslint --project ./ -c tslint.json --fix&quot;,</span><br><span class="line">    &quot;build-docker&quot;: &quot;docker build --rm -f \&quot;Dockerfile\&quot; -t rapteam/rap2-dolores:latest .&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4-部署-build到服务器"><a href="#2-4-部署-build到服务器" class="headerlink" title="2.4 部署/build到服务器"></a>2.4 部署<code>/build</code>到服务器</h3><h4 id="2-4-1-ngnix配置文件"><a href="#2-4-1-ngnix配置文件" class="headerlink" title="2.4.1 ngnix配置文件"></a>2.4.1 ngnix配置文件</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">server &#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        listen [::]:80;</span><br><span class="line"></span><br><span class="line">        server_name rap2.example.com;</span><br><span class="line"></span><br><span class="line">        root $&#123;PATH_TO_rap2-dolores&#125;;</span><br><span class="line">        index index.html index.php;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">                try_files $uri $uri/ /index.html;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="404-not-found"><a href="#404-not-found" class="headerlink" title="404 not found"></a>404 not found</h4><p>参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/waterdemo/article/details/81354973">这里</a>，只需要确保nginx配置文件下的localtion路径为<code>try_files $uri $uri/ /index.html;</code>即可。</p>
+<p>如果使用了下边的配置，就会出现404错误</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">        try_files $uri $uri/ =404;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Ubuntu/" rel="tag"><i class="fa fa-tag"></i> Ubuntu</a>
+              <a href="/tags/RAP2/" rel="tag"><i class="fa fa-tag"></i> RAP2</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/12/ML/ML_basics_and_sklearn_framework/" rel="prev" title="机器学习基础入门和Python sklearn">
+      <i class="fa fa-chevron-left"></i> 机器学习基础入门和Python sklearn
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ubuntu%E4%B8%8B%E5%AE%89%E8%A3%85%E5%92%8C%E9%83%A8%E7%BD%B2RAP2"><span class="nav-number">1.</span> <span class="nav-text">ubuntu下安装和部署RAP2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%90%8E%E5%8F%B0%E9%83%A8%E7%BD%B2"><span class="nav-number">1.1.</span> <span class="nav-text">1. 后台部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E5%AE%89%E8%A3%85mysql%E5%92%8Credis"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 安装mysql和redis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E5%AE%89%E8%A3%85pandoc"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 安装pandoc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E5%AE%89%E8%A3%85nodejs%E5%92%8Cnpm"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 安装nodejs和npm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 创建数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">1.1.5.</span> <span class="nav-text">1.5 初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-%E5%90%AF%E5%8A%A8%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.1.6.</span> <span class="nav-text">1.6 启动后台服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%89%8D%E7%AB%AF%E9%83%A8%E7%BD%B2"><span class="nav-number">1.2.</span> <span class="nav-text">2. 前端部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E4%B8%8B%E8%BD%BD%E5%89%8D%E7%AB%AF%E4%BB%A3%E7%A0%81%E5%BA%93"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 下载前端代码库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 安装依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E9%85%8D%E7%BD%AE%E5%90%8E%E7%AB%AFapi%E5%9C%B0%E5%9D%80%E5%B9%B6%E7%94%9F%E6%88%90%E9%9D%99%E6%80%81%E7%AB%99%E7%82%B9"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 配置后端api地址并生成静态站点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%80%9C0308010c-digital-envelope-routines-unsupported%E2%80%9D%E9%94%99%E8%AF%AF"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">“0308010c:digital envelope routines::unsupported”错误</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E9%83%A8%E7%BD%B2-build%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4 部署&#x2F;build到服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1-ngnix%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">2.4.1 ngnix配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#404-not-found"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">404 not found</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="moakap"
+      src="/images/snail-filled.png">
+  <p class="site-author-name" itemprop="name">moakap</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/moakap" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;moakap" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">moakap</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'AjpQWK4TAFokhRL5FftLIpHr-gzGzoHsz',
+      appKey     : 'Lt5JkPmORcKiBCx0RvGPVcNP',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
