@@ -2,6 +2,7 @@
 title: 安装Flarum
 categories: 
   - 蜻蜓点水
+  - Flarum
 tags: 
   - Flarum
   - nginx
