@@ -1,8 +1,7 @@
 ---
 title: React中的useMemo和useCallback
 categories: 
-  - Technology
-  - 前端
+  - 蜻蜓点水
   - React
 tags: 
   - React
