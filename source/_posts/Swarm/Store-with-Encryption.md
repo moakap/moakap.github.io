@@ -1,7 +1,7 @@
 ---
 title: Swarm加密存储
 categories: 
-  - Technology
+  - 蜻蜓点水
   - Swarm
 tags: 
   - Swarm
