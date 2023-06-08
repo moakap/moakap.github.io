@@ -5,8 +5,8 @@ tags:
   - React
   - React Navigation
   - Authentication
-categories:
-  - Technology
+categories: 
+  - 蜻蜓点水
   - React
 ---
 
