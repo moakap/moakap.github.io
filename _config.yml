@@ -6,12 +6,12 @@
 title: Moakap's Blog
 subtitle: 'Keep moving, keep thinking!'
 description: ''
-keywords:
+keywords: moakap, blog
 author: moakap
 language: 
   - zh-CN
   - en
-timezone: 
+timezone: Asia/Shanghai
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
@@ -40,11 +40,11 @@ external_link:
   enable: true # Open external links in new tab
   field: site # Apply to the whole site
   exclude: ''
-filename_case: 0
+filename_case: 1
 render_drafts: false
 post_asset_folder: false
 relative_link: false
-future: true
+future: false
 highlight:
   enable: true
   line_number: true
