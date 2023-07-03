@@ -28,7 +28,7 @@
 <meta property="og:description" content="ubuntu下安装和部署RAP21. 后台部署1.1 安装mysql和redis123$ sudo apt update$ sudo apt install mysql-server$ sudo apt install redis-server  1.2 安装pandoc1.2.1 从pandoc release下载页面下载最新版本 1$ wget https:&#x2F;&#x2F;github.com&#x2F;jgm&#x2F;p">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-06-08T07:15:51.000Z">
-<meta property="article:modified_time" content="2023-07-03T03:07:09.766Z">
+<meta property="article:modified_time" content="2023-07-03T03:07:51.290Z">
 <meta property="article:author" content="moakap">
 <meta property="article:tag" content="Ubuntu">
 <meta property="article:tag" content="RAP2">
@@ -248,6 +248,8 @@
 
 <h3 id="1-2-安装pandoc"><a href="#1-2-安装pandoc" class="headerlink" title="1.2 安装pandoc"></a>1.2 安装pandoc</h3><p>1.2.1 从<a target="_blank" rel="noopener" href="https://github.com/jgm/pandoc/releases">pandoc release下载页面</a>下载最新版本</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://github.com/jgm/pandoc/releases/download/3.1/pandoc-3.1-1-amd64.deb</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
 
 <p>1.2.2 安装</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ sudo dpkg -i pandoc-3.1-1-amd64.deb</span><br><span class="line">$ pandoc -v</span><br><span class="line">pandoc 3.1</span><br><span class="line">Features: +server +lua</span><br><span class="line">Scripting engine: Lua 5.4</span><br><span class="line">User data directory: /home/ubuntu/.local/share/pandoc</span><br><span class="line">Copyright (C) 2006-2023 John MacFarlane. Web:  https://pandoc.org</span><br><span class="line">This is free software; see the source for copying conditions. There is no</span><br><span class="line">warranty, not even for merchantability or fitness for a particular purpose.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
