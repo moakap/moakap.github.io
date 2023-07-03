@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN,en,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/snail-filled.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/snail-filled-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/snail-filled-16x16.png">
+  <link rel="mask-icon" href="/images/snail-filled.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"moakap.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="在Excel中刷新股票数据基本功能点击刷新按钮以后，读取excel中某一列保存的股票代码，然后通过股票数据API获取实时数据，并保存到excel中。 如下图，点击刷新按钮，读取D列的股票代码，获取实时数据，并将对应的数据写入到E - L列。 基本步骤step-1 添加按钮通过Developer -&gt; Insert -&gt; Button添加刷新按钮。  然后分配宏脚本，这里新定义一个Ref">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Excel中刷新股票数据">
+<meta property="og:url" content="https://moakap.github.io/2021/08/09/superficial/Retrieve_stock_data_in_Excel/index.html">
+<meta property="og:site_name" content="Moakap&#39;s Blog">
+<meta property="og:description" content="在Excel中刷新股票数据基本功能点击刷新按钮以后，读取excel中某一列保存的股票代码，然后通过股票数据API获取实时数据，并保存到excel中。 如下图，点击刷新按钮，读取D列的股票代码，获取实时数据，并将对应的数据写入到E - L列。 基本步骤step-1 添加按钮通过Developer -&gt; Insert -&gt; Button添加刷新按钮。  然后分配宏脚本，这里新定义一个Ref">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/moakap/moakap.github.io/assets/6308127/38da88ea-62b1-43a9-a870-688c82593071">
+<meta property="og:image" content="https://github.com/moakap/moakap.github.io/assets/6308127/5e08fac2-5c15-413b-9be7-4bc76300e8ef">
+<meta property="og:image" content="https://github.com/moakap/moakap.github.io/assets/6308127/a4cb87e9-b1d9-4a75-8fd4-e47573be2d4a">
+<meta property="article:published_time" content="2021-08-09T17:20:38.000Z">
+<meta property="article:modified_time" content="2023-07-03T02:24:12.114Z">
+<meta property="article:author" content="moakap">
+<meta property="article:tag" content="Excel">
+<meta property="article:tag" content="股票">
+<meta property="article:tag" content="Stock">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/moakap/moakap.github.io/assets/6308127/38da88ea-62b1-43a9-a870-688c82593071">
+
+<link rel="canonical" href="https://moakap.github.io/2021/08/09/superficial/Retrieve_stock_data_in_Excel/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>在Excel中刷新股票数据 | Moakap's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DFB6WMHQPG"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DFB6WMHQPG');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Moakap's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Keep moving, keep thinking!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">32</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">20</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://moakap.github.io/2021/08/09/superficial/Retrieve_stock_data_in_Excel/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/snail-filled.png">
+      <meta itemprop="name" content="moakap">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Moakap's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在Excel中刷新股票数据
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-09 17:20:38" itemprop="dateCreated datePublished" datetime="2021-08-09T17:20:38+00:00">2021-08-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%9C%BB%E8%9C%93%E7%82%B9%E6%B0%B4/" itemprop="url" rel="index"><span itemprop="name">蜻蜓点水</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%9C%BB%E8%9C%93%E7%82%B9%E6%B0%B4/Excel/" itemprop="url" rel="index"><span itemprop="name">Excel</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/08/09/superficial/Retrieve_stock_data_in_Excel/" class="post-meta-item leancloud_visitors" data-flag-title="在Excel中刷新股票数据" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/08/09/superficial/Retrieve_stock_data_in_Excel/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/09/superficial/Retrieve_stock_data_in_Excel/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="在Excel中刷新股票数据"><a href="#在Excel中刷新股票数据" class="headerlink" title="在Excel中刷新股票数据"></a>在Excel中刷新股票数据</h2><h3 id="基本功能"><a href="#基本功能" class="headerlink" title="基本功能"></a>基本功能</h3><p>点击刷新按钮以后，读取excel中某一列保存的股票代码，然后通过股票数据API获取实时数据，并保存到excel中。</p>
+<p>如下图，点击刷新按钮，读取D列的股票代码，获取实时数据，并将对应的数据写入到E - L列。<br><img src="https://github.com/moakap/moakap.github.io/assets/6308127/38da88ea-62b1-43a9-a870-688c82593071" alt="image"></p>
+<h3 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h3><h4 id="step-1-添加按钮"><a href="#step-1-添加按钮" class="headerlink" title="step-1 添加按钮"></a>step-1 添加按钮</h4><p>通过Developer -&gt; Insert -&gt; Button添加刷新按钮。</p>
+<p><img src="https://github.com/moakap/moakap.github.io/assets/6308127/5e08fac2-5c15-413b-9be7-4bc76300e8ef" alt="image"></p>
+<p>然后分配宏脚本，这里新定义一个RefreshBtnClicked()。</p>
+<figure class="highlight vbscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Option</span> <span class="keyword">Explicit</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">Sub</span> RefreshBtnClicked()</span><br><span class="line">    <span class="comment">&#x27;</span></span><br><span class="line">    Debug.Print <span class="string">&quot;Start Refresh...&quot;</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="step-2-定义股票数据结构类"><a href="#step-2-定义股票数据结构类" class="headerlink" title="step-2 定义股票数据结构类"></a>step-2 定义股票数据结构类</h4><p>定义CStock类(class)，主要目的是方便数据的结构化处理和存储。可以根据需要和使用的股票API接口返回的数据添加、删除对应字段。<br><img src="https://github.com/moakap/moakap.github.io/assets/6308127/a4cb87e9-b1d9-4a75-8fd4-e47573be2d4a" alt="image"></p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Option</span> <span class="keyword">Explicit</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">Public</span> code <span class="keyword">As</span> <span class="type">String</span> <span class="comment">&#x27;股票代码</span></span><br><span class="line"><span class="keyword">Public</span> name <span class="keyword">As</span> <span class="type">String</span> <span class="comment">&#x27;股票名称</span></span><br><span class="line"><span class="keyword">Public</span> lastClosePrice <span class="keyword">As</span> <span class="type">Double</span> <span class="comment">&#x27;昨收</span></span><br><span class="line"><span class="keyword">Public</span> openPrice <span class="keyword">As</span> <span class="type">Double</span> <span class="comment">&#x27;今开</span></span><br><span class="line"><span class="keyword">Public</span> currPrice <span class="keyword">As</span> <span class="type">Double</span> <span class="comment">&#x27;最新价格</span></span><br><span class="line"><span class="keyword">Public</span> maxPrice <span class="keyword">As</span> <span class="type">Double</span> <span class="comment">&#x27;最高</span></span><br><span class="line"><span class="keyword">Public</span> minPrice <span class="keyword">As</span> <span class="type">Double</span> <span class="comment">&#x27;最低</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">Public</span> volume <span class="keyword">As</span> <span class="type">Double</span> <span class="comment">&#x27;</span></span><br><span class="line"><span class="keyword">Public</span> turnover <span class="keyword">As</span> <span class="type">Double</span></span><br><span class="line"><span class="keyword">Public</span> lastUpdateDate <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line"><span class="keyword">Public</span> lastUpdateTime <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; Get current increase (%) - 获取今日涨幅</span></span><br><span class="line"><span class="keyword">Public</span> <span class="keyword">Property</span> <span class="keyword">Get</span> increaseRate() <span class="keyword">As</span> <span class="type">Double</span></span><br><span class="line">    increaseRate = Round((currPrice - lastClosePrice) / lastClosePrice * <span class="number">100</span>, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Property</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="step-3-检查股票代码"><a href="#step-3-检查股票代码" class="headerlink" title="step-3 检查股票代码"></a>step-3 检查股票代码</h4><p>接下来为了排除非法股票代码，通过代码首两个字母做一个简单的筛选，比如沪市(sh开头)、深市(sz开头)和港股(hk开头)。</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Public</span> <span class="keyword">Enum</span> STOCK_MKT</span><br><span class="line">    MKT_HK</span><br><span class="line">    MKT_SH</span><br><span class="line">    MKT_SZ</span><br><span class="line">    MKT_INVALID</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Enum</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27;Get Market type by stock code.</span></span><br><span class="line"><span class="keyword">Function</span> GetMarketType(stockCode <span class="keyword">As</span> <span class="type">String</span>) <span class="keyword">As</span> STOCK_MKT</span><br><span class="line">    <span class="keyword">Dim</span> code <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line">    code = LCase(stockCode)</span><br><span class="line">    </span><br><span class="line">    GetMarketType = MKT_INVALID</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">If</span> InStr(code, <span class="string">&quot;hk&quot;</span>) = <span class="number">1</span> <span class="keyword">Then</span></span><br><span class="line">        GetMarketType = MKT_HK</span><br><span class="line">        <span class="keyword">GoTo</span> Done</span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">If</span> InStr(code, <span class="string">&quot;sh&quot;</span>) = <span class="number">1</span> <span class="keyword">Then</span></span><br><span class="line">        GetMarketType = MKT_SH</span><br><span class="line">        <span class="keyword">GoTo</span> Done</span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">If</span> InStr(code, <span class="string">&quot;sz&quot;</span>) = <span class="number">1</span> <span class="keyword">Then</span></span><br><span class="line">        GetMarketType = MKT_SZ</span><br><span class="line">        <span class="keyword">GoTo</span> Done</span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">    </span><br><span class="line"><span class="symbol">Done:</span></span><br><span class="line">    <span class="comment">&#x27;xxx</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Function</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="step-4-API获取数据"><a href="#step-4-API获取数据" class="headerlink" title="step-4 API获取数据"></a>step-4 API获取数据</h4><p>通过API获取实时数据。这里以sina的股票数据为例，接口支持同时获取多个股票的数据（以逗号分开）。</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Function</span> GetStockDataByCode(stockCode <span class="keyword">As</span> <span class="type">String</span>) <span class="keyword">As</span> Collection</span><br><span class="line">    <span class="keyword">On</span> <span class="keyword">Error</span> <span class="keyword">GoTo</span> Oops</span><br><span class="line"></span><br><span class="line">    <span class="keyword">Dim</span> url <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line">    url = <span class="string">&quot;http://hq.sinajs.cn/list=&quot;</span> + stockCode</span><br><span class="line">    </span><br><span class="line">    <span class="comment">&#x27; define stock</span></span><br><span class="line">    <span class="keyword">Dim</span> stocks <span class="keyword">As</span> Collection</span><br><span class="line">    <span class="keyword">Set</span> stocks = <span class="built_in">New</span> Collection</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">Dim</span> stock <span class="keyword">As</span> CStock</span><br><span class="line">        </span><br><span class="line">    <span class="comment">&#x27; request stock data</span></span><br><span class="line">    <span class="keyword">Dim</span> http <span class="keyword">As</span> <span class="type">Object</span></span><br><span class="line">    <span class="keyword">Set</span> http = CreateObject(<span class="string">&quot;Microsoft.XMLHTTP&quot;</span>)</span><br><span class="line">    http.Open <span class="string">&quot;POST&quot;</span>, url, <span class="literal">False</span></span><br><span class="line">    http.send <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">If</span> http.Status = <span class="number">200</span> <span class="keyword">Then</span></span><br><span class="line">        <span class="comment">&#x27; split by &quot;;&quot;</span></span><br><span class="line">        <span class="keyword">Dim</span> stockList <span class="keyword">As</span> Variant</span><br><span class="line">        stockList = Split(http.responseText, <span class="string">&quot;;&quot;</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">Dim</span> item <span class="keyword">As</span> Variant</span><br><span class="line">        <span class="keyword">Dim</span> stockDataStr <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">For</span> <span class="keyword">Each</span> item <span class="keyword">In</span> stockList</span><br><span class="line">            stockDataStr = item</span><br><span class="line">            <span class="keyword">If</span> Len(stockDataStr) &gt; <span class="number">6</span> <span class="keyword">Then</span></span><br><span class="line">                <span class="keyword">Set</span> stock = ParseSingleLine(stockDataStr)</span><br><span class="line">                stocks.Add stock</span><br><span class="line">            <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment">&#x27;release control to OS</span></span><br><span class="line">            DoEvents</span><br><span class="line">        <span class="keyword">Next</span></span><br><span class="line">        </span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">Set</span> GetStockDataByCode = stocks</span><br><span class="line"><span class="symbol">Oops:</span></span><br><span class="line">    <span class="comment">&#x27;</span></span><br><span class="line">    Debug.Print <span class="string">&quot;[GetStockDataByCode] Error when handling stock: &quot;</span> &amp; stockCode</span><br><span class="line">    </span><br><span class="line">    <span class="comment">&#x27; 释放内存</span></span><br><span class="line">    <span class="keyword">Set</span> stock = <span class="literal">Nothing</span></span><br><span class="line">    <span class="keyword">Set</span> stocks = <span class="literal">Nothing</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Function</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">Function</span> ParseSingleLine(stockData <span class="keyword">As</span> <span class="type">String</span>) <span class="keyword">As</span> CStock</span><br><span class="line">    <span class="keyword">Dim</span> Data <span class="keyword">As</span> Variant</span><br><span class="line">    Data = Split(stockData, <span class="string">&quot;,&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">&#x27;check data length</span></span><br><span class="line">    <span class="keyword">Dim</span> dataLength <span class="keyword">As</span> <span class="type">Integer</span></span><br><span class="line">    dataLength = UBound(Data) - LBound(Data)</span><br><span class="line">    <span class="keyword">If</span> dataLength &lt; <span class="number">3</span> <span class="keyword">Then</span></span><br><span class="line">        <span class="comment">&#x27;如果数据长度小于3，直接返回</span></span><br><span class="line">        <span class="keyword">Set</span> ParseSingleLine = <span class="literal">Nothing</span></span><br><span class="line">        <span class="keyword">GoTo</span> Oops</span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">Dim</span> stock <span class="keyword">As</span> CStock</span><br><span class="line">    <span class="keyword">Dim</span> mkt <span class="keyword">As</span> STOCK_MKT</span><br><span class="line">    <span class="keyword">Dim</span> stockCode <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&#x27; get stockCode</span></span><br><span class="line">    stockCode = Split(Split(Data(<span class="number">0</span>), <span class="string">&quot;=&quot;</span>)(<span class="number">0</span>), <span class="string">&quot;_&quot;</span>)(<span class="number">2</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">Set</span> stock = <span class="built_in">New</span> CStock</span><br><span class="line">    </span><br><span class="line">    <span class="comment">&#x27;check whether it&#x27;s hk code</span></span><br><span class="line">    mkt = GetMarketType(stockCode)</span><br><span class="line">    <span class="keyword">If</span> mkt = MKT_HK <span class="keyword">Then</span></span><br><span class="line">        stock.code = stockCode</span><br><span class="line">        stock.name = Data(<span class="number">1</span>)</span><br><span class="line">        </span><br><span class="line">        stock.openPrice = Data(<span class="number">2</span>)</span><br><span class="line">        stock.lastClosePrice = Data(<span class="number">3</span>)</span><br><span class="line">        stock.maxPrice = Data(<span class="number">4</span>)</span><br><span class="line">        stock.minPrice = Data(<span class="number">5</span>)</span><br><span class="line">        stock.currPrice = Data(<span class="number">6</span>)</span><br><span class="line"></span><br><span class="line">        stock.lastUpdateDate = Data(<span class="number">17</span>)</span><br><span class="line">        stock.lastUpdateTime = Data(<span class="number">18</span>)</span><br><span class="line">    <span class="keyword">ElseIf</span> mkt = MKT_SH <span class="built_in">Or</span> mkt = MKT_SZ <span class="keyword">Then</span></span><br><span class="line">        stock.code = stockCode</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">Dim</span> nameArray <span class="keyword">As</span> Variant</span><br><span class="line">        nameArray = Split(Data(<span class="number">0</span>), <span class="string">&quot;&quot;&quot;&quot;</span>)</span><br><span class="line">        stock.name = nameArray(<span class="number">1</span>)</span><br><span class="line">        </span><br><span class="line">        stock.openPrice = Data(<span class="number">1</span>)</span><br><span class="line">        stock.lastClosePrice = Data(<span class="number">2</span>)</span><br><span class="line">        stock.currPrice = Data(<span class="number">3</span>)</span><br><span class="line">        stock.maxPrice = Data(<span class="number">4</span>)</span><br><span class="line">        stock.minPrice = Data(<span class="number">5</span>)</span><br><span class="line">        stock.volume = Data(<span class="number">8</span>)</span><br><span class="line">        stock.turnover = Data(<span class="number">9</span>)</span><br><span class="line">        stock.lastUpdateDate = Data(<span class="number">30</span>)</span><br><span class="line">        stock.lastUpdateTime = Data(<span class="number">31</span>)</span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">Set</span> ParseSingleLine = stock</span><br><span class="line">    </span><br><span class="line"><span class="symbol">Oops:</span></span><br><span class="line">    <span class="comment">&#x27;MsgBox &quot;[ParseSingleLine] Error when handling stockData: &quot; &amp; stockData</span></span><br><span class="line">    Debug.Print <span class="string">&quot;Error when parsing stockData &quot;</span> &amp; stockData</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Function</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Step-5-将CStock数据写入到excel指定单元格"><a href="#Step-5-将CStock数据写入到excel指定单元格" class="headerlink" title="Step-5 将CStock数据写入到excel指定单元格"></a>Step-5 将CStock数据写入到excel指定单元格</h4><p>更新数据到Excel的基本逻辑很简单，就是直接在股票代码的右侧按顺序写入数据。</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&#x27;Write stock data to the right columns of the code column</span></span><br><span class="line"><span class="keyword">Function</span> WriteSingleStockDataToTable(stock <span class="keyword">As</span> CStock, codeRow <span class="keyword">As</span> <span class="type">Integer</span>, codeCol <span class="keyword">As</span> <span class="type">Integer</span>, <span class="keyword">Optional</span> IncludeDetails <span class="keyword">As</span> <span class="type">Boolean</span> = <span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">Dim</span> sngStart <span class="keyword">As</span> <span class="type">Single</span></span><br><span class="line">    sngStart = Timer</span><br><span class="line">    </span><br><span class="line">    <span class="comment">&#x27; update current price and increase rate</span></span><br><span class="line">    Cells(codeRow, codeCol + <span class="number">1</span>) = stock.increaseRate</span><br><span class="line">    Cells(codeRow, codeCol + <span class="number">2</span>) = stock.currPrice</span><br><span class="line">    </span><br><span class="line">    Debug.Print <span class="string">&quot;WriteSingleStockDataToTable() - 基础耗时: &quot;</span> &amp; Timer - sngStart</span><br><span class="line">    </span><br><span class="line">    <span class="comment">&#x27;check if need update more details</span></span><br><span class="line">    <span class="keyword">If</span> IncludeDetails <span class="keyword">Then</span></span><br><span class="line">        Cells(codeRow, codeCol + <span class="number">3</span>) = stock.lastClosePrice</span><br><span class="line">        Cells(codeRow, codeCol + <span class="number">4</span>) = stock.openPrice</span><br><span class="line">        Cells(codeRow, codeCol + <span class="number">5</span>) = stock.maxPrice</span><br><span class="line">        Cells(codeRow, codeCol + <span class="number">6</span>) = stock.minPrice</span><br><span class="line">        Cells(codeRow, codeCol + <span class="number">7</span>) = stock.volume</span><br><span class="line">        Cells(codeRow, codeCol + <span class="number">8</span>) = stock.turnover</span><br><span class="line">        </span><br><span class="line">        Debug.Print <span class="string">&quot;WriteSingleStockDataToTable() - 完整耗时: &quot;</span> &amp; Timer - sngStart</span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Function</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27;Write multiple stock data to the right columns of code</span></span><br><span class="line"><span class="keyword">Function</span> WriteStockListDataToTable(codeCol <span class="keyword">As</span> <span class="type">Integer</span>, codeDict <span class="keyword">As</span> <span class="type">Object</span>, stocks <span class="keyword">As</span> Collection, <span class="keyword">Optional</span> IncludeDetails <span class="keyword">As</span> <span class="type">Boolean</span> = <span class="literal">False</span>)</span><br><span class="line">    <span class="keyword">Dim</span> item <span class="keyword">As</span> CStock</span><br><span class="line">    <span class="keyword">Dim</span> codeRow <span class="keyword">As</span> <span class="type">Integer</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">For</span> <span class="keyword">Each</span> item <span class="keyword">In</span> stocks</span><br><span class="line">        codeRow = codeDict.item(item.code)</span><br><span class="line">        <span class="keyword">Call</span> WriteSingleStockDataToTable(item, codeRow, codeCol, IncludeDetails)</span><br><span class="line">    <span class="keyword">Next</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Function</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Step-6-刷新整个列表"><a href="#Step-6-刷新整个列表" class="headerlink" title="Step-6 刷新整个列表"></a>Step-6 刷新整个列表</h4><p>考虑到API支持的参数，使用了分批刷新的方式，每次获取的股票数量为<code>batchSize</code>. 这里发现一个问题，向excel单元格写入数据的耗时会随着写入数据的数量成比例增加，为了优化每次更新的时间，可以通过<code>getDetails</code>选择是否写入详细数据。</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&#x27;</span></span><br><span class="line"><span class="keyword">Sub</span> RefreshBtnClicked()</span><br><span class="line">    <span class="comment">&#x27;</span></span><br><span class="line">    Debug.Print <span class="string">&quot;Start Refresh()...&quot;</span></span><br><span class="line">    <span class="keyword">Dim</span> sngStart <span class="keyword">As</span> <span class="type">Single</span></span><br><span class="line">    sngStart = Timer</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">Dim</span> codeColumn <span class="keyword">As</span> <span class="type">Integer</span></span><br><span class="line">    <span class="keyword">Dim</span> startRow <span class="keyword">As</span> <span class="type">Integer</span></span><br><span class="line">    <span class="keyword">Dim</span> endRow <span class="keyword">As</span> <span class="type">Integer</span></span><br><span class="line">    <span class="keyword">Dim</span> batchSize <span class="keyword">As</span> <span class="type">Integer</span></span><br><span class="line">    <span class="keyword">Dim</span> getDetails <span class="keyword">As</span> <span class="type">Boolean</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&#x27; update settings</span></span><br><span class="line">    codeColumn = <span class="number">4</span> <span class="comment">&#x27;股票代码列</span></span><br><span class="line">    startRow = <span class="number">5</span> <span class="comment">&#x27;起始行</span></span><br><span class="line">    endRow = <span class="number">100</span> <span class="comment">&#x27;结束行</span></span><br><span class="line">    batchSize = <span class="number">5</span> <span class="comment">&#x27;一次获取股票个数</span></span><br><span class="line">    getDetails = <span class="literal">True</span> <span class="comment">&#x27;是否更新详情，否则只更新当前涨幅（注意：更新的字段越多，耗时越长）</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">Call</span> RefreshStockListByBatch(codeColumn, startRow, endRow, batchSize, getDetails)</span><br><span class="line">    </span><br><span class="line">    MsgBox <span class="string">&quot;Refresh done, &quot;</span> &amp; Timer - sngStart &amp; <span class="string">&quot;s used.&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">Sub</span> RefreshStockListByBatch(codeColumn <span class="keyword">As</span> <span class="type">Integer</span>, startRow <span class="keyword">As</span> <span class="type">Integer</span>, endRow <span class="keyword">As</span> <span class="type">Integer</span>, batchSize <span class="keyword">As</span> <span class="type">Integer</span>, <span class="keyword">Optional</span> IncludeDetails <span class="keyword">As</span> <span class="type">Boolean</span> = <span class="literal">False</span>)</span><br><span class="line">    <span class="comment">&#x27;refresh my list using one single request</span></span><br><span class="line">    <span class="keyword">Dim</span> row <span class="keyword">As</span> <span class="type">Integer</span></span><br><span class="line">    <span class="keyword">Dim</span> longCode <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line">    <span class="keyword">Dim</span> mkt <span class="keyword">As</span> STOCK_MKT</span><br><span class="line">    <span class="keyword">Dim</span> stockCount <span class="keyword">As</span> <span class="type">Integer</span></span><br><span class="line">    <span class="keyword">Dim</span> stockListData <span class="keyword">As</span> Collection</span><br><span class="line">    <span class="keyword">Dim</span> columnCode <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line">    <span class="keyword">Dim</span> code <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&#x27;crete dict to record stock position</span></span><br><span class="line">    <span class="keyword">Dim</span> codeDict <span class="keyword">As</span> <span class="type">Object</span></span><br><span class="line">    <span class="keyword">Set</span> codeDict = CreateObject(<span class="string">&quot;Scripting.Dictionary&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">&#x27;initialize</span></span><br><span class="line">    longCode = <span class="string">&quot;&quot;</span></span><br><span class="line">    stockCount = <span class="number">0</span></span><br><span class="line">    <span class="keyword">Set</span> stockListData = <span class="built_in">New</span> Collection</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">For</span> row = startRow <span class="keyword">To</span> endRow</span><br><span class="line">        <span class="comment">&#x27;convert to lower case</span></span><br><span class="line">        code = LCase(Cells(row, codeColumn).Value)</span><br><span class="line">        </span><br><span class="line">        <span class="comment">&#x27;construct the long code by &quot;,&quot;, e.g. sh000001,sz300012,sh...</span></span><br><span class="line">        mkt = GetMarketType(code)</span><br><span class="line">        <span class="keyword">If</span> mkt &lt;&gt; MKT_INVALID <span class="keyword">Then</span></span><br><span class="line">            <span class="keyword">If</span> Len(longCode) &gt; <span class="number">0</span> <span class="keyword">Then</span></span><br><span class="line">                longCode = longCode &amp; <span class="string">&quot;,&quot;</span></span><br><span class="line">            <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">            longCode = longCode &amp; code</span><br><span class="line">            </span><br><span class="line">            <span class="comment">&#x27;record stock position</span></span><br><span class="line">            <span class="keyword">If</span> <span class="built_in">Not</span> codeDict.exists(code) <span class="keyword">Then</span></span><br><span class="line">                codeDict.Add code, row</span><br><span class="line">            <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment">&#x27;</span></span><br><span class="line">            stockCount = stockCount + <span class="number">1</span></span><br><span class="line">        <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">&#x27;check and request stock data by longCode</span></span><br><span class="line">        <span class="keyword">If</span> stockCount + <span class="number">1</span> &gt; batchSize <span class="keyword">Then</span></span><br><span class="line">            <span class="comment">&#x27;</span></span><br><span class="line">            <span class="keyword">Set</span> stockListData = GetStockDataByCode(longCode)</span><br><span class="line">            <span class="keyword">Call</span> WriteStockListDataToTable(codeColumn, codeDict, stockListData, IncludeDetails)</span><br><span class="line">            </span><br><span class="line">            <span class="comment">&#x27; reset</span></span><br><span class="line">            <span class="keyword">Set</span> stockListData = <span class="literal">Nothing</span></span><br><span class="line">            <span class="keyword">Set</span> stockListData = <span class="built_in">New</span> Collection</span><br><span class="line">            stockCount = <span class="number">0</span></span><br><span class="line">            longCode = <span class="string">&quot;&quot;</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment">&#x27;release control to OS</span></span><br><span class="line">            DoEvents</span><br><span class="line">        <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">        </span><br><span class="line">    <span class="keyword">Next</span> row</span><br><span class="line">    </span><br><span class="line">    <span class="comment">&#x27;</span></span><br><span class="line">    <span class="keyword">Set</span> stockListData = GetStockDataByCode(longCode)</span><br><span class="line">    <span class="keyword">Call</span> WriteStockListDataToTable(codeColumn, codeDict, stockListData, IncludeDetails)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">Set</span> codeDict = <span class="literal">Nothing</span></span><br><span class="line">    <span class="keyword">Set</span> stockListData = <span class="literal">Nothing</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="原始文件"><a href="#原始文件" class="headerlink" title="原始文件"></a>原始文件</h3><p>原始文件可以从<a target="_blank" rel="noopener" href="https://download.csdn.net/download/ljinddlj/20929711">这里</a>下载，代码比较粗糙，欢迎在此基础上加工改造！</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Excel/" rel="tag"><i class="fa fa-tag"></i> Excel</a>
+              <a href="/tags/%E8%82%A1%E7%A5%A8/" rel="tag"><i class="fa fa-tag"></i> 股票</a>
+              <a href="/tags/Stock/" rel="tag"><i class="fa fa-tag"></i> Stock</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/06/29/React/useMemo-and-useCallback/" rel="prev" title="React中的useMemo和useCallback">
+      <i class="fa fa-chevron-left"></i> React中的useMemo和useCallback
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/03/12/ML/ML_basics_and_sklearn_framework/" rel="next" title="机器学习基础入门和Python sklearn">
+      机器学习基础入门和Python sklearn <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8Excel%E4%B8%AD%E5%88%B7%E6%96%B0%E8%82%A1%E7%A5%A8%E6%95%B0%E6%8D%AE"><span class="nav-number">1.</span> <span class="nav-text">在Excel中刷新股票数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD"><span class="nav-number">1.1.</span> <span class="nav-text">基本功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.2.</span> <span class="nav-text">基本步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#step-1-%E6%B7%BB%E5%8A%A0%E6%8C%89%E9%92%AE"><span class="nav-number">1.2.1.</span> <span class="nav-text">step-1 添加按钮</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#step-2-%E5%AE%9A%E4%B9%89%E8%82%A1%E7%A5%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%B1%BB"><span class="nav-number">1.2.2.</span> <span class="nav-text">step-2 定义股票数据结构类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#step-3-%E6%A3%80%E6%9F%A5%E8%82%A1%E7%A5%A8%E4%BB%A3%E7%A0%81"><span class="nav-number">1.2.3.</span> <span class="nav-text">step-3 检查股票代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#step-4-API%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="nav-number">1.2.4.</span> <span class="nav-text">step-4 API获取数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step-5-%E5%B0%86CStock%E6%95%B0%E6%8D%AE%E5%86%99%E5%85%A5%E5%88%B0excel%E6%8C%87%E5%AE%9A%E5%8D%95%E5%85%83%E6%A0%BC"><span class="nav-number">1.2.5.</span> <span class="nav-text">Step-5 将CStock数据写入到excel指定单元格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step-6-%E5%88%B7%E6%96%B0%E6%95%B4%E4%B8%AA%E5%88%97%E8%A1%A8"><span class="nav-number">1.2.6.</span> <span class="nav-text">Step-6 刷新整个列表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E5%A7%8B%E6%96%87%E4%BB%B6"><span class="nav-number">1.3.</span> <span class="nav-text">原始文件</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="moakap"
+      src="/images/snail-filled.png">
+  <p class="site-author-name" itemprop="name">moakap</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/moakap" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;moakap" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">moakap</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'AjpQWK4TAFokhRL5FftLIpHr-gzGzoHsz',
+      appKey     : 'Lt5JkPmORcKiBCx0RvGPVcNP',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
