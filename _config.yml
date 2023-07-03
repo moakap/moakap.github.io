@@ -106,3 +106,6 @@ theme: next
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
+
+# Automatically excerpt description in homepage as preamble text.
+excerpt_description: true
