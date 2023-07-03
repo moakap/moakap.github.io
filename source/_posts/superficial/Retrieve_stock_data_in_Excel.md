@@ -22,6 +22,8 @@ date: 2021-08-09 17:20:38
 
 ### 基本步骤
 
+<!--more-->
+
 #### step-1 添加按钮
 
 通过Developer -> Insert -> Button添加刷新按钮。
