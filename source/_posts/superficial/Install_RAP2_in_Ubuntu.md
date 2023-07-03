@@ -26,6 +26,8 @@ $ sudo apt install redis-server
 $ wget https://github.com/jgm/pandoc/releases/download/3.1/pandoc-3.1-1-amd64.deb
 ```
 
+<!--more-->
+
 1.2.2 安装
 ```
 $ sudo dpkg -i pandoc-3.1-1-amd64.deb
