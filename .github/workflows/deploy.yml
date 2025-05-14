@@ -2,7 +2,7 @@ name: Deploy Hexo Blog to Server
 
 on:
   push:
-    branches: [main]  # 或你使用的分支名
+    branches: [source]  # 使用的分支名
 
 jobs:
   deploy:
